@@ -73,12 +73,13 @@ class ResourceList extends React.Component {
     if (title === '') return alert('no title');
     if (!grade) return alert('no grade specified');
     if (!domain) return alert('no domain specified');
-    if (!cluster) return alert('no cluster specified');
+    // if (!cluster) return alert('no cluster specified');
     // if (!standard) return alert('no standard');
 
     // optional
-    const sv = (standard && standard.code) || '';
-    const cv = (component && component.code) || '';
+    const optCluster = (cluster && cluster.code) || '';
+    const optStandard = (standard && standard.code) || '';
+    const optComponent = (component && component.code) || '';
 
     // db
     Resources.insert({
@@ -86,9 +87,9 @@ class ResourceList extends React.Component {
       url: url.value,
       grade: grade.code,
       domain: domain.code,
-      cluster: cluster.code,
-      standard: sv,
-      component: cv,
+      cluster: optCluster,
+      standard: optStandard,
+      component: optComponent,
     }); 
 
     // reset form
