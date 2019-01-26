@@ -33,7 +33,7 @@ class ResourceList extends React.Component {
       <div>
         <form onSubmit={this.newResource}>
 
-          <p>New Resource</p>
+          <h3>Submit New Resource</h3>
 
           <input type="text" name="title" placeholder="Title" /> 
           <input type="text" name="url" placeholder="URL" /> 
@@ -41,6 +41,10 @@ class ResourceList extends React.Component {
           <button type="submit">Submit</button>
 
         </form>
+
+        <hr />
+
+        <h3>Resources</h3>
 
         {code &&
           <a href={`${baseUrl}${code.join('/')}`}>

@@ -30,6 +30,10 @@ class App extends React.Component {
       <div>
         <h1>Resource Share</h1>
 
+        <hr />
+
+        <h3>Standard</h3>
+
         <div className="d-flex">
           <Select name="grade" title="Grade" value={(grade && grade.code) || ''}
             onChange={this.changeGrade} 
@@ -60,6 +64,8 @@ class App extends React.Component {
               options={standard.components} 
               remove={this.removeComponent} />}
         </div>
+
+        <hr />
 
         <ResourceList query={query} grade={grade}
           domain={domain} cluster={cluster}
