@@ -28,7 +28,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <h1>K Resource Share</h1>
+        <h1>Resource Share</h1>
 
         <div className="d-flex">
           <Select name="grade" title="Grade" value={(grade && grade.code) || ''}
