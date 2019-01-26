@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import Resources from '../api/resources';
@@ -66,7 +67,6 @@ class ResourceList extends React.Component {
     const { url, title} = e.target;
 
     /* ghetto validation */ 
-    // TODO: actual validation
 
     // required
     // if (url === '') return alert('no url');
@@ -81,16 +81,17 @@ class ResourceList extends React.Component {
     const optStandard = (standard && standard.code) || '';
     const optComponent = (component && component.code) || '';
 
+
     // db
-    Resources.insert({
-      title: title.value,
-      url: url.value,
-      grade: grade.code,
-      domain: domain.code,
-      cluster: optCluster,
-      standard: optStandard,
-      component: optComponent,
-    }); 
+    Meteor.call('resources.new',
+      title.value,
+      url.value,
+      grade.code,
+      domain.code,
+      optCluster,
+      optStandard,
+      optComponent,
+    ); 
 
     // reset form
     url.value = '';
@@ -99,11 +100,12 @@ class ResourceList extends React.Component {
 }
 
 export default withTracker(({ query }) => {
+  Meteor.subscribe('resources');
   if (query) {
     return {
       resources: Resources.find(
         { ...query },
-        { limit: 100 }, // TODO: actual pagination
+        { limit: 100 },
       ).fetch(),
     };
   }

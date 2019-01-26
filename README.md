@@ -24,12 +24,13 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - Find a few resources for each standard
   - probably accomplished by scripting/scraping
   - do this after MMethods?
-- Pub/Sub + MMethods
+- <s>Pub/Sub + MMethods</s>
 - SS validation
 - user accounts
   - Signup/Login
   - Auth. (only signed in can submit)
   - users can "subscribe" to standards, recieving email when new resource submitted?
+- <s>'X' button to remove a search term from query</s>
 
 ### Non-priority / Later
 - real pagination

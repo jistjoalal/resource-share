@@ -33,27 +33,32 @@ class App extends React.Component {
         <div className="d-flex">
           <Select name="grade" title="Grade" value={(grade && grade.code) || ''}
             onChange={this.changeGrade} 
-            options={Standards} />
+            options={Standards}
+            remove={this.removeGrade} />
 
           {grade &&
             <Select name="domain" title="Domain" value={(domain && domain.code) || ''}
               onChange={this.changeDomain}
-              options={grade.domains} />}
+              options={grade.domains} 
+              remove={this.removeDomain} />}
 
           {domain &&
             <Select name="cluster" title="Cluster" value={(cluster && cluster.code) || ''}
               onChange={this.changeCluster} 
-              options={domain.clusters} />}
+              options={domain.clusters} 
+              remove={this.removeCluster} />}
 
           {cluster && 
             <Select name="standard" title="Standard" value={(standard && standard.code) || ''}
               onChange={this.changeStandard} 
-              options={cluster.standards} />}
+              options={cluster.standards} 
+              remove={this.removeStandard} />}
 
           {standard && standard.components &&
             <Select name="component" title="Component" value={(component && component.code) || ''}
               onChange={this.changeComponent} 
-              options={standard.components} />}
+              options={standard.components} 
+              remove={this.removeComponent} />}
         </div>
 
         <ResourceList query={query} grade={grade}
@@ -62,6 +67,23 @@ class App extends React.Component {
       </div>
     )
   }
+  removeGrade = () => {
+    this.setState({ grade: '' });
+    this.removeDomain();
+  }
+  removeDomain = () => {
+    this.setState({ domain: ''});
+    this.removeCluster();
+  }
+  removeCluster = () => {
+    this.setState({ cluster: ''});
+    this.removeStandard();
+  }
+  removeStandard = () => {
+    this.setState({ standard: ''});
+    this.removeComponent();
+  }
+  removeComponent = () => this.setState({ component: '' });
   changeComponent = e => {
     const { standard } = this.state;
     const title = e.target.value;
@@ -70,39 +92,25 @@ class App extends React.Component {
   changeStandard = e => {
     const { cluster } = this.state;
     const title = e.target.value;
-    this.setState({
-      standard: cluster.standards[title],
-      component: '',
-    });
+    this.setState({ standard: cluster.standards[title] });
+    this.removeComponent();
   }
   changeCluster = e => {
     const { domain } = this.state;
     const title = e.target.value;
-    this.setState({
-      cluster: domain.clusters[title],
-      standard: '',
-      component: '',
-    });
+    this.setState({ cluster: domain.clusters[title] });
+    this.removeStandard();
   }
   changeDomain = e => {
     const { grade } = this.state;
     const title = e.target.value;
-    this.setState({
-      domain: grade.domains[title],
-      cluster: '',
-      standard: '',
-      component: '',
-    });
+    this.setState({ domain: grade.domains[title] });
+    this.removeCluster();
   }
   changeGrade = e => {
     const title = e.target.value;
-    this.setState({
-      grade: Standards[title],
-      domain: '',
-      cluster: '',
-      standard: '',
-      component: '',
-    });
+    this.setState({ grade: Standards[title] });
+    this.removeDomain();
   }
 }
 
