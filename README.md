@@ -25,11 +25,11 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - probably accomplished by scripting/scraping
   - do this after MMethods?
 - <s>Pub/Sub + MMethods</s>
-- SS validation
-- user accounts
-  - Signup/Login
-  - Auth. (only signed in can submit)
-  - users can "subscribe" to standards, recieving email when new resource submitted?
+- <s>SS validation</s>
+- <s>user accounts</s>
+  - <s>Signup/Login</s>
+  - <s>Redirect logged in users away from signup/login</s>
+  - <s>Auth. (only signed in can submit)</s>
 - <s>'X' button to remove a search term from query</s>
 
 ### Non-priority / Later
@@ -38,6 +38,8 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - deploy to heroku
 
 ### Ideas
+- unique URLs per query w/ react-router?
+- users can "subscribe" to standards, recieving email when new resource submitted?
 - associate resources w/ user who submitted
   - track "karma/score" per user? (gamifies submission?) 
 - upvote/visited ranking?

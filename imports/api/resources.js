@@ -10,9 +10,12 @@ if (Meteor.isServer) {
   });
 }
 
+const notAuthMsg = 'You must be logged in to do that.';
+
 Meteor.methods({
   'resources.new'(title, url, grade, domain, cluster, standard, component) {
-    // if (!this.userId) throw new Meteor.Error('not authorized');
+
+    if (!this.userId) throw new Meteor.Error(notAuthMsg, notAuthMsg);
 
     new SimpleSchema({
       title: {

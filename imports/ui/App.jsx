@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import AddResource from './AddResource';
 import ResourceList from './ResourceList';
 import QuerySelect from './QuerySelect';
+import LogoutButton from './LogoutButton';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -19,10 +21,14 @@ export default class App extends React.Component {
     return (
       <div>
         <h1>Resource Share</h1>
+        {!!Meteor.userId() ?
+          <LogoutButton />
+        : <Link to="/login">Login</Link>}
         <hr />
         <QuerySelect change={this.change} removeKey={this.removeKey} {...this.state} /> 
         <hr />
-        <AddResource {...this.state} />
+        {!!Meteor.userId() &&
+          <AddResource {...this.state} />}
         <hr />
         <ResourceList query={this.query()} {...this.state} />
       </div>
