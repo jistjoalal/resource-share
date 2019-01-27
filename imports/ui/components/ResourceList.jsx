@@ -66,7 +66,10 @@ export default withTracker(({ query }) => {
     return {
       resources: Resources.find(
         { ...query },
-        { limit: 100 },
+        {
+          limit: 100,
+          sort: { title: 1 },
+        },
       ).fetch(),
     };
   }

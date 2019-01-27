@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Standards from '../../api/standards';
+import GRADES from '../../api/grades';
 
 import Select from './Select';
 
@@ -17,7 +17,7 @@ export default class QuerySelect extends React.Component {
         <div className="d-flex">
           <Select name="grade" title="Grade" value={(grade && grade.code) || ''}
             onChange={this.handleChange('grade')} 
-            options={Standards}
+            options={GRADES}
             remove={() => removeKey('grade')} />
 
           {grade &&

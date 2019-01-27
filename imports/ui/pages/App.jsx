@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Session } from 'meteor/session';
 
-import Standards from '../../api/standards';
+import GRADES from '../../api/grades';
 
 import AddResource from '../components/AddResource';
 import ResourceList from '../components/ResourceList';
@@ -59,13 +59,14 @@ class App extends React.Component {
     let list = [];
     // grade key selects node from root of curriculum
     if (key === 'grade') {
-      list = Standards;
+      list = GRADES;
     }
     // other keys select node from child-nodes of curriculum
     else {
       const prevKey = KEYS[KEYS.indexOf(key) - 1];
       list = this.state[prevKey][`${key}s`];
     }
+    this.removeKey(key);
     // change key, updating route
     this.setState({ [key]: list[code] }, () => this.route(route, callback));
   }
