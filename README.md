@@ -31,17 +31,19 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - <s>Redirect logged in users away from signup/login</s>
   - <s>Auth. (only signed in can submit)</s>
 - <s>'X' button to remove a search term from query</s>
+- style w/ bootstrap
+- deploy to heroku
+- refactor
 
 ### Non-priority / Later
 - real pagination
-- style w/ bootstrap
-- deploy to heroku
 
 ### Ideas
-- unique URLs per query w/ react-router?
 - users can "subscribe" to standards, recieving email when new resource submitted?
 - associate resources w/ user who submitted
   - track "karma/score" per user? (gamifies submission?) 
 - upvote/visited ranking?
 - shortid + react-router for resource id's
+  - <s>unique URLs per query w/ react-router</s>
+    - clean up code for sure, lol.
   - comments page for each resource

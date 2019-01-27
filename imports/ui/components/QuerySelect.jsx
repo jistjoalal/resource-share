@@ -5,6 +5,9 @@ import Standards from '../../api/standards';
 import Select from './Select';
 
 export default class QuerySelect extends React.Component {
+  handleChange = key => e => {
+    this.props.change(key, e.target.value);
+  }
   render() {
     const { grade, domain, cluster, standard, component, change, removeKey } = this.props;
     return (
@@ -13,31 +16,31 @@ export default class QuerySelect extends React.Component {
 
         <div className="d-flex">
           <Select name="grade" title="Grade" value={(grade && grade.code) || ''}
-            onChange={change('grade', Standards)} 
+            onChange={this.handleChange('grade')} 
             options={Standards}
             remove={() => removeKey('grade')} />
 
           {grade &&
             <Select name="domain" title="Domain" value={(domain && domain.code) || ''}
-              onChange={change('domain', grade.domains)}
+              onChange={this.handleChange('domain')}
               options={grade.domains} 
               remove={() => removeKey('domain')} />}
 
           {domain &&
             <Select name="cluster" title="Cluster" value={(cluster && cluster.code) || ''}
-              onChange={change('cluster', domain.clusters)} 
+              onChange={this.handleChange('cluster')} 
               options={domain.clusters} 
               remove={() => removeKey('cluster')} />}
 
           {cluster && 
             <Select name="standard" title="Standard" value={(standard && standard.code) || ''}
-              onChange={change('standard', cluster.standards)} 
+              onChange={this.handleChange('standard')} 
               options={cluster.standards} 
               remove={() => removeKey('standard')} />}
 
           {standard && standard.components &&
             <Select name="component" title="Component" value={(component && component.code) || ''}
-              onChange={change('component', standard.components)} 
+              onChange={this.handleChange('component')} 
               options={standard.components} 
               remove={() => removeKey('component')} />}
         </div>

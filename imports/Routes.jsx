@@ -9,6 +9,7 @@ export default Routes = () =>
   <Router>
     <Switch>
       <Route path="/" exact component={App} />
+      <Route path="/:id" component={App} />
       <PublicRoute path="/login" component={Login} />
       <PublicRoute path="/signup" component={Signup} />
       <Route component={App} />
