@@ -33,6 +33,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>alert messages on homepage after logging in/signing up</s>
 - <s>'X' button to remove a search term from query</s>
 - <s>unique URLs per query w/ react-router</s>
+- **BUG**: app crashes from spamming the dropdowns
 - refactor resource scraping
 - finish adding grade levels
 - style w/ bootstrap
