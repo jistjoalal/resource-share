@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Session } from 'meteor/session';
 
 import Standards from '../../api/standards';
 
@@ -7,7 +8,9 @@ import AddResource from '../components/AddResource';
 import ResourceList from '../components/ResourceList';
 import QuerySelect from '../components/QuerySelect';
 import LogoutButton from '../components/LogoutButton';
-import ReferrerLink from '../components/ReferrerLink';
+import LoginButton from '../components/LoginButton';
+
+const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 
 class App extends React.Component {
   constructor(props) {
@@ -20,13 +23,22 @@ class App extends React.Component {
       component: '',
     }
   }
+  componentDidMount() {
+    const routeId = this.props.match.params.id;
+    if (routeId) {
+      const vals = routeId.split('.'); 
+      this.setStateFromRoute(vals); 
+    }
+  }
   render() {
+    const msg = Session.get('message');
     return (
       <div>
         <h1>Resource Share</h1>
         {!!Meteor.userId() ?
           <LogoutButton />
-        : <ReferrerLink to="/login">Login</ReferrerLink>}
+        : <LoginButton />}
+        {msg && <p>{msg}</p>}
         <hr />
 
         <QuerySelect change={this.change} removeKey={this.removeKey} {...this.state} /> 
@@ -35,26 +47,36 @@ class App extends React.Component {
         {!!Meteor.userId() ?
           <AddResource {...this.state} />
         : <p>
-            <ReferrerLink to="/login">Login</ReferrerLink> to submit a new Resource!
+            <LoginButton /> to submit a new Resource!
           </p>}
         <hr />
 
         <ResourceList query={this.query()} {...this.state} />
       </div>
-    )
+    );
   }
   change = (key, code, route=true, callback) => {
-    const keys = ['grade', 'domain', 'cluster', 'standard', 'component'];
     let list = [];
+    // grade key selects node from root of curriculum
     if (key === 'grade') {
       list = Standards;
     }
+    // other keys select node from child-nodes of curriculum
     else {
-      const prevKey = keys[keys.indexOf(key) - 1];
+      const prevKey = KEYS[KEYS.indexOf(key) - 1];
       list = this.state[prevKey][`${key}s`];
     }
-    this.removeKey(key);
-    return this.setState({ [key]: list[code] }, () => this.route(route, callback));
+    // change key, updating route
+    this.setState({ [key]: list[code] }, () => this.route(route, callback));
+  }
+  removeKey = key => {
+    // remove key, updating route
+    this.setState({ [key]: '' }, () => this.route(true));
+    // remove sub-keys
+    const idx = KEYS.indexOf(key);
+    if (idx < KEYS.length - 1) {
+      this.removeKey(KEYS[idx + 1]);
+    }
   }
   route = (route, callback) => {
     // routing
@@ -62,53 +84,23 @@ class App extends React.Component {
       const keys = Object.values(this.state).filter(String).map(v => v.code);
       this.props.history.replace(keys.join('.'));
     }
-    if (callback) {
-      callback();
-    }
-  }
-  removeKey = key => {
-    this.setState({ [key]: '' }, () => this.route(true));
-    // remove sub-keys
-    const keys = ['grade', 'domain', 'cluster', 'standard', 'component'];
-    const idx = keys.indexOf(key);
-    if (idx < keys.length - 1) {
-      this.removeKey(keys[idx + 1]);
-    }
+    // callback for setting state from route
+    if (callback) callback();
   }
   query = () => {
-    const { grade, domain, cluster, standard, component } = this.state;
     const query = {};
-    if (grade) query.grade = grade.code;
-    if (domain) query.domain = domain.code;
-    if (cluster) query.cluster = cluster.code;
-    if (standard) query.standard = standard.code;
-    if (component) query.component = component.code;
+    // all keys in state are reflected in query (by code)
+    KEYS.forEach(key => {
+      if (this.state[key])
+        query[key] = this.state[key].code;
+    });
     return query;
   }
-  componentDidMount() {
-    const routeId = this.props.match.params.id;
-    if (routeId) {
-      const keys = ['grade', 'domain', 'cluster', 'standard', 'component'];
-      const vals = routeId.split('.'); 
-      if (vals[0]) {
-        this.change(keys[0], vals[0], false, () => {
-          if (vals[1]) {
-            this.change(keys[1], vals[1], false, () => {
-              if (vals[2]) {
-                this.change(keys[2], vals[2], false, () => {
-                  if (vals[3]) {
-                    this.change(keys[3], vals[3], false, () => {
-                      if (vals[4]) {
-                        this.change(keys[4], vals[4], false);
-                      }
-                    });
-                  }
-                });
-              }
-            });
-          }
-        });
-      }
+  setStateFromRoute = (vals, i = 0) => {
+    if (vals[0]) {
+      this.change(KEYS[i], vals[0], false, () => {
+        this.setStateFromRoute(vals.slice(1), i + 1);
+      });
     }
   }
 }

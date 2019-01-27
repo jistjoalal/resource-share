@@ -20,6 +20,7 @@ class Signup extends React.Component {
         this.setState({ err: err.reason });
       }
       else {
+        Session.set('message', 'Thanks for signing up!');
         const from = Session.get('from');
         this.props.history.push(from || '/');
       }

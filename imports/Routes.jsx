@@ -8,10 +8,14 @@ import Login from './ui/pages/Login'
 export default Routes = () =>
   <Router>
     <Switch>
+      {/* Home */}
       <Route path="/" exact component={App} />
+      {/* Accounts */}
       <PublicRoute path="/login" component={Login} />
       <PublicRoute path="/signup" component={Signup} />
+      {/* Route By ID */}
       <Route path="/:id" component={App} />
+      {/* Default */}
       <Route component={App} />
     </Switch>
   </Router>

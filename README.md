@@ -23,7 +23,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 ### Priority
 - Find a few resources for each standard
   - probably accomplished by scripting/scraping
-  - do this after MMethods?
+  - do this after MMethods and styling?
 - <s>Pub/Sub + MMethods</s>
 - <s>SS validation</s>
 - <s>user accounts</s>
@@ -32,9 +32,9 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - <s>Redirect users to where they were before signing up / logging in</s>
     - <s>save a session var anytime user clicks on "Login" from home page</s>
   - <s>Auth. (only signed in can submit)</s>
-  - alert messages on homepage after logging in/signing up
-    - Meteor.Session
+- <s>alert messages on homepage after logging in/signing up</s>
 - <s>'X' button to remove a search term from query</s>
+- <s>unique URLs per query w/ react-router</s>
 - style w/ bootstrap
 - deploy to heroku
 - refactor
@@ -47,7 +47,5 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - associate resources w/ user who submitted
   - track "karma/score" per user? (gamifies submission?) 
 - upvote/visited ranking?
-- shortid + react-router for resource id's
-  - <s>unique URLs per query w/ react-router</s>
-    - clean up code 
-  - comments page for each resource
+- comments page for each resource?
+  - shortid + react-router for resource id's
