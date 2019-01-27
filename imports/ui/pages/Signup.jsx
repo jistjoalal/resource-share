@@ -20,7 +20,8 @@ class Signup extends React.Component {
         this.setState({ err: err.reason });
       }
       else {
-        this.props.history.push('/');
+        const from = Session.get('from');
+        this.props.history.push(from || '/');
       }
     });
   }
@@ -39,6 +40,7 @@ class Signup extends React.Component {
         </form>
 
         <Link to="/login">Login</Link>
+        <Link to="/">Home</Link>
       </div>
     )
   }

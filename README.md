@@ -29,7 +29,11 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>user accounts</s>
   - <s>Signup/Login</s>
   - <s>Redirect logged in users away from signup/login</s>
+  - <s>Redirect users to where they were before signing up / logging in</s>
+    - <s>save a session var anytime user clicks on "Login" from home page</s>
   - <s>Auth. (only signed in can submit)</s>
+  - alert messages on homepage after logging in/signing up
+    - Meteor.Session
 - <s>'X' button to remove a search term from query</s>
 - style w/ bootstrap
 - deploy to heroku
@@ -45,5 +49,5 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - upvote/visited ranking?
 - shortid + react-router for resource id's
   - <s>unique URLs per query w/ react-router</s>
-    - clean up code for sure, lol.
+    - clean up code 
   - comments page for each resource

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import Standards from '../../api/standards';
 
@@ -7,6 +7,7 @@ import AddResource from '../components/AddResource';
 import ResourceList from '../components/ResourceList';
 import QuerySelect from '../components/QuerySelect';
 import LogoutButton from '../components/LogoutButton';
+import ReferrerLink from '../components/ReferrerLink';
 
 class App extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class App extends React.Component {
         <h1>Resource Share</h1>
         {!!Meteor.userId() ?
           <LogoutButton />
-        : <Link to="/login">Login</Link>}
+        : <ReferrerLink to="/login">Login</ReferrerLink>}
         <hr />
 
         <QuerySelect change={this.change} removeKey={this.removeKey} {...this.state} /> 
@@ -33,7 +34,9 @@ class App extends React.Component {
 
         {!!Meteor.userId() ?
           <AddResource {...this.state} />
-        : <p>Login/Signup to submit a new Resource!</p>}
+        : <p>
+            <ReferrerLink to="/login">Login</ReferrerLink> to submit a new Resource!
+          </p>}
         <hr />
 
         <ResourceList query={this.query()} {...this.state} />

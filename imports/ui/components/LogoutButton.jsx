@@ -10,7 +10,9 @@ class LogoutButton extends React.Component {
   }
   logout = () => {
     Accounts.logout(() => {
-      this.props.history.push('/');
+      // "refresh page" to re-render components
+      const { pathname } = this.props.history.location;
+      this.props.history.push(pathname);
     });
   }
 }

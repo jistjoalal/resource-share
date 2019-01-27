@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Link, withRouter } from 'react-router-dom';
+import { Session } from 'meteor/session';
 
 class Login extends React.Component {
   constructor(props) {
@@ -17,7 +18,8 @@ class Login extends React.Component {
         this.setState({ err: err.reason });
       }
       else {
-        this.props.history.push('/');
+        const from = Session.get('from');
+        this.props.history.push(from || '/');
       }
     });
   }
@@ -36,6 +38,7 @@ class Login extends React.Component {
         </form>
 
         <Link to="/signup">Register</Link>
+        <Link to="/">Home</Link>
       </div>
     )
   }
