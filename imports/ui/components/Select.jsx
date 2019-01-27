@@ -2,14 +2,14 @@ import React from 'react';
 
 export default class Select extends React.Component {
   render() {
-    const { title, options, remove, ...rest } = this.props;
+    const { title, options, remove, value, ...rest } = this.props;
     return (
       <div>
         <div>
           <span>{title}</span>
-          <button onClick={remove}>X</button>
+          {value && <button onClick={remove}>X</button>}
         </div>
-        <select {...rest}>
+        <select value={value} {...rest}>
           <option value="">{`-- ${title} --`}</option>
           {this.renderOptions(options)}
         </select>

@@ -19,32 +19,6 @@ class App extends React.Component {
       component: '',
     }
   }
-  componentDidMount() {
-    const routeId = this.props.match.params.id;
-    if (routeId) {
-      const keys = ['grade', 'domain', 'cluster', 'standard', 'component'];
-      const vals = routeId.split('.'); 
-      if (vals[0]) {
-        this.change(keys[0], vals[0], false, () => {
-          if (vals[1]) {
-            this.change(keys[1], vals[1], false, () => {
-              if (vals[2]) {
-                this.change(keys[2], vals[2], false, () => {
-                  if (vals[3]) {
-                    this.change(keys[3], vals[3], false, () => {
-                      if (vals[4]) {
-                        this.change(keys[4], vals[4], false);
-                      }
-                    });
-                  }
-                });
-              }
-            });
-          }
-        });
-      }
-    }
-  }
   render() {
     return (
       <div>
@@ -53,11 +27,15 @@ class App extends React.Component {
           <LogoutButton />
         : <Link to="/login">Login</Link>}
         <hr />
+
         <QuerySelect change={this.change} removeKey={this.removeKey} {...this.state} /> 
         <hr />
-        {!!Meteor.userId() &&
-          <AddResource {...this.state} />}
+
+        {!!Meteor.userId() ?
+          <AddResource {...this.state} />
+        : <p>Login/Signup to submit a new Resource!</p>}
         <hr />
+
         <ResourceList query={this.query()} {...this.state} />
       </div>
     )
@@ -103,6 +81,32 @@ class App extends React.Component {
     if (standard) query.standard = standard.code;
     if (component) query.component = component.code;
     return query;
+  }
+  componentDidMount() {
+    const routeId = this.props.match.params.id;
+    if (routeId) {
+      const keys = ['grade', 'domain', 'cluster', 'standard', 'component'];
+      const vals = routeId.split('.'); 
+      if (vals[0]) {
+        this.change(keys[0], vals[0], false, () => {
+          if (vals[1]) {
+            this.change(keys[1], vals[1], false, () => {
+              if (vals[2]) {
+                this.change(keys[2], vals[2], false, () => {
+                  if (vals[3]) {
+                    this.change(keys[3], vals[3], false, () => {
+                      if (vals[4]) {
+                        this.change(keys[4], vals[4], false);
+                      }
+                    });
+                  }
+                });
+              }
+            });
+          }
+        });
+      }
+    }
   }
 }
 

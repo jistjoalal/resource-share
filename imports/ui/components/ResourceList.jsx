@@ -5,16 +5,17 @@ import Resources from '../../api/resources';
 
 class ResourceList extends React.Component {
   render() {
-    const { title, code } = this.titleAndCode();
-    const baseUrl = 'http://www.corestandards.org/Math/Content/';
+    const { title, url, code } = this.titleUrlCode();
     return (
       <div>
         <h3>Resources</h3>
 
         {code &&
-          <a href={`${baseUrl}${code.join('/')}`}>
-            {code.join('.')}
+          <a href={url}>
+            Official Standard 
           </a>}
+
+        {code && <p>{code.join('.')}</p>}
 
         {title && <p>{title}</p>}
 
@@ -30,8 +31,9 @@ class ResourceList extends React.Component {
       </li>
     );
   }
-  titleAndCode = () => {
+  titleUrlCode = () => {
     const { grade, domain, cluster, standard, component } = this.props;
+    const baseUrl = 'http://www.corestandards.org/Math/Content/';
     let title = grade && grade.title;
     let code = (grade && [`${grade.code}`]) || [];
     if (domain) {
@@ -50,7 +52,11 @@ class ResourceList extends React.Component {
       code.push(`${component.code}`);
       title = component.title;
     }
-    return { title, code };
+    let url = `${baseUrl}${code.join('/')}`;
+
+    // grade standards index page is blank
+    if (code.length < 2) url += '/introduction';
+    return { title, url, code };
   }
 } 
 
