@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import AddResource from './AddResource';
-import ResourceList from './ResourceList';
-import QuerySelect from './QuerySelect';
-import LogoutButton from './LogoutButton';
+import AddResource from '../components/AddResource';
+import ResourceList from '../components/ResourceList';
+import QuerySelect from '../components/QuerySelect';
+import LogoutButton from '../components/LogoutButton';
 
 export default class App extends React.Component {
   constructor(props) {

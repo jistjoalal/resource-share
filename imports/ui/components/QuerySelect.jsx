@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Standards from '../api/standards';
+import Standards from '../../api/standards';
 
 import Select from './Select';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import Resources from '../api/resources';
+import Resources from '../../api/resources';
 
 class ResourceList extends React.Component {
   render() {
