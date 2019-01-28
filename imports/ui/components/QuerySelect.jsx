@@ -5,44 +5,38 @@ import GRADES from '../../api/grades';
 import Select from './Select';
 
 export default class QuerySelect extends React.Component {
-  handleChange = key => e => {
-    this.props.change(key, e.target.value);
+  selectInput = ({ name, value, options }) => {
+    return (
+      <Select
+        name={name}
+        value={(value && value.code) || ''}
+        options={options}
+        title={name[0].toUpperCase() + name.slice(1)}
+        onChange={e => this.props.change(name, e.target.value)}
+        remove={() => this.props.remove(name)}
+      />
+    )
   }
   render() {
-    const { grade, domain, cluster, standard, component, change, removeKey } = this.props;
+    const { grade, domain, cluster, standard, component } = this.props;
     return (
       <div>
         <h3>Standard</h3>
 
         <div className="d-flex">
-          <Select name="grade" title="Grade" value={(grade && grade.code) || ''}
-            onChange={this.handleChange('grade')} 
-            options={GRADES}
-            remove={() => removeKey('grade')} />
+          <this.selectInput name="grade" value={grade} options={GRADES} />
 
           {grade &&
-            <Select name="domain" title="Domain" value={(domain && domain.code) || ''}
-              onChange={this.handleChange('domain')}
-              options={grade.domains} 
-              remove={() => removeKey('domain')} />}
+            <this.selectInput name="domain" value={domain} options={grade.domains} />}
 
           {domain &&
-            <Select name="cluster" title="Cluster" value={(cluster && cluster.code) || ''}
-              onChange={this.handleChange('cluster')} 
-              options={domain.clusters} 
-              remove={() => removeKey('cluster')} />}
+            <this.selectInput name="cluster" value={cluster} options={domain.clusters} />}
 
           {cluster && 
-            <Select name="standard" title="Standard" value={(standard && standard.code) || ''}
-              onChange={this.handleChange('standard')} 
-              options={cluster.standards} 
-              remove={() => removeKey('standard')} />}
+            <this.selectInput name="standard" value={standard} options={cluster.standards} />}
 
           {standard && standard.components &&
-            <Select name="component" title="Component" value={(component && component.code) || ''}
-              onChange={this.handleChange('component')} 
-              options={standard.components} 
-              remove={() => removeKey('component')} />}
+            <this.selectInput name="component" value={component} options={standard.components} />}
         </div>
       </div>
     );

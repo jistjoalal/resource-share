@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { withRouter } from 'react-router-dom';
 
 class AddResource extends React.Component {
   constructor(props) {
@@ -30,20 +31,22 @@ class AddResource extends React.Component {
   }
   newResource = e => {
     e.preventDefault();
-    const { grade, domain, cluster, standard, component } = this.props;
+    const { pathname } = this.props.history.location;
+    const [ grade, domain, cluster, standard, component ] = 
+      pathname.slice(1).split('.');
     const { url, title} = e.target;
 
     // optionals get set to empty string
-    const optCluster = (cluster && cluster.code) || '';
-    const optStandard = (standard && standard.code) || '';
-    const optComponent = (component && component.code) || '';
+    const optCluster = cluster || '';
+    const optStandard = standard || '';
+    const optComponent = component || '';
 
     // db
     Meteor.call('resources.new',
       title.value,
       url.value,
-      grade.code,
-      domain.code,
+      grade,
+      domain,
       optCluster,
       optStandard,
       optComponent,
@@ -61,4 +64,4 @@ class AddResource extends React.Component {
   }
 }
 
-export default AddResource;
+export default withRouter(AddResource);

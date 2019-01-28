@@ -8,6 +8,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 
 - Maybe a way to do this with an API instead of the huge object to account for changes in standards?
 - How would this affect submitted resources that get "deprecated"?
+- Is there a way to only store the "keys" in state and load in the hierarchy nodes dynamically?
 
 ## Goals
 
@@ -33,14 +34,16 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>alert messages on homepage after logging in/signing up</s>
 - <s>'X' button to remove a search term from query</s>
 - <s>unique URLs per query w/ react-router</s>
-- **BUG**: app crashes from spamming the dropdowns
+- <s>**BUG**: app crashes from spamming the dropdowns</s>
+  - think I fixed this by descending into callback hell
+  - still probably need a better state mgmt. solution
 - refactor resource scraping
-- finish adding grade levels
 - style w/ bootstrap
 - deploy to heroku
 - refactor
 
 ### Non-priority / Later
+- finish adding grade levels
 - real pagination
 - more resources
   - just google standards to find more

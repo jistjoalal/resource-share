@@ -15,20 +15,29 @@ const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      grade: '',
-      domain: '',
-      cluster: '',
-      standard: '',
-      component: '',
-    }
+    this.state = {};
+    KEYS.forEach(key => this.state[key] = null);
   }
   componentDidMount() {
-    const routeId = this.props.match.params.id;
-    if (routeId) {
-      const vals = routeId.split('.'); 
-      this.setStateFromRoute(vals); 
+    const { id } = this.props.match.params;
+    if (id) this.setStateFromRoute(id.split('.')); 
+  }
+  setStateFromRoute = (vals, i = 0) => {
+    if (vals[0]) {
+      this.setState({ [KEYS[i]]: this.getList(KEYS[i])[vals[0]] }, () => {
+        this.setStateFromRoute(vals.slice(1), i + 1);
+      });
     }
+  }
+  // returns list of vals for key
+  // example: 'grade'   --> root of GRADES
+  // example: 'domain'  --> GRADES[this.state.grade.code].domains
+  // example: 'cluster' --> GRADES[grade.code].domains[domain.code].clusters
+  // - (returns children of type key @ this.state's point in the curr. hierarchy)
+  getList = key => {
+    if (key === 'grade') return GRADES;
+    const prevKey = KEYS[KEYS.indexOf(key) - 1];
+    return this.state[prevKey][`${key}s`];
   }
   render() {
     const msg = Session.get('message');
@@ -41,52 +50,46 @@ class App extends React.Component {
         {msg && <p>{msg}</p>}
         <hr />
 
-        <QuerySelect change={this.change} removeKey={this.removeKey} {...this.state} /> 
+        <QuerySelect change={this.changeKey} remove={this.removeKey} {...this.state} /> 
         <hr />
 
         {!!Meteor.userId() ?
-          <AddResource {...this.state} />
+          <AddResource />
         : <p>
             <LoginButton /> to submit a new Resource!
           </p>}
         <hr />
 
-        <ResourceList query={this.query()} {...this.state} />
+        <ResourceList query={this.query()} />
       </div>
     );
   }
-  change = (key, code, route=true, callback) => {
-    let list = [];
-    // grade key selects node from root of curriculum
-    if (key === 'grade') {
-      list = GRADES;
-    }
-    // other keys select node from child-nodes of curriculum
-    else {
-      const prevKey = KEYS[KEYS.indexOf(key) - 1];
-      list = this.state[prevKey][`${key}s`];
-    }
-    this.removeKey(key);
-    // change key, updating route
-    this.setState({ [key]: list[code] }, () => this.route(route, callback));
+  changeKey = (key, code) => {
+    // remove key, and sub-keys
+    this.removeKey(key, () => {
+      // change key, updating route
+      this.setState({ [key]: this.getList(key)[code] });
+    });
   }
-  removeKey = key => {
+  removeKey = (key, callback) => {
     // remove key, updating route
-    this.setState({ [key]: '' }, () => this.route(true));
-    // remove sub-keys
-    const idx = KEYS.indexOf(key);
-    if (idx < KEYS.length - 1) {
-      this.removeKey(KEYS[idx + 1]);
-    }
+    this.setState({ [key]: null }, () => {
+      this.route();
+      // remove sub-keys
+      const idx = KEYS.indexOf(key);
+      if (key !== 'component') {
+        this.removeKey(KEYS[idx + 1], callback);
+      }
+      // callback at end of chain
+      else if (callback) callback();
+    });
   }
-  route = (route, callback) => {
-    // routing
-    if (route) {
-      const keys = Object.values(this.state).filter(String).map(v => v.code);
-      this.props.history.replace(keys.join('.'));
-    }
-    // callback for setting state from route
-    if (callback) callback();
+  route = () => {
+    // get code from state
+    const keys = Object.values(this.state)
+      .filter(v => !!v).map(v => v.code).join('.');
+    // apply to url
+    this.props.history.replace(keys);
   }
   query = () => {
     const query = {};
@@ -96,13 +99,6 @@ class App extends React.Component {
         query[key] = this.state[key].code;
     });
     return query;
-  }
-  setStateFromRoute = (vals, i = 0) => {
-    if (vals[0]) {
-      this.change(KEYS[i], vals[0], false, () => {
-        this.setStateFromRoute(vals.slice(1), i + 1);
-      });
-    }
   }
 }
 
