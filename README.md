@@ -37,7 +37,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>**BUG**: app crashes from spamming the dropdowns</s>
   - think I fixed this by descending into callback hell
   - still probably need a better state mgmt. solution
-- refactor resource scraping
+- <s>refactor resource scraping</s>
 - style w/ bootstrap
 - deploy to heroku
 - refactor
