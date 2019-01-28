@@ -1,5 +1,7 @@
-import Resources from './resources';
-import GRADES from './grades';
+import Resources from '../resources';
+import GRADES from '../grades';
+
+import SourceBL from './better.lesson';
 
 export const resetResources = callback => {
   console.log('resetting resources...');
@@ -8,6 +10,7 @@ export const resetResources = callback => {
 
 const insertResource = (source, keys) => {
   const { title, url } = source(keys);
+  if (!title || !url) return;
   const { grade, domain, cluster, standard, component } = keys;
   Resources.insert({
     title,
@@ -49,6 +52,28 @@ export const insertResources = () => {
 }
 
 const ccCode = keys => Object.values(keys).map(v => v.code).join('.');
+const blccCode = keys => {
+  const { grade, domain, cluster, standard, component } = keys;
+  return keys.component ?
+    `${[ grade.code, domain.code, cluster.code, standard.code].join('.') + component.code}`
+  : ccCode(keys);
+}
+
+const betterLesson = keys => {
+  // no dot before component
+  const blCode = blccCode(keys);
+  const record = SourceBL.find({ name: blCode }).fetch()[0];
+  if (record) {
+    return {
+      url: `https://api.betterlesson.com/search?standards=${record.id}`,
+      title: `${ccCode(keys)} - BetterLesson Lesson Plans`,
+    };
+  }
+  return {
+    url: null,
+    title: null,
+  };
+}
 
 const khanAcad = keys => {
   const { grade, domain, cluster, standard, component } = keys;
@@ -65,7 +90,7 @@ const khanAcad = keys => {
 const eduDotCom = keys => {
   return {
     url: `https://www.education.com/common-core/CCSS.MATH.CONTENT.${ccCode(keys)}/`,
-    title: `${ccCode(keys)} Worksheets, Workbooks, Lesson Plans, and Games`, 
+    title: `${ccCode(keys)} - Worksheets, Workbooks, Lesson Plans, and Games`, 
   };
 }
 
@@ -75,7 +100,7 @@ const illMath = keys => {
     url: ('https://tasks.illustrativemathematics.org/content-standards/'
       + `${grade.code}/${domain.code}/${cluster.code}/${standard.code}`
     ),
-    title: `Illustrative Mathematics ${ccCode(keys)}`,
+    title: `${ccCode(keys)} - Illustrative Mathematics`,
   };
 }
 
@@ -98,6 +123,6 @@ const sources = {
   grade: [ hcpss ],
   domain: [],
   cluster: [],
-  standard: [ eduDotCom, khanAcad, illMath ],
-  component: [ khanAcad ],
+  standard: [ eduDotCom, khanAcad, illMath, betterLesson ],
+  component: [ khanAcad, betterLesson ],
 }

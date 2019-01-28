@@ -57,10 +57,8 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - shortid + react-router for resource id's
 
 ## Resource Sources
-- khanacademy
-- education.com
-- HCPSS
-- betterlesson
-  - https://betterlesson.com/search?standards=15&from=header
-  - standards have some weird ass index
-  - they have an API ? https://betterlesson.readme.io/docs/getting-started
+- <s>khanacademy</s>
+- <s>education.com</s>
+- <s>HCPSS</s>
+- <s>betterlesson</s>
+  - some ghetto scraping, i think my code comments are good enough

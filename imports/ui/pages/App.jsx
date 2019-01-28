@@ -68,20 +68,22 @@ class App extends React.Component {
     // remove key, and sub-keys
     this.removeKey(key, () => {
       // change key, updating route
-      this.setState({ [key]: this.getList(key)[code] });
+      this.setState({ [key]: this.getList(key)[code] }, () => this.route());
     });
   }
   removeKey = (key, callback) => {
     // remove key, updating route
     this.setState({ [key]: null }, () => {
-      this.route();
       // remove sub-keys
       const idx = KEYS.indexOf(key);
       if (key !== 'component') {
         this.removeKey(KEYS[idx + 1], callback);
       }
       // callback at end of chain
-      else if (callback) callback();
+      else {
+        this.route();
+        if (callback) callback();
+      }
     });
   }
   route = () => {
