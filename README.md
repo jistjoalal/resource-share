@@ -38,13 +38,14 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - think I fixed this by descending into callback hell
   - still probably need a better state mgmt. solution
 - <s>refactor resource scraping</s>
+- <s>real pagination</s>
+  - how to hide more button when useless?
 - style w/ bootstrap
 - deploy to heroku
 - refactor
 
 ### Non-priority / Later
 - finish adding grade levels
-- real pagination
 - more resources
   - just google standards to find more
 

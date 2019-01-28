@@ -5,7 +5,7 @@ import { Session } from 'meteor/session';
 import GRADES from '../../api/grades';
 
 import AddResource from '../components/AddResource';
-import ResourceList from '../components/ResourceList';
+import ResourceList from '../components/ResourceListContainer';
 import QuerySelect from '../components/QuerySelect';
 import LogoutButton from '../components/LogoutButton';
 import LoginButton from '../components/LoginButton';

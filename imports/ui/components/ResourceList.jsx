@@ -5,15 +5,6 @@ import Resources from '../../api/resources';
 
 class ResourceList extends React.Component {
   render() {
-    return (
-      <div>
-        <h3>Resources</h3>
-
-        {this.renderResources()}
-      </div>
-    );
-  }
-  renderResources() {
     const { resources } = this.props;
     return resources.map(r =>
       <li key={r._id}>
@@ -21,22 +12,21 @@ class ResourceList extends React.Component {
       </li>
     );
   }
-} 
+}
 
-export default withTracker(({ query }) => {
+export default withTracker(({ query, page }) => {
   Meteor.subscribe('resources');
   if (query) {
     return {
       resources: Resources.find(
         { ...query },
         {
-          limit: 100,
-          sort: { title: 1 },
+          limit: 10 * (page + 1),
         },
       ).fetch(),
     };
   }
   else return {
-    resources: Resources.find({}, { limit: 100 }).fetch(),
+    resources: Resources.find({}, { limit: 10 }).fetch(),
   };
 })(ResourceList);
