@@ -2,13 +2,14 @@ import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 
+import Resources from '../../api/resources';
+
 import Resource from '../components/Resource';
 
 class Favorites extends React.Component {
   render () {
-    const { user } = this.props;
-    if (!user || !user.emails || !user.favorites) return null;
-
+    const { user, resources } = this.props;
+    if (!resources || !user) return null;
     const username = user.emails[0].address;
     return (
       <div>
@@ -19,9 +20,9 @@ class Favorites extends React.Component {
     );
   }
   renderFavorites() {
-    return this.props.user.favorites.map(_id => {
+    return this.props.resources.map(resource => {
       return (
-        <Resource key={_id} _id={_id} />
+        <Resource key={resource._id} _id={resource._id} />
       );
     });
   }
@@ -29,10 +30,15 @@ class Favorites extends React.Component {
 
 const FavoritesContainer = withTracker(({ match }) => {
   const { userId } = match.params;
-  Meteor.subscribe('resources', {});
-  Meteor.subscribe('userData', userId);
+  const query = { favoritedBy: { $elemMatch: { $eq: userId } } };
+  const page = 1;
+  Meteor.subscribe('resources', query, page); 
+  const resources = Resources.find().fetch();
+
+  Meteor.subscribe('userData', { _id: userId });
   const user = Meteor.users.find().fetch()[0];
-  return { user };
+
+  return { user, resources };
 })(Favorites);
 
 export default withRouter(FavoritesContainer);

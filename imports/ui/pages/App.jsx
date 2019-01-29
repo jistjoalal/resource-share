@@ -108,7 +108,6 @@ class App extends React.Component {
         query[key] = this.state[key].code;
     });
     Session.set('query', query);
-    Session.set('page', 1);
   }
 }
 

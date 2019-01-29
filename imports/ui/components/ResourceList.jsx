@@ -7,6 +7,9 @@ import Resources from '../../api/resources';
 import Resource from './Resource';
 
 class ResourceList extends React.Component {
+  componentDidMount() {
+    Session.set('page', 1);
+  }
   render() {
     const { limit, total } = this.props;
     const amt = limit > total ? total : limit;
@@ -25,8 +28,7 @@ class ResourceList extends React.Component {
     );
   }
   renderResources() {
-    const { resources, limit } = this.props;
-    return resources.slice(0, limit).map(r =>
+    return this.props.resources.map(r =>
       <Resource key={r._id} _id={r._id} /> 
     );
   }
@@ -46,13 +48,14 @@ class ResourceList extends React.Component {
 }
 
 export default ResourceListContainer = withTracker(() => {
-  Meteor.subscribe('resources', Session.get('query'));
+  Meteor.subscribe('resources', Session.get('query'), Session.get('page'));
 
-  const resources = Resources.find({},
-    { sort: { score: -1 } },
-  ).fetch();
+  Meteor.call('resources.count', Session.get('query'), (err, res) => {
+    if (!err) Session.set('total', res);
+  });
 
-  const total = resources.length;
+  const resources = Resources.find().fetch();
   const limit = 10 * Session.get('page');
+  const total = Session.get('total');
   return { resources, limit, total };
 })(ResourceList);

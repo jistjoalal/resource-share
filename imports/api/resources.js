@@ -5,9 +5,15 @@ import SimpleSchema from 'simpl-schema';
 export default Resources = new Mongo.Collection('resources');
 
 if (Meteor.isServer) {
-  Meteor.publish('resources', (query) => {
+  Meteor.publish('resources', (query, page) => {
     check(query, Object);
-    return Resources.find(query);
+    check(page, Number);
+    return Resources.find(
+      query,
+      { sort: { score: -1 },
+        limit: page * 10,
+      },
+    );
   });
 }
 
@@ -52,18 +58,23 @@ Meteor.methods({
     const username = Meteor.user().emails[0].address;
     const authorId = this.userId;
     const score = 0;
+    const favoritedBy = [];
     Resources.insert({
       title,
       url,
       username,
       authorId,
       score,
+      favoritedBy,
       grade,
       domain,
       cluster,
       standard,
       component,
     });
+  },
+  'resources.count'(query) {
+    return Resources.find(query).fetch().length;
   },
   'resources.upvote'(_id) {
     if (!this.userId) throw new Meteor.Error(notAuthMsg, notAuthMsg);
@@ -82,6 +93,7 @@ Meteor.methods({
       { _id },
       {
         $inc: { score: 1 },
+        $addToSet: { favoritedBy: this.userId },
       },
     );
     Meteor.users.update(
@@ -108,6 +120,7 @@ Meteor.methods({
       { _id },
       {
         $inc: { score: -1 },
+        $pull: { favoritedBy: this.userId },
       },
     );
     Meteor.users.update(
