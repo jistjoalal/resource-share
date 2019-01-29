@@ -251,7 +251,7 @@ export default {
               },
               '8': {
                 title: 'Determine the unknown whole number in an addition or subtraction equation relating three whole numbers.',
-                code: 'B',
+                code: '8',
               },
             },
           },
