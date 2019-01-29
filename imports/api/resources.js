@@ -6,7 +6,7 @@ export default Resources = new Mongo.Collection('resources');
 
 if (Meteor.isServer) {
   Meteor.publish('resources', (query) => {
-    return Resources.find(query, {sort: {title: 1}});
+    return Resources.find(query, {sort: {score: -1}});
   });
 }
 
