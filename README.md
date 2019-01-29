@@ -50,10 +50,11 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - just google standards to find more
 
 ### Ideas
-- users can "subscribe" to standards, recieving email when new resource submitted?
-- associate resources w/ user who submitted
+- users can "subscribe" to standards, recieving email/notification when new resource submitted?
+- users can view list of favorited resources
+- <s>associate resources w/ user who submitted</s>
   - track "karma/score" per user? (gamifies submission?) 
-- upvote/visited ranking?
+- <s>upvote/visited ranking</s>
 - comments page for each resource?
   - shortid + react-router for resource id's
 

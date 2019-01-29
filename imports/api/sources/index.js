@@ -15,6 +15,9 @@ const insertResource = (source, keys) => {
   Resources.insert({
     title,
     url,
+    username: 'Jist',
+    authorId: '1234',
+    score: 0,
     grade: grade.code,
     domain: (domain && domain.code) || '',
     cluster: (cluster && cluster.code) || '',

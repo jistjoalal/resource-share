@@ -48,14 +48,46 @@ Meteor.methods({
       },
     }).validate({ title, url, grade, domain, cluster, standard, component })
 
+    const username = Meteor.user().emails[0].address;
+    const authorId = this.userId;
+    const score = 0;
     Resources.insert({
       title,
       url,
+      username,
+      authorId,
+      score,
       grade,
       domain,
       cluster,
       standard,
       component,
     });
+  },
+  'resources.upvote'(_id) {
+    if (!this.userId) throw new Meteor.Error(notAuthMsg, notAuthMsg);
+    new SimpleSchema({
+      _id: {
+        type: String,
+      },
+    }).validate({ _id });
+
+    // only allow favoriting once
+    const favorites = Meteor.user().favorites || [];
+    const voted = favorites.includes(_id);
+    if (voted) return;
+
+    Resources.update(
+      { _id },
+      {
+        $inc: { score: 1 },
+      },
+    );
+    Meteor.users.update(
+      { _id: this.userId },
+      {
+        $addToSet: { favorites: _id }
+      }
+    );
   },
 });
