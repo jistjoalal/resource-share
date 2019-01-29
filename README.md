@@ -39,7 +39,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - still probably need a better state mgmt. solution
 - <s>refactor resource scraping</s>
 - <s>real pagination</s>
-  - how to hide more button when useless?
+  - <s>hide more button when useless</s>
 - style w/ bootstrap
 - deploy to heroku
 - refactor

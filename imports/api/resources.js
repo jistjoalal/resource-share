@@ -5,8 +5,8 @@ import SimpleSchema from 'simpl-schema';
 export default Resources = new Mongo.Collection('resources');
 
 if (Meteor.isServer) {
-  Meteor.publish('resources', () => {
-    return Resources.find();
+  Meteor.publish('resources', (query) => {
+    return Resources.find(query, {sort: {title: 1}});
   });
 }
 

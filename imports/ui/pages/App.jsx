@@ -5,7 +5,7 @@ import { Session } from 'meteor/session';
 import GRADES from '../../api/grades';
 
 import AddResource from '../components/AddResource';
-import ResourceList from '../components/ResourceListContainer';
+import ResourceList from '../components/ResourceList';
 import QuerySelect from '../components/QuerySelect';
 import LogoutButton from '../components/LogoutButton';
 import LoginButton from '../components/LoginButton';
@@ -21,6 +21,7 @@ class App extends React.Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     if (id) this.setStateFromRoute(id.split('.')); 
+    else this.setQuery();
   }
   setStateFromRoute = (vals, i = 0) => {
     if (vals[0]) {
@@ -28,6 +29,7 @@ class App extends React.Component {
         this.setStateFromRoute(vals.slice(1), i + 1);
       });
     }
+    else this.setQuery();
   }
   // returns list of vals for key
   // example: 'grade'   --> root of GRADES
@@ -60,7 +62,7 @@ class App extends React.Component {
           </p>}
         <hr />
 
-        <ResourceList query={this.query()} />
+        <ResourceList />
       </div>
     );
   }
@@ -68,7 +70,9 @@ class App extends React.Component {
     // remove key, and sub-keys
     this.removeKey(key, () => {
       // change key, updating route
-      this.setState({ [key]: this.getList(key)[code] }, () => this.route());
+      this.setState({ [key]: this.getList(key)[code] }, () => {
+        this.route();
+      });
     });
   }
   removeKey = (key, callback) => {
@@ -80,9 +84,11 @@ class App extends React.Component {
         this.removeKey(KEYS[idx + 1], callback);
       }
       // callback at end of chain
+      // (only used for setting state from route,
+      //  so no need to route in that case)
       else {
-        this.route();
         if (callback) callback();
+        else this.route();
       }
     });
   }
@@ -92,15 +98,17 @@ class App extends React.Component {
       .filter(v => !!v).map(v => v.code).join('.');
     // apply to url
     this.props.history.replace(keys);
+    this.setQuery();
   }
-  query = () => {
+  setQuery = () => {
     const query = {};
     // all keys in state are reflected in query (by code)
     KEYS.forEach(key => {
       if (this.state[key])
         query[key] = this.state[key].code;
     });
-    return query;
+    Session.set('query', query);
+    Session.set('page', 1);
   }
 }
 
