@@ -35,7 +35,7 @@ const FavoritesContainer = withTracker(({ match }) => {
   Meteor.subscribe('resources', query, page); 
   const resources = Resources.find().fetch();
 
-  Meteor.subscribe('userData', { _id: userId });
+  Meteor.subscribe('userData', userId);
   const user = Meteor.users.find().fetch()[0];
 
   return { user, resources };

@@ -7,10 +7,7 @@ class Resource extends React.Component {
   render() {
     if (!this.props.resource) return null;
 
-    const { resource, user } = this.props;
-    const favorited = user && user.favorites ?
-      user.favorites.includes(resource._id) : null;
-
+    const { resource } = this.props;
     return (
       <div className="row border-bottom">
         <span className="col-2 text-danger text-truncate">
@@ -18,9 +15,7 @@ class Resource extends React.Component {
         </span>
 
         <span className="col-8 text-truncate">
-          { favorited ?
-            <button onClick={this.unFav}>&lt;/3</button>
-          : <button onClick={this.favorite}>&lt;3</button>}
+          {this.favoriteButton()}
 
           <a href={resource.url} className="text-truncate">
             {resource.title}
@@ -30,6 +25,14 @@ class Resource extends React.Component {
         <span className="col text-secondary text-truncate">{resource.username}</span>
       </div>
     )
+  }
+  favoriteButton = () => {
+    const { resource, user } = this.props;
+    return (user && user.favorites &&
+      (user.favorites.includes(resource._id) ?
+        <button onClick={this.unFav}>&lt;/3</button>
+      : <button onClick={this.favorite}>&lt;3</button>)
+    );
   }
   unFav = () => {
     const { _id } = this.props;

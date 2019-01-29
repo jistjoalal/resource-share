@@ -63,6 +63,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - refactor
 
 ### Ideas
+- modal for displaying messages like "thx for signup", "must be logged in", etc.
 - users can "subscribe" to standards, recieving email/notification when new resource submitted?
 - comments page for each resource?
   - shortid + react-router for resource id's
