@@ -49,9 +49,11 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - <s>separate page (private)?</s>
   - <s>"un-favorite button" shows right one depending on fav status</s>
   - <s>pagination on favorites page</s>
-  - do i really need both favorites and favoritedBy relations?
-- users can view list of authored resources
+- <s>users can view list of authored resources</s>
+  - <s>refactor out commonalities b/w favorites, submissions, and maybe ResourceList</s>
   - total the score for a "user karma"
+- refactor out data layer/container components? seems to help
+- TitleBar/NavBar component w/ links
 - **BUG** when opening favorites page, resources from resourceList component flash
 
 ### Non-priority / Later

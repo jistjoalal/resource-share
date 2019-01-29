@@ -1,32 +1,41 @@
 import React from 'react';
-import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
-
-import Resources from '../../api/resources';
+import { Link } from 'react-router-dom';
 
 import Resource from './Resource';
 
-class ResourceList extends React.Component {
+export default class ResourceList extends React.Component {
   componentDidMount() {
     Session.set('page', 1);
   }
   render() {
     return (
       <div>
+        {this.renderTitle()}
         {this.renderHeaders()}
         {this.renderResources()}
         {this.renderPageMenu()}
       </div>
     );
   }
+  renderTitle() {
+    const { user, title } = this.props;
+    if (!user) return <h1>Resources</h1>;
+    const username = user.emails[0].address;
+    return (
+      <div>
+        <h1>{`${username}'s ${title}`}</h1>
+        <Link to="/">Home</Link>
+      </div>
+    );
+  }
   renderPageMenu() {
-    const { limit, total } = this.props;
+    const { limit, total, title } = this.props;
     const amt = limit > total ? total : limit;
     return (
       <div>
-        {!!total ?  // hacky - depends on resource existing for each standard
-          <p>{`${amt}/${total}`} resources</p>
-        : <p>Loading...</p>}
+        {total > 0 ?  // hacky - depends on resource existing for each standard
+          <p>{`${amt}/${total} ${title}`}</p>
+        : <p>{`No ${title}`}</p>}
 
         {limit < total &&
           <button onClick={this.nextPage}>More</button>}
@@ -34,9 +43,13 @@ class ResourceList extends React.Component {
     )
   }
   renderResources() {
-    return this.props.resources.map(r =>
-      <Resource key={r._id} _id={r._id} /> 
-    );
+    const { resources } = this.props;
+    if (!resources) return null;
+    return resources.map(resource => {
+      return (
+        <Resource key={resource._id} _id={resource._id} />
+      );
+    });
   }
   renderHeaders() {
     return (
@@ -52,20 +65,3 @@ class ResourceList extends React.Component {
     Session.set('page', page + 1);
   }
 }
-
-export default ResourceListContainer = withTracker(() => {
-  // resources (matching query + page)
-  Meteor.subscribe('resources', Session.get('query'), Session.get('page'));
-  const resources = Resources.find().fetch();
-
-  // total # resources matching query
-  Meteor.call('resources.count', Session.get('query'), (err, res) => {
-    if (!err) Session.set('total', res);
-  });
-
-  // page stats
-  const limit = 10 * Session.get('page');
-  const total = Session.get('total');
-
-  return { resources, limit, total };
-})(ResourceList);

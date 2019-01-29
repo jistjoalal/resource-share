@@ -4,8 +4,8 @@ import { Session } from 'meteor/session';
 
 import GRADES from '../../api/grades';
 
+import ResourceList from '../containers/ResourceListContainer';
 import AddResource from '../components/AddResource';
-import ResourceList from '../components/ResourceList';
 import QuerySelect from '../components/QuerySelect';
 import LogoutButton from '../components/LogoutButton';
 import LoginButton from '../components/LoginButton';
@@ -45,11 +45,15 @@ class App extends React.Component {
     return (
       <div>
         <h1>Resource Share</h1>
-        {!!Meteor.userId() ?
-          <LogoutButton />
-        : <LoginButton />}
         {!!Meteor.userId() &&
-          <Link to={`/favorites/${Meteor.userId()}`}>My Favorites</Link>}
+          <div>
+            {!!Meteor.userId() ?
+              <LogoutButton />
+            : <LoginButton />}
+
+            <Link to={`/favorites/${Meteor.userId()}`}>My Favorites</Link>
+            <Link to={`/submissions/${Meteor.userId()}`}>My Submissions</Link>
+          </div>}
         <hr />
 
         <QuerySelect change={this.changeKey} remove={this.removeKey} {...this.state} /> 
