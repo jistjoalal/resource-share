@@ -1,36 +1,15 @@
 import React from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import { Tracker } from 'meteor/tracker';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import Resource from '../components/Resource';
 
 class Favorites extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {
-        favorites: [],
-        emails: [{}],
-      },
-    };
-  }
-  componentDidMount() {
-    const { userId } = this.props.match.params;
-    this.favoritesTracker = Tracker.autorun(() => {
-      Meteor.subscribe('userData', userId);
-      const user = Meteor.users.find().fetch()[0];
-      if (user && user.favorites) {
-        this.setState({ user });
-      }
-    });
-  }
-  componentWillUnmount() {
-    this.favoritesTracker.stop();
-  }
   render () {
-    const { user } = this.state;
+    const { user } = this.props;
+    if (!user || !user.emails || !user.favorites) return null;
+
     const username = user.emails[0].address;
-    console.log(user._id);
     return (
       <div>
         <h2>{username}'s favorites</h2>
@@ -40,7 +19,7 @@ class Favorites extends React.Component {
     );
   }
   renderFavorites() {
-    return this.state.user.favorites.map(_id => {
+    return this.props.user.favorites.map(_id => {
       return (
         <Resource key={_id} _id={_id} />
       );
@@ -48,4 +27,12 @@ class Favorites extends React.Component {
   }
 }
 
-export default withRouter(Favorites);
+const FavoritesContainer = withTracker(({ match }) => {
+  const { userId } = match.params;
+  Meteor.subscribe('resources', {});
+  Meteor.subscribe('userData', userId);
+  const user = Meteor.users.find().fetch()[0];
+  return { user };
+})(Favorites);
+
+export default withRouter(FavoritesContainer);

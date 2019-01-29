@@ -1,37 +1,14 @@
 import React from 'react';
-import { Tracker } from 'meteor/tracker';
 import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import Resources from '../../api/resources';
 
 import Resource from './Resource';
 
-export default class ResourceList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      resources: [],
-      limit: 0,
-      total: 0,
-    };
-  }
-  componentDidMount() {
-    this.resourcesTracker = Tracker.autorun(() => {
-      Meteor.subscribe('resources');
-      const resources = Resources.find(
-        Session.get('query'),
-        { sort: { score: -1 } },
-      ).fetch();
-      const total = resources.length;
-      const limit = 10 * Session.get('page');
-      this.setState({ resources, limit, total });
-    });
-  }
-  componentWillUnmoun() {
-    this.resourcesTracker.stop();
-  }
+class ResourceList extends React.Component {
   render() {
-    const { limit, total } = this.state;
+    const { limit, total } = this.props;
     const amt = limit > total ? total : limit;
     return (
       <div>
@@ -48,7 +25,7 @@ export default class ResourceList extends React.Component {
     );
   }
   renderResources() {
-    const { resources, limit } = this.state;
+    const { resources, limit } = this.props;
     return resources.slice(0, limit).map(r =>
       <Resource key={r._id} _id={r._id} /> 
     );
@@ -67,3 +44,15 @@ export default class ResourceList extends React.Component {
     Session.set('page', page + 1);
   }
 }
+
+export default ResourceListContainer = withTracker(() => {
+  Meteor.subscribe('resources', Session.get('query'));
+
+  const resources = Resources.find({},
+    { sort: { score: -1 } },
+  ).fetch();
+
+  const total = resources.length;
+  const limit = 10 * Session.get('page');
+  return { resources, limit, total };
+})(ResourceList);

@@ -9,6 +9,10 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - Maybe a way to do this with an API instead of the huge object to account for changes in standards?
 - How would this affect submitted resources that get "deprecated"?
 - Is there a way to only store the "keys" in state and load in the hierarchy nodes dynamically?
+  - better publications/subscriptions??
+    - favorites page loads all resources
+    - main app at least passes query to subscribe method
+    - I think pagination needs to be part of the MMethod
 
 ## Goals
 
@@ -44,7 +48,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>upvote/visited ranking</s>
 - <s>users can view list of favorited resources</s>
   - <s>separate page (private)?</s>
-  - "un-favorite button" shows right one depending on fav status
+  - <s>"un-favorite button" shows right one depending on fav status</s>
 - users can view list of authored resources
   - total the score for a "user karma"
 

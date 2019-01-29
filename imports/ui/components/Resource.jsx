@@ -4,12 +4,13 @@ import { withTracker } from 'meteor/react-meteor-data';
 import Resources from '../../api/resources';
 
 class Resource extends React.Component {
-  componentDidMount() {
-    Meteor.subscribe('userData', Meteor.userId());
-  }
   render() {
-    const { resource } = this.props;
-    if (!resource) return null;
+    if (!this.props.resource) return null;
+
+    const { resource, user } = this.props;
+    const favorited = user && user.favorites ?
+      user.favorites.includes(resource._id) : null;
+
     return (
       <div className="row border-bottom">
         <span className="col-2 text-danger text-truncate">
@@ -17,8 +18,9 @@ class Resource extends React.Component {
         </span>
 
         <span className="col-8 text-truncate">
-          { !!Meteor.userId() &&
-            <button onClick={this.favorite}>&lt;3</button>}
+          { favorited ?
+            <button onClick={this.unFav}>&lt;/3</button>
+          : <button onClick={this.favorite}>&lt;3</button>}
 
           <a href={resource.url} className="text-truncate">
             {resource.title}
@@ -29,15 +31,19 @@ class Resource extends React.Component {
       </div>
     )
   }
+  unFav = () => {
+    const { _id } = this.props;
+    Meteor.call('resources.downvote', _id);
+  }
   favorite = () => {
-    const { _id } = this.props.resource;
-    Meteor.subscribe('userData', Meteor.userId());
+    const { _id } = this.props;
     Meteor.call('resources.upvote', _id);
   }
 }
 
 export default withTracker(({ _id }) => {
-  Meteor.subscribe('resources', {});
+  Meteor.subscribe('userData', Meteor.userId());
+  const user = Meteor.users.find().fetch()[0];
   const resource = Resources.find({ _id }).fetch()[0];
-  return { resource }
+  return { resource, user }
 })(Resource);

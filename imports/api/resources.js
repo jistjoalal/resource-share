@@ -5,8 +5,9 @@ import SimpleSchema from 'simpl-schema';
 export default Resources = new Mongo.Collection('resources');
 
 if (Meteor.isServer) {
-  Meteor.publish('resources', () => {
-    return Resources.find();
+  Meteor.publish('resources', (query) => {
+    check(query, Object);
+    return Resources.find(query);
   });
 }
 
@@ -87,6 +88,32 @@ Meteor.methods({
       { _id: this.userId },
       {
         $addToSet: { favorites: _id }
+      }
+    );
+  },
+  'resources.downvote'(_id) {
+    if (!this.userId) throw new Meteor.Error(notAuthMsg, notAuthMsg);
+    new SimpleSchema({
+      _id: {
+        type: String,
+      },
+    }).validate({ _id });
+
+    // only allow un-favoriting once
+    const favorites = Meteor.user().favorites || [];
+    const voted = favorites.includes(_id);
+    if (!voted) return;
+
+    Resources.update(
+      { _id },
+      {
+        $inc: { score: -1 },
+      },
+    );
+    Meteor.users.update(
+      { _id: this.userId },
+      {
+        $pull: { favorites: _id }
       }
     );
   },
