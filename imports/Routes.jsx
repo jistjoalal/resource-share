@@ -4,16 +4,18 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import App from './ui/pages/App'
 import Signup from './ui/pages/Signup'
 import Login from './ui/pages/Login'
+import Favorites from './ui/pages/Favorites'
 
 export default Routes = () =>
   <Router>
     <Switch>
-      {/* Home */}
-      <Route path="/" exact component={App} />
-      {/* Accounts */}
+      {/* Public Only */}
       <PublicRoute path="/login" component={Login} />
       <PublicRoute path="/signup" component={Signup} />
-      {/* Route By ID */}
+      {/* Private Only */}
+      {/* Public/Private */}
+      <Route path="/" exact component={App} />
+      <Route path="/favorites/:userId" component={Favorites} />
       <Route path="/:id" component={App} />
       {/* Default */}
       <Route component={App} />

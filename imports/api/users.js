@@ -1,8 +1,11 @@
 // Server
-Meteor.publish('userData', function () {
-  if (this.userId) {
-    return Meteor.users.find({ _id: this.userId }, {
-      fields: { favorites: 1 }
+Meteor.publish('userData', function (_id) {
+  if (_id) {
+    return Meteor.users.find({ _id }, {
+      fields: {
+        favorites: 1,
+        emails: 1,
+      }
     });
   } else {
     this.ready();

@@ -7,7 +7,7 @@ import { resetResources, insertResources } from '../imports/api/sources';
 import { search, save, restore } from '../imports/api/sources/better.lesson';
 
 Meteor.startup(() => {
-  resetResources(() => insertResources());
+  // resetResources(() => insertResources());
 
   // restore from backup if meteor reset
   // restore();

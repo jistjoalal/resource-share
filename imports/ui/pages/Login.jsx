@@ -18,7 +18,6 @@ class Login extends React.Component {
         this.setState({ err: err.reason });
       }
       else {
-        Session.set('message', 'You are now logged in!');
         const from = Session.get('from');
         this.props.history.push(from || '/');
       }

@@ -40,21 +40,24 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>refactor resource scraping</s>
 - <s>real pagination</s>
   - <s>hide more button when useless</s>
-- style w/ bootstrap
-- deploy to heroku
-- refactor
+- <s>associate resources w/ user who submitted</s>
+- <s>upvote/visited ranking</s>
+- <s>users can view list of favorited resources</s>
+  - <s>separate page (private)?</s>
+  - "un-favorite button" shows right one depending on fav status
+- users can view list of authored resources
+  - total the score for a "user karma"
 
 ### Non-priority / Later
 - finish adding grade levels
 - more resources
   - just google standards to find more
+- style w/ bootstrap
+- deploy to heroku
+- refactor
 
 ### Ideas
 - users can "subscribe" to standards, recieving email/notification when new resource submitted?
-- users can view list of favorited resources
-- <s>associate resources w/ user who submitted</s>
-  - track "karma/score" per user? (gamifies submission?) 
-- <s>upvote/visited ranking</s>
 - comments page for each resource?
   - shortid + react-router for resource id's
 

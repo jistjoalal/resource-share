@@ -17,8 +17,11 @@ export default class ResourceList extends React.Component {
   }
   componentDidMount() {
     this.resourcesTracker = Tracker.autorun(() => {
-      Meteor.subscribe('resources', Session.get('query'));
-      const resources = Resources.find().fetch();
+      Meteor.subscribe('resources');
+      const resources = Resources.find(
+        Session.get('query'),
+        { sort: { score: -1 } },
+      ).fetch();
       const total = resources.length;
       const limit = 10 * Session.get('page');
       this.setState({ resources, limit, total });
@@ -47,7 +50,7 @@ export default class ResourceList extends React.Component {
   renderResources() {
     const { resources, limit } = this.state;
     return resources.slice(0, limit).map(r =>
-      <Resource key={r._id} resource={r} /> 
+      <Resource key={r._id} _id={r._id} /> 
     );
   }
   renderHeaders() {

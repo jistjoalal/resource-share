@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { Session } from 'meteor/session';
 
 import GRADES from '../../api/grades';
@@ -42,14 +42,14 @@ class App extends React.Component {
     return this.state[prevKey][`${key}s`];
   }
   render() {
-    const msg = Session.get('message');
     return (
       <div>
         <h1>Resource Share</h1>
         {!!Meteor.userId() ?
           <LogoutButton />
         : <LoginButton />}
-        {msg && <p>{msg}</p>}
+        {!!Meteor.userId() &&
+          <Link to={`/favorites/${Meteor.userId()}`}>My Favorites</Link>}
         <hr />
 
         <QuerySelect change={this.changeKey} remove={this.removeKey} {...this.state} /> 
