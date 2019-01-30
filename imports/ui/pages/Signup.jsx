@@ -39,7 +39,6 @@ class Signup extends React.Component {
           <button>Create Account</button>
         </form>
 
-        <Link to="/login">Login</Link>
         <Link to="/">Home</Link>
       </div>
     )

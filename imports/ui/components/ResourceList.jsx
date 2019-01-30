@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import Resource from './Resource';
+import Resource from '../containers/ResourceContainer';
+import AddResource from './AddResource';
+import LoginButton from './LoginButton';
 
 export default class ResourceList extends React.Component {
   componentDidMount() {
@@ -11,22 +12,26 @@ export default class ResourceList extends React.Component {
     return (
       <div>
         {this.renderTitle()}
+        {this.props.add && this.renderAdd()} 
         {this.renderHeaders()}
         {this.renderResources()}
         {this.renderPageMenu()}
       </div>
     );
   }
+  renderAdd() {
+    return (
+      !!Meteor.userId() ?
+        <AddResource />
+      : <p><LoginButton /> to submit and save resources!</p>
+    )
+  }
   renderTitle() {
     const { user, title } = this.props;
     if (!user) return <h1>Resources</h1>;
+
     const username = user.emails[0].address;
-    return (
-      <div>
-        <h1>{`${username}'s ${title}`}</h1>
-        <Link to="/">Home</Link>
-      </div>
-    );
+    return <h1>{`${username}'s ${title}`}</h1>
   }
   renderPageMenu() {
     const { limit, total, title } = this.props;

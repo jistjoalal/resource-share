@@ -1,14 +1,11 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { Session } from 'meteor/session';
 
 import GRADES from '../../api/grades';
 
 import ResourceList from '../containers/ResourceListContainer';
-import AddResource from '../components/AddResource';
 import QuerySelect from '../components/QuerySelect';
-import LogoutButton from '../components/LogoutButton';
-import LoginButton from '../components/LoginButton';
 
 const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 
@@ -44,28 +41,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Resource Share</h1>
-        {!!Meteor.userId() &&
-          <div>
-            {!!Meteor.userId() ?
-              <LogoutButton />
-            : <LoginButton />}
-
-            <Link to={`/favorites/${Meteor.userId()}`}>My Favorites</Link>
-            <Link to={`/submissions/${Meteor.userId()}`}>My Submissions</Link>
-          </div>}
-        <hr />
-
         <QuerySelect change={this.changeKey} remove={this.removeKey} {...this.state} /> 
         <hr />
-
-        {!!Meteor.userId() ?
-          <AddResource />
-        : <p>
-            <LoginButton /> to submit a new Resource!
-          </p>}
-        <hr />
-
         <ResourceList />
       </div>
     );

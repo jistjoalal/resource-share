@@ -25,5 +25,8 @@ export default FavoritesContainer = withTracker(({ match }) => {
   const total = Session.get('total');
   const title = "favorites";
 
-  return { user, title, resources, limit, total };
+  // disable add form
+  const add = false;
+
+  return { user, title, resources, limit, total, add };
 })(ResourceList);

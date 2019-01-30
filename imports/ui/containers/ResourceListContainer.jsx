@@ -7,16 +7,21 @@ import ResourceList from '../components/ResourceList';
 
 export default ResourceListContainer = withTracker(() => {
   // resources (matching query + page)
-  Meteor.subscribe('resources', Session.get('query'), Session.get('page'));
+  const query = Session.get('query');
+  const page = Session.get('page');
+  Meteor.subscribe('resources', query, page);
   const resources = Resources.find().fetch();
 
   // page stats
-  Meteor.call('resources.count', Session.get('query'), (err, res) => {
+  Meteor.call('resources.count', query, (err, res) => {
     if (!err) Session.set('total', res);
   });
-  const limit = 10 * Session.get('page');
+  const limit = 10 * page;
   const total = Session.get('total');
   const title = "resources";
 
-  return { resources, limit, total, title };
+  // enable add form
+  const add = true;
+
+  return { resources, limit, total, title, add };
 })(ResourceList);

@@ -51,12 +51,14 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - <s>pagination on favorites page</s>
 - <s>users can view list of authored resources</s>
   - <s>refactor out commonalities b/w favorites, submissions, and maybe ResourceList</s>
+    - still think theres more to be done here, but not quite sure how
   - total the score for a "user karma"
-- refactor out data layer/container components? seems to help
-- TitleBar/NavBar component w/ links
+- <s>refactor out data layer/container components? seems to help</s>
+- <s>TitleBar/NavBar component w/ links</s>
 - **BUG** when opening favorites page, resources from resourceList component flash
 
 ### Non-priority / Later
+- ability to remove submissions ?
 - finish adding grade levels
 - more resources
   - just google standards to find more
