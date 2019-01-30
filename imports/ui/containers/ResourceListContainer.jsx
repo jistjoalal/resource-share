@@ -20,8 +20,5 @@ export default ResourceListContainer = withTracker(() => {
   const total = Session.get('total');
   const title = "resources";
 
-  // enable add form
-  const add = true;
-
-  return { resources, limit, total, title, add };
+  return { resources, limit, total, title };
 })(ResourceList);

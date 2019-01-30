@@ -12,19 +12,11 @@ export default class ResourceList extends React.Component {
     return (
       <div>
         {this.renderTitle()}
-        {this.props.add && this.renderAdd()} 
         {this.renderHeaders()}
         {this.renderResources()}
         {this.renderPageMenu()}
       </div>
     );
-  }
-  renderAdd() {
-    return (
-      !!Meteor.userId() ?
-        <AddResource />
-      : <p><LoginButton /> to submit and save resources!</p>
-    )
   }
   renderTitle() {
     const { user, title } = this.props;

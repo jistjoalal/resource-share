@@ -25,8 +25,5 @@ export default SubmissionsContainer = withTracker(({ match }) => {
   const total = Session.get('total');
   const title = "submissions";
 
-  // disable add form
-  const add = false;
-
-  return { user, title, resources, limit, total, add };
+  return { user, title, resources, limit, total };
 })(ResourceList);

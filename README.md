@@ -55,9 +55,9 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - total the score for a "user karma"
 - <s>refactor out data layer/container components? seems to help</s>
 - <s>TitleBar/NavBar component w/ links</s>
-- **BUG** when opening favorites page, resources from resourceList component flash
 
 ### Non-priority / Later
+- **BUG** when opening favorites page, resources from resourceList component flash
 - ability to remove submissions ?
 - finish adding grade levels
 - more resources
