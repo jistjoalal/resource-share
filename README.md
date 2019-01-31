@@ -11,7 +11,8 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>Is there a way to only store the "keys" in state and load in the hierarchy nodes dynamically?
   - better publications/subscriptions??
     - I think pagination needs to be part of the MMethod</s>
-    - I think it's mostly solved. Definitely in need of refactoring but works well.
+    - I ended up storing the keys as a Session var
+      - ResourceListContainer sets up a withTracker using Session.get
 
 ## Goals
 
@@ -51,17 +52,18 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - <s>pagination on favorites page</s>
 - <s>users can view list of authored resources</s>
   - <s>refactor out commonalities b/w favorites, submissions, and maybe ResourceList</s>
-    - still think theres more to be done here, but not quite sure how
-  - total the score for a "user karma"
 - <s>refactor out data layer/container components? seems to help</s>
 - <s>TitleBar/NavBar component w/ links</s>
+- message for when account already exists in signup
+- username in resourcelist links to users submissions page
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
+  - i think this happens from the client side minimongo "lagging" behind the new sub
+  - is there a way to manually cancel the old sub?
+  - if server goes offline, favorites and submissions links render same as App
 - ability to remove submissions ?
 - finish adding grade levels
-- more resources
-  - just google standards to find more
 - style w/ bootstrap
 - deploy to heroku
 - refactor

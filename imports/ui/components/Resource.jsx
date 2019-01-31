@@ -32,11 +32,11 @@ export default class Resource extends React.Component {
     );
   }
   unFav = () => {
-    const { _id } = this.props;
+    const { _id } = this.props.resource;
     Meteor.call('resources.downvote', _id);
   }
   favorite = () => {
-    const { _id } = this.props;
+    const { _id } = this.props.resource;
     Meteor.call('resources.upvote', _id);
   }
 }

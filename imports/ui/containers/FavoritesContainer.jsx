@@ -5,7 +5,7 @@ import Resources from '../../api/resources';
 
 import ResourceList from '../components/ResourceList';
 
-export default FavoritesContainer = withTracker(({ match }) => {
+const withFavorites = withTracker(({ match }) => {
   // resources favorited by user specified in route
   const { userId } = match.params;
   const query = { favoritedBy: { $elemMatch: { $eq: userId } } };
@@ -13,7 +13,7 @@ export default FavoritesContainer = withTracker(({ match }) => {
   Meteor.subscribe('resources', query, page); 
   const resources = Resources.find().fetch();
 
-  // username
+  // user data
   Meteor.subscribe('userData', userId);
   const user = Meteor.users.find().fetch()[0];
 
@@ -26,4 +26,6 @@ export default FavoritesContainer = withTracker(({ match }) => {
   const title = "favorites";
 
   return { user, title, resources, limit, total };
-})(ResourceList);
+});
+
+export default withFavorites(ResourceList);

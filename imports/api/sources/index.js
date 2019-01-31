@@ -123,8 +123,20 @@ const hcpss = keys => {
   };
 }
 
+const ixl = keys => {
+  const baseUrl = 'https://www.ixl.com/standards/common-core/math/';
+  const { grade } = keys;
+  const url = (grade.code === 'K' ?
+    `${baseUrl}kindergarten`
+  : `${baseUrl}grade-${grade.code}`);
+  return {
+    url,
+    title: `IXL ${grade.title} Skills Practice`
+  }
+}
+
 const sources = {
-  grade: [ hcpss ],
+  grade: [ hcpss, ixl ],
   domain: [],
   cluster: [],
   standard: [ eduDotCom, khanAcad, illMath, betterLesson ],

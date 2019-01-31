@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Resource from '../containers/ResourceContainer';
-import AddResource from './AddResource';
-import LoginButton from './LoginButton';
+import Resource from './Resource';
 
 export default class ResourceList extends React.Component {
   componentDidMount() {
@@ -40,11 +38,11 @@ export default class ResourceList extends React.Component {
     )
   }
   renderResources() {
-    const { resources } = this.props;
+    const { resources, user } = this.props;
     if (!resources) return null;
     return resources.map(resource => {
       return (
-        <Resource key={resource._id} _id={resource._id} />
+        <Resource key={resource._id} resource={resource} user={user} />
       );
     });
   }
