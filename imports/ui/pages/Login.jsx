@@ -38,7 +38,6 @@ class Login extends React.Component {
         </form>
 
         <Link to="/signup">Register</Link>
-        <Link to="/">Home</Link>
       </div>
     )
   }

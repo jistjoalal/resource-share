@@ -14,7 +14,8 @@ class Signup extends React.Component {
     const { email, password } = e.target;
     Accounts.createUser({
       email: email.value,
-      password: password.value
+      password: password.value,
+      favorites: [],
     }, err => {
       if (err) {
         this.setState({ err: err.reason });
@@ -39,7 +40,7 @@ class Signup extends React.Component {
           <button>Create Account</button>
         </form>
 
-        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
       </div>
     )
   }

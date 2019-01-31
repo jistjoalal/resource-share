@@ -11,15 +11,16 @@ export default class TitleBar extends React.Component {
       <div>
         <h1>{this.props.title}</h1>
 
+        <Link to="/">Home</Link>
+
         {!!Meteor.userId() ?
           <LogoutButton />
         : <LoginButton />}
 
         {!!Meteor.userId() &&
           <div>
-            <Link to="/">Home</Link>
-            -<Link to={`/favorites/${Meteor.userId()}`}>My Favorites</Link>
-            -<Link to={`/submissions/${Meteor.userId()}`}>My Submissions</Link>
+            <Link to={`/favorites/${Meteor.userId()}`}>My Favorites</Link>
+            <Link to={`/submissions/${Meteor.userId()}`}>My Submissions</Link>
           </div>}
       </div>
     );

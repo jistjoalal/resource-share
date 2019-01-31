@@ -21,6 +21,7 @@ export default class ResourceList extends React.Component {
     if (!user) return <h1>Resources</h1>;
 
     const username = user.emails[0].address;
+    if (title === 'Resources') return <h1>{title}</h1>
     return <h1>{`${username}'s ${title}`}</h1>
   }
   renderPageMenu() {
@@ -38,13 +39,16 @@ export default class ResourceList extends React.Component {
     )
   }
   renderResources() {
-    const { resources, user } = this.props;
+    const { resources, user, loading } = this.props;
     if (!resources) return null;
-    return resources.map(resource => {
-      return (
-        <Resource key={resource._id} resource={resource} user={user} />
-      );
-    });
+    return (
+      <div>
+        {resources.map(resource =>
+          <Resource key={resource._id} resource={resource} user={user} />
+        )}
+        {loading && <p>Loading...</p>}
+      </div>
+    );
   }
   renderHeaders() {
     return (

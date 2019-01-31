@@ -9,8 +9,11 @@ const withResources = withTracker(() => {
   // resources (matching query + page)
   const query = Session.get('query');
   const page = Session.get('page');
-  Meteor.subscribe('resources', query, page);
-  const resources = Resources.find().fetch();
+  const resourcesHandle = Meteor.subscribe('resources', query, page);
+  let resources = Resources.find().fetch();
+
+  // loading
+  const loading = !resourcesHandle.ready();
 
   // user data
   Meteor.subscribe('userData', Meteor.userId());
@@ -22,9 +25,9 @@ const withResources = withTracker(() => {
   });
   const limit = 10 * page;
   const total = Session.get('total');
-  const title = "resources";
+  const title = "Resources";
 
-  return { resources, limit, total, title, user };
+  return { resources, loading, limit, total, title, user };
 })
 
 export default withResources(ResourceList);

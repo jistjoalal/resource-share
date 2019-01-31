@@ -25,8 +25,9 @@ export default class Resource extends React.Component {
   }
   favoriteButton = () => {
     const { resource, user } = this.props;
-    return (user && user.favorites &&
-      (user.favorites.includes(resource._id) ?
+    if (!user) return null;
+    return (
+      (user.favorites && user.favorites.includes(resource._id) ?
         <button onClick={this.unFav}>&lt;/3</button>
       : <button onClick={this.favorite}>&lt;3</button>)
     );

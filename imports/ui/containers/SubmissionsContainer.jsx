@@ -10,8 +10,11 @@ const withSubmissions = withTracker(({ match }) => {
   const { userId } = match.params;
   const query = { authorId: userId };
   const page = Session.get('page');
-  Meteor.subscribe('resources', query, page); 
-  const resources = Resources.find().fetch();
+  const resourcesHandle = Meteor.subscribe('resources', query, page); 
+  let resources = Resources.find().fetch();
+
+  // loading + ready
+  const loading = !resourcesHandle.ready();
 
   // user data
   Meteor.subscribe('userData', userId);
@@ -23,9 +26,9 @@ const withSubmissions = withTracker(({ match }) => {
   });
   const limit = 10 * page;
   const total = Session.get('total');
-  const title = "submissions";
+  const title = "Submissions";
 
-  return { user, title, resources, limit, total };
+  return { resources, loading, limit, total, title, user };
 });
 
 export default withSubmissions(ResourceList);
