@@ -5,9 +5,10 @@ export default class Select extends React.Component {
     const { title, options, value, ...rest } = this.props;
     return (
       <div className="d-flex flex-column justify-content-between border m-2 p-1">
-        <div className="d-flex justify-content-between align-items-center m-1">
-          <select className="" value={value} {...rest}>
-            <option value="">{`${title}`}</option>
+        {title}
+        <div className="d-flex justify-content-between align-items-center">
+          <select className="text-primary" value={value} {...rest}>
+            <option value="">{`${title}s`}</option>
             {this.renderOptions(options)}
           </select>
         </div>

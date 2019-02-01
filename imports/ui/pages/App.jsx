@@ -6,7 +6,6 @@ import GRADES from '../../api/grades';
 
 import ResourceList from '../containers/ResourceListContainer';
 import QuerySelect from '../components/QuerySelect';
-import AddResource from '../components/AddResource';
 import LoginButton from '../components/LoginButton';
 
 const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
@@ -44,10 +43,6 @@ class App extends React.Component {
     return (
       <div>
         <QuerySelect change={this.changeKey} {...this.state} /> 
-
-        {!!Meteor.userId() ?
-          <AddResource />
-        : <p><LoginButton /> to submit and save resources!</p>}
 
         <ResourceList />
       </div>

@@ -19,10 +19,8 @@ export default class QuerySelect extends React.Component {
   render() {
     const { grade, domain, cluster, standard, component } = this.props;
     return (
-      <div className="d-flex flex-column align-items-center bg-light p-1 border">
-        <h3>Standard</h3>
-
-        <div className="d-flex">
+      <div className="app-section bg-light p-1 border">
+        <div className="d-flex flex-wrap">
           <this.selectInput name="grade" value={grade} options={GRADES} />
 
           {grade &&
