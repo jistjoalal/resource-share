@@ -1,12 +1,16 @@
 import React from 'react';
 
 import Resource from './Resource';
+import NotFound from '../pages/NotFound';
 
 export default class ResourceList extends React.Component {
   componentDidMount() {
     Session.set('page', 1);
+    Session.set('query', {});
   }
   render() {
+    const { user, title } = this.props;
+    if (!user && title !== 'Resources') return <NotFound />
     return (
       <div className="m-2 p-1">
         {this.renderTitle()}
@@ -18,7 +22,7 @@ export default class ResourceList extends React.Component {
   }
   renderTitle() {
     const { user, title } = this.props;
-    if (!user) return <h1>Resources</h1>;
+    if (title === 'Resources') return <h1>Resources</h1>;
 
     const username = user.emails[0].address;
     const titleText = title === 'Resources' ? title : `${username}'s ${title}`;

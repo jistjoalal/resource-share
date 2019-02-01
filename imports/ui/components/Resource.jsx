@@ -8,18 +8,18 @@ export default class Resource extends React.Component {
     const { resource } = this.props;
     return (
       <div className="Resource row border-bottom-primary p-1">
-        <span className="col-2">
+        <span className="col-2 d-flex align-items-center">
           {this.favoriteButton()}
           {resource.score}
         </span>
 
-        <span className="col-7 text-truncate">
+        <span className="col-7 d-flex align-items-center text-truncate">
           <a href={resource.url} className="text-truncate">
             {resource.title}
           </a>
         </span>
         
-        <Link className="col-2 text-secondary text-truncate" to={`/submissions/${resource.authorId}`}>
+        <Link className="col-3 text-secondary text-truncate" to={`/submissions/${resource.authorId}`}>
           {resource.username}
         </Link>
       </div>

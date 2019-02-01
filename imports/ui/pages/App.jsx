@@ -77,7 +77,7 @@ class App extends React.Component {
     const keys = Object.values(this.state)
       .filter(v => !!v).map(v => v.code).join('.');
     // apply to url
-    this.props.history.replace(keys);
+    this.props.history.replace(`/cc/${keys}`);
     this.setQuery();
   }
   setQuery = () => {

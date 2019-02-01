@@ -18,7 +18,7 @@ const withSubmissions = withTracker(({ match }) => {
 
   // user data
   Meteor.subscribe('userData', userId);
-  const user = Meteor.users.find().fetch()[0];
+  const user = Meteor.users.findOne({ _id: userId });
 
   // page stats
   Meteor.call('resources.count', query, (err, res) => {
