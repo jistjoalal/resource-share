@@ -43,13 +43,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <QuerySelect change={this.changeKey} remove={this.removeKey} {...this.state} /> 
-        <hr />
+        <QuerySelect change={this.changeKey} {...this.state} /> 
 
         {!!Meteor.userId() ?
           <AddResource />
         : <p><LoginButton /> to submit and save resources!</p>}
-        <hr />
 
         <ResourceList />
       </div>

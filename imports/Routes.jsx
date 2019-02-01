@@ -12,7 +12,6 @@ export default Routes = () =>
   <Router>
     <div>
       <TitleBar title="Resource Share" />
-      <hr />
 
       <Switch>
         {/* Public Only */}

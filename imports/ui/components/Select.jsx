@@ -2,17 +2,15 @@ import React from 'react';
 
 export default class Select extends React.Component {
   render() {
-    const { title, options, remove, value, ...rest } = this.props;
+    const { title, options, value, ...rest } = this.props;
     return (
-      <div>
-        <div>
-          <span>{title}</span>
-          {value && <button onClick={remove}>X</button>}
+      <div className="d-flex flex-column justify-content-between border m-2 p-1">
+        <div className="d-flex justify-content-between align-items-center m-1">
+          <select className="" value={value} {...rest}>
+            <option value="">{`${title}`}</option>
+            {this.renderOptions(options)}
+          </select>
         </div>
-        <select value={value} {...rest}>
-          <option value="">{`-- ${title} --`}</option>
-          {this.renderOptions(options)}
-        </select>
       </div>
     );
   }

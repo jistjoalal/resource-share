@@ -13,14 +13,13 @@ export default class QuerySelect extends React.Component {
         options={options}
         title={name[0].toUpperCase() + name.slice(1)}
         onChange={e => this.props.change(name, e.target.value)}
-        remove={() => this.props.remove(name)}
       />
     )
   }
   render() {
     const { grade, domain, cluster, standard, component } = this.props;
     return (
-      <div>
+      <div className="d-flex flex-column align-items-center bg-light p-1 border">
         <h3>Standard</h3>
 
         <div className="d-flex">
