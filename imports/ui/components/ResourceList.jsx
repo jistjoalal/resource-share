@@ -8,7 +8,7 @@ export default class ResourceList extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="m-2 p-1">
         {this.renderTitle()}
         {this.renderHeaders()}
         {this.renderResources()}
@@ -21,20 +21,20 @@ export default class ResourceList extends React.Component {
     if (!user) return <h1>Resources</h1>;
 
     const username = user.emails[0].address;
-    if (title === 'Resources') return <h1>{title}</h1>
-    return <h1>{`${username}'s ${title}`}</h1>
+    const titleText = title === 'Resources' ? title : `${username}'s ${title}`;
+    return <h2 className="Resource--title">{titleText}</h2>
   }
   renderPageMenu() {
     const { limit, total, title } = this.props;
     const amt = limit > total ? total : limit;
     return (
-      <div>
+      <div className="d-flex flex-column align-items-center">
         {total > 0 ?  // hacky - depends on resource existing for each standard
           <p>{`${amt}/${total} ${title}`}</p>
         : <p>{`No ${title}`}</p>}
 
         {limit < total &&
-          <button onClick={this.nextPage}>More</button>}
+          <a className="btn btn-outline-secondary" onClick={this.nextPage}>More</a>}
       </div>
     )
   }
@@ -42,7 +42,7 @@ export default class ResourceList extends React.Component {
     const { resources, user, loading } = this.props;
     if (!resources) return null;
     return (
-      <div>
+      <div className="ResourceList">
         {resources.map(resource =>
           <Resource key={resource._id} resource={resource} user={user} />
         )}
@@ -52,10 +52,10 @@ export default class ResourceList extends React.Component {
   }
   renderHeaders() {
     return (
-      <div className="row border-bottom">
+      <div className="Resource row border-bottom">
         <span className="col-2 text-truncate">Score</span>
-        <span className="col-8 text-truncate">Resource</span>
-        <span className="col text-truncate">User</span>
+        <span className="col-7 text-truncate">Resource</span>
+        <span className="col-2 text-truncate">User</span>
       </div>
     )
   }

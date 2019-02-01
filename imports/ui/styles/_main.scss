@@ -18,3 +18,36 @@ select {
   flex-direction: column;
   align-items: center;
 }
+
+.Select {
+  font-size: 0.85rem;
+}
+
+.Resource:nth-child(even) {
+  background: theme-color('light');
+}
+
+.fav {
+  outline: none;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 800px) {
+  .Resource {
+    font-size: 0.95rem;
+  }
+
+  .Resource--title {
+    font-size: 1.3rem;
+  }
+
+  .Select {
+    font-size: 0.75rem;
+
+    div {
+      select {
+        font-size: 1rem;
+      }
+    }
+  }
+}

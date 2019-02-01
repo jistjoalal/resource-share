@@ -1,17 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import LoginButton from '../components/LoginButton';
 import LogoutButton from '../components/LogoutButton';
 import AddResource from '../components/AddResource';
 
-export default class TitleBar extends React.Component {
+class TitleBar extends React.Component {
   render() {
+    const { query } = this.props;
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-          <span className="navbar-brand text-white">{this.props.title}</span>
+          <a className="nav-link" href="/">
+            <span className="navbar-brand text-white">
+              {this.props.title}
+            </span>
+          </a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -20,7 +26,6 @@ export default class TitleBar extends React.Component {
             <ul className="navbar-nav flex-grow-1">
               <li className="nav-item">
                 <button className="btn">
-                  <Link className="nav-link" to="/">Home</Link>
                 </button>
               </li>
 
@@ -51,7 +56,7 @@ export default class TitleBar extends React.Component {
                 </>}
             </ul>
 
-            {!!Meteor.userId() && Session.get('query') && Session.get('query').grade &&
+            {!!Meteor.userId() && query && query.grade &&
               <AddResource />}
           </div>
         </nav>
@@ -59,3 +64,8 @@ export default class TitleBar extends React.Component {
     );
   }
 }
+
+export default container = withTracker(() => {
+  const query = Session.get('query');
+  return { query };
+})(TitleBar);

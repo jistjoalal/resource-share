@@ -42,7 +42,6 @@ class App extends React.Component {
     return (
       <div>
         <QuerySelect change={this.changeKey} {...this.state} /> 
-
         <ResourceList />
       </div>
     );

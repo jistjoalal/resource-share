@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Resource extends React.Component {
   render() {
@@ -6,22 +7,21 @@ export default class Resource extends React.Component {
 
     const { resource } = this.props;
     return (
-      <div className="row border-bottom">
-        <span className="col-2 text-danger text-truncate">
-          <span>{resource.score}</span>
+      <div className="Resource row border-bottom-primary p-1">
+        <span className="col-2">
+          {this.favoriteButton()}
+          {resource.score}
         </span>
 
-        <span className="col-8 text-truncate">
-          {this.favoriteButton()}
-
+        <span className="col-7 text-truncate">
           <a href={resource.url} className="text-truncate">
             {resource.title}
           </a>
         </span>
         
-        <a href={`/submissions/${resource.authorId}`}>
-          <span className="col text-secondary text-truncate">{resource.username}</span>
-        </a>
+        <Link className="col-2 text-secondary text-truncate" to={`/submissions/${resource.authorId}`}>
+          {resource.username}
+        </Link>
       </div>
     )
   }
@@ -30,8 +30,8 @@ export default class Resource extends React.Component {
     if (!user) return null;
     return (
       (user.favorites && user.favorites.includes(resource._id) ?
-        <button onClick={this.unFav}>&lt;/3</button>
-      : <button onClick={this.favorite}>&lt;3</button>)
+        <a className="fav btn text-danger p-0" onClick={this.unFav}>❤</a>
+      : <a className="fav btn text-secondary p-0" onClick={this.favorite}>❤</a>)
     );
   }
   unFav = () => {
