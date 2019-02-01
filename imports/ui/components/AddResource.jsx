@@ -57,7 +57,7 @@ class AddResource extends React.Component {
     e.preventDefault();
     const { pathname } = this.props.history.location;
     const [ grade, domain, cluster, standard, component ] = 
-      pathname.slice(1).split('.');
+      pathname.split('/cc/')[1].split('.');
     const { url, title} = e.target;
 
     // db

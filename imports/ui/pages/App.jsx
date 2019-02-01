@@ -6,13 +6,16 @@ import GRADES from '../../api/grades';
 
 import ResourceList from '../containers/ResourceListContainer';
 import QuerySelect from '../components/QuerySelect';
+import NotFound from './NotFound';
 
 const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      notFound: false,
+    };
     KEYS.forEach(key => this.state[key] = null);
   }
   componentDidMount() {
@@ -22,7 +25,9 @@ class App extends React.Component {
   }
   setStateFromRoute = (vals, i = 0) => {
     if (vals[0]) {
-      this.setState({ [KEYS[i]]: this.getList(KEYS[i])[vals[0]] }, () => {
+      const list = this.getList(KEYS[i])[vals[0]];
+      if (!list) this.setQuery();
+      this.setState({ [KEYS[i]]: list }, () => {
         this.setStateFromRoute(vals.slice(1), i + 1);
       });
     }
@@ -36,9 +41,15 @@ class App extends React.Component {
   getList = key => {
     if (key === 'grade') return GRADES;
     const prevKey = KEYS[KEYS.indexOf(key) - 1];
+    if (!this.state[prevKey]) {
+      return this.setState({ notFound: true });
+    }
     return this.state[prevKey][`${key}s`];
   }
   render() {
+    if (this.state.notFound) {
+      return <NotFound />
+    }
     return (
       <div>
         <QuerySelect change={this.changeKey} {...this.state} /> 

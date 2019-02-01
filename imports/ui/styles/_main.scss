@@ -32,6 +32,27 @@ select {
   font-size: 1.5rem;
 }
 
+
+.notFoundFun {
+
+  .blink::after {
+    content: attr(data-end);
+    animation: blink 1s infinite;
+  }
+}
+
+@keyframes blink {
+  0% {
+    color: black;
+  }
+  50% {
+    color: transparent;
+  }
+  100% {
+    color: black;
+  }
+}
+
 @media (max-width: 800px) {
   .Resource {
     font-size: 0.95rem;

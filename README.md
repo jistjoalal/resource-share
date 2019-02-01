@@ -56,8 +56,10 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>TitleBar/NavBar component w/ links</s>
 - <s>message for when account already exists in signup</s>
 - <s>username in resourcelist links to users submissions page</s>
-- figure out how to make Home a router Link
-  - (idk how to reset query/route and have dropdowns also reset)
+- <s>figure out how to make Home a router Link</s>
+- login, signup styles
+- not found work correctly for bad ID routes
+  - right now it just tries the invalid queries
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
