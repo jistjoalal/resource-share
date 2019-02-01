@@ -21,7 +21,7 @@ class AddResource extends React.Component {
     const { err, show } = this.state;
     const code = Object.values(Session.get('query') || {}).join('.');
     return (
-      <span className="">
+      <span className="my-1">
         <button className="btn btn-primary" onClick={this.open}>Submit new Resource</button>
 
         <Modal
@@ -60,20 +60,15 @@ class AddResource extends React.Component {
       pathname.slice(1).split('.');
     const { url, title} = e.target;
 
-    // optionals get set to empty string
-    const optCluster = cluster || '';
-    const optStandard = standard || '';
-    const optComponent = component || '';
-
     // db
     Meteor.call('resources.new',
       title.value,
       url.value,
       grade,
-      domain,
-      optCluster,
-      optStandard,
-      optComponent,
+      domain || '',
+      cluster || '',
+      standard || '',
+      component || '',
       (err, res) => {
         if (err) {
           this.setState({ err: err.reason });

@@ -6,7 +6,6 @@ import GRADES from '../../api/grades';
 
 import ResourceList from '../containers/ResourceListContainer';
 import QuerySelect from '../components/QuerySelect';
-import LoginButton from '../components/LoginButton';
 
 const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 

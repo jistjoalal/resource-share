@@ -18,30 +18,40 @@ export default class TitleBar extends React.Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav flex-grow-1">
-              <li className="nav-item btn">
-                <Link className="nav-link" to="/">Home</Link>
+              <li className="nav-item">
+                <button className="btn">
+                  <Link className="nav-link" to="/">Home</Link>
+                </button>
               </li>
 
               {!Meteor.userId() &&
-                <li className="nav-item btn">
-                  <LoginButton />
+                <li className="nav-item">
+                  <button className="btn">
+                    <LoginButton />
+                  </button>
                 </li>}
 
               {!!Meteor.userId() &&
                 <>
-                  <li className="nav-item btn">
-                    <Link className="nav-link" to={`/favorites/${Meteor.userId()}`}>My Favorites</Link>
+                  <li className="nav-item">
+                    <button className="btn">
+                      <Link className="nav-link" to={`/favorites/${Meteor.userId()}`}>My Favorites</Link>
+                    </button>
                   </li>
-                  <li className="nav-item btn">
-                    <Link className="nav-link" to={`/submissions/${Meteor.userId()}`}>My Submissions</Link>
+                  <li className="nav-item">
+                    <button className="btn">
+                      <Link className="nav-link" to={`/submissions/${Meteor.userId()}`}>My Submissions</Link>
+                    </button>
                   </li>
-                  <li className="nav-item btn">
+                  <li className="nav-item">
+                    <button className="btn">
                     <LogoutButton />
+                    </button>
                   </li>
                 </>}
             </ul>
 
-            {!!Meteor.userId() &&
+            {!!Meteor.userId() && Session.get('query') && Session.get('query').grade &&
               <AddResource />}
           </div>
         </nav>
