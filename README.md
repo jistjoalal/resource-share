@@ -18,7 +18,18 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 
 - All grade levels for Math
   - Elementary
-    - <s>K-3</s>
+    - <s>K-3</sMeteor.publish('userData', function (_id) {
+  if (_id) {
+    return Meteor.users.find({ _id }, {
+      fields: {
+        favorites: 1,
+        emails: 1,
+      }
+    });
+  } else {
+    this.ready();
+  }
+}>
     - 4-5
   - Middle
   - HS
@@ -54,8 +65,8 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - <s>refactor out commonalities b/w favorites, submissions, and maybe ResourceList</s>
 - <s>refactor out data layer/container components? seems to help</s>
 - <s>TitleBar/NavBar component w/ links</s>
-- message for when account already exists in signup
-- username in resourcelist links to users submissions page
+- <s>message for when account already exists in signup</s>
+- <s>username in resourcelist links to users submissions page</s>
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash

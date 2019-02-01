@@ -9,7 +9,7 @@ const withSubmissions = withTracker(({ match }) => {
   // resources favorited by user specified in route
   const { userId } = match.params;
   const query = { authorId: userId };
-  const page = Session.get('page');
+  const page = Session.get('page') || 1;
   const resourcesHandle = Meteor.subscribe('resources', query, page); 
   let resources = Resources.find().fetch();
 

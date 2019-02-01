@@ -7,8 +7,8 @@ import ResourceList from '../components/ResourceList';
 
 const withResources = withTracker(() => {
   // resources (matching query + page)
-  const query = Session.get('query');
-  const page = Session.get('page');
+  const query = Session.get('query') || {};
+  const page = Session.get('page') || 1;
   const resourcesHandle = Meteor.subscribe('resources', query, page);
   let resources = Resources.find().fetch();
 

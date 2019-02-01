@@ -18,8 +18,10 @@ export default class Resource extends React.Component {
             {resource.title}
           </a>
         </span>
-
-        <span className="col text-secondary text-truncate">{resource.username}</span>
+        
+        <a href={`/submissions/${resource.authorId}`}>
+          <span className="col text-secondary text-truncate">{resource.username}</span>
+        </a>
       </div>
     )
   }

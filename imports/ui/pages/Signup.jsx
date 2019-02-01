@@ -32,7 +32,7 @@ class Signup extends React.Component {
       <div>
         <h1>Signup</h1>
 
-        {!err && <p>{err}</p>}
+        {err && <p>{err}</p>}
 
         <form onSubmit={this.submit}>
           <input type="email" name="email" placeholder="Email" />

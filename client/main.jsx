@@ -2,8 +2,9 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 
-import '../imports/config/simple-schema-config';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+import '../imports/config/simple-schema-config';
 
 import Routes from '../imports/Routes';
 
