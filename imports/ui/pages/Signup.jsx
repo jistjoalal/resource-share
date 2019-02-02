@@ -11,7 +11,12 @@ class Signup extends React.Component {
   }
   submit = e => {
     e.preventDefault();
-    const { email, password } = e.target;
+    const { email, password, cPassword } = e.target;
+    // password match
+    if (password.value !== cPassword.value) {
+      return this.setState({ err: 'Passwords must match' });
+    }
+    // send to server
     Accounts.createUser({
       email: email.value,
       password: password.value,
@@ -22,6 +27,7 @@ class Signup extends React.Component {
       }
       else {
         const from = Session.get('from');
+        Session.set('message', 'Thanks for signing up!');
         this.props.history.push(from || '/');
       }
     });
@@ -29,15 +35,27 @@ class Signup extends React.Component {
   render() {
     const { err } = this.state;
     return (
-      <div>
-        <h1>Signup</h1>
+      <div className="container w-75 mx-auto my-4 shadow-sm border bg-light p-3 rounded">
+        <h1 className="border-bottom mb-4">Signup</h1>
 
         {err && <p>{err}</p>}
 
         <form onSubmit={this.submit}>
-          <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
-          <button>Create Account</button>
+          <div className="form-group">
+            <label>Email</label>
+            <input className="form-control" type="email" name="email" placeholder="Email" />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input className="form-control" type="password" name="password" placeholder="Password" />
+          </div>
+          <div className="form-group">
+            <label>Confirm Password</label>
+            <input className="form-control" type="password" name="cPassword" placeholder="Password" />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-primary">Register</button>
+          </div>
         </form>
 
         <Link to="/login">Login</Link>

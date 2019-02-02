@@ -71,10 +71,12 @@ class CmdBox extends React.Component {
   submit = () => {
     const { cmd } = this.state
     if (this.isCmd(cmd)) this.runCmd();
+
     else if (!cmd.includes('http')) {
       this.props.history.push(cmd);
       this.setState({ output: DEF_OUTPUT });
     }
+
     else window.location = cmd;
     this.setState({ cmd: '' });
   }
@@ -97,15 +99,13 @@ class CmdBox extends React.Component {
     const href = cmd.toLowerCase() === 'home' ? '/' : cmd;
     return (
       <div onKeyDown={this.keyDown}>
-        {output.map(line => {
-          return (
-            <p key={Math.random()} className="text-muted text-monospace">
-              {this.isCmd(line) ?
-                <strong>> {line}</strong>
-              : <span>> {line}</span>}
-            </p>
-          );
-        })}
+        {output.map(line =>
+          <p key={Math.random()} className="text-muted text-monospace">
+            {this.isCmd(line) ?
+              <strong>> {line}</strong>
+            : <span>> {line}</span>}
+          </p>
+        )}
 
         <p className="text-monospace notFoundFun">
           >&nbsp;

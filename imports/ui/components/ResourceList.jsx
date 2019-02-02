@@ -12,7 +12,7 @@ export default class ResourceList extends React.Component {
     const { user, title } = this.props;
     if (!user && title !== 'Resources') return <NotFound />
     return (
-      <div className="m-2 p-1">
+      <div className="m-4 p-1">
         {this.renderTitle()}
         {this.renderHeaders()}
         {this.renderResources()}

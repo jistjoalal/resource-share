@@ -19,6 +19,7 @@ class Login extends React.Component {
       }
       else {
         const from = Session.get('from');
+        Session.set('message', "Logged in!");
         this.props.history.push(from || '/');
       }
     });
@@ -26,15 +27,23 @@ class Login extends React.Component {
   render() {
     const { err } = this.state;
     return (
-      <div>
-        <h1>Login</h1>
+      <div className="container w-75 mx-auto my-4 shadow-sm border bg-light p-3 rounded">
+        <h1 className="border-bottom mb-4">Login to Resource Share</h1>
 
         {err && <p>{err}</p>}
 
         <form onSubmit={this.submit}>
-          <input type="email" name="email" placeholder="Email" />
-          <input type="password" name="password" placeholder="Password" />
-          <button>Login</button>
+          <div className="form-group">
+            <label>Email</label>
+            <input className="form-control" type="email" name="email" placeholder="Email" />
+          </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input className="form-control" type="password" name="password" placeholder="Password" />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-primary">Login</button>
+          </div>
         </form>
 
         <Link to="/signup">Register</Link>

@@ -6,7 +6,6 @@ import GRADES from '../../api/grades';
 
 import ResourceList from '../containers/ResourceListContainer';
 import QuerySelect from '../components/QuerySelect';
-import NotFound from './NotFound';
 
 const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 
@@ -42,10 +41,10 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <>
         <QuerySelect change={this.changeKey} {...this.state} /> 
         <ResourceList />
-      </div>
+      </>
     );
   }
   changeKey = (key, code) => {

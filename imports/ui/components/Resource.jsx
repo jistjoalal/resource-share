@@ -7,10 +7,10 @@ export default class Resource extends React.Component {
 
     const { resource } = this.props;
     return (
-      <div className="Resource row border-bottom-primary p-1">
+      <div className="Resource row p-1">
         <span className="col-2 d-flex align-items-center">
           {this.favoriteButton()}
-          {resource.score}
+          <span>{resource.score}</span>
         </span>
 
         <span className="col-7 d-flex align-items-center text-truncate">
@@ -19,7 +19,9 @@ export default class Resource extends React.Component {
           </a>
         </span>
         
-        <Link className="col-3 text-secondary text-truncate" to={`/submissions/${resource.authorId}`}>
+        <Link className="col-3 d-flex align-items-center text-secondary text-truncate"
+          to={`/submissions/${resource.authorId}`}
+        >
           {resource.username}
         </Link>
       </div>
@@ -30,8 +32,8 @@ export default class Resource extends React.Component {
     if (!user) return null;
     return (
       (user.favorites && user.favorites.includes(resource._id) ?
-        <a className="fav btn text-danger p-0" onClick={this.unFav}>❤</a>
-      : <a className="fav btn text-secondary p-0" onClick={this.favorite}>❤</a>)
+        <a className="fav btn text-danger p-0 mb-1" onClick={this.unFav}>♥</a>
+      : <a className="fav btn text-secondary p-0 mb-1" onClick={this.favorite}>♥</a>)
     );
   }
   unFav = () => {

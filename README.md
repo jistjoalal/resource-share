@@ -57,15 +57,14 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>message for when account already exists in signup</s>
 - <s>username in resourcelist links to users submissions page</s>
 - <s>figure out how to make Home a router Link</s>
-- login, signup styles
-- not found work correctly for bad ID routes
-  - right now it just tries the invalid queries
+- <s>heart emoji doesnt get colored by css on mobile</s>
+- <s>not found too narrow on mobile</s>
+- <s>center table text and more space b/w edge of page</s>
+- <s>not found work correctly for bad ID routes
+- <s>login, signup styles</s>
 - react error about setState on unmounted component (CmdBox)
   - event listener destroyed right way?
 - react modal error about accessibility
-- heart emoji doesnt get colored by css on mobile
-- not found too narrow on mobile
-- center table text and more space b/w edge of page
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
@@ -79,7 +78,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - refactor
 
 ### Ideas
-- modal for displaying messages like "thx for signup", "must be logged in", etc.
+- <s>alert for displaying messages like "thx for signup", "must be logged in", etc.</s>
 - users can "subscribe" to standards, recieving email/notification when new resource submitted?
 - comments page for each resource?
   - shortid + react-router for resource id's
