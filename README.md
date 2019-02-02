@@ -68,13 +68,13 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>[DOM] Input elements should have autocomplete attributes</s>
 - <s>[Violation] Added non-passive event listener to a scroll-blocking 'mousewheel' event.
   - this just disappeared idk</s>
+- <s>ability to remove submissions</s>
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
   - i think this happens from the client side minimongo "lagging" behind the new sub
   - is there a way to manually cancel the old sub?
   - if server goes offline, favorites and submissions links render same as App
-- ability to remove submissions ?
 - finish adding grade levels
 - style w/ bootstrap
 - deploy to heroku

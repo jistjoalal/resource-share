@@ -32,6 +32,29 @@ select {
   font-size: 1.5rem;
 }
 
+.heart {
+  background: theme-color('secondary');
+  height: 10px;
+  transform: rotate(-45deg);
+  width: 10px;
+}
+.heart--red {
+  background: theme-color('danger');
+}
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: theme-color('secondary');
+  border-radius: 50%;
+  height: 10px;
+  position: absolute;
+  width: 10px;
+}
+.heart--red:after, .heart--red:before { background: theme-color('danger'); }
+.heart:before {
+  top: -5px;
+  left: 0;
+}
 
 .notFoundFun {
 

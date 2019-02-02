@@ -57,9 +57,10 @@ export default class ResourceList extends React.Component {
   renderHeaders() {
     return (
       <div className="Resource row border-bottom">
-        <span className="col-2 text-truncate">Score</span>
-        <span className="col-7 text-truncate">Resource</span>
-        <span className="col-2 text-truncate">User</span>
+        <span className="col-2 p-0"></span>
+        <span className="col-7 p-0 text-truncate">Resource</span>
+        <span className="col-2 p-0 text-truncate">User</span>
+        <span className="col-1 p-0"></span>
       </div>
     )
   }

@@ -18,11 +18,12 @@ if (Meteor.isServer) {
 }
 
 const notAuthMsg = 'You must be logged in to do that.';
+const notAuthErr = new Meteor.Error(notAuthMsg, notAuthMsg);
 
 Meteor.methods({
   'resources.new'(title, url, grade, domain, cluster, standard, component) {
 
-    if (!this.userId) throw new Meteor.Error(notAuthMsg, notAuthMsg);
+    if (!this.userId) throw notAuthErr;
 
     new SimpleSchema({
       title: {
@@ -73,11 +74,17 @@ Meteor.methods({
       component,
     });
   },
+  'resources.delete'(_id) {
+    if (!this.userId) throw notAuthErr;
+
+    // user can only remove their own submissions
+    Resources.remove({ _id, authorId: this.userId });
+  },
   'resources.count'(query) {
     return Resources.find(query).fetch().length;
   },
   'resources.upvote'(_id) {
-    if (!this.userId) throw new Meteor.Error(notAuthMsg, notAuthMsg);
+    if (!this.userId) throw notAuthErr;
     new SimpleSchema({
       _id: {
         type: String,
@@ -104,7 +111,7 @@ Meteor.methods({
     );
   },
   'resources.downvote'(_id) {
-    if (!this.userId) throw new Meteor.Error(notAuthMsg, notAuthMsg);
+    if (!this.userId) throw notAuthErr;
     new SimpleSchema({
       _id: {
         type: String,
