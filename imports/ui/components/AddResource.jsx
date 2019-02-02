@@ -11,6 +11,9 @@ class AddResource extends React.Component {
       show: false,
     };
   }
+  componentDidMount() {
+    Modal.setAppElement('body');  // deals w/ err msg from react-modal
+  }
   open = () => {
     this.setState({ show: true });
   }

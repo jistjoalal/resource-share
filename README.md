@@ -38,9 +38,9 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>alert messages on homepage after logging in/signing up</s>
 - <s>'X' button to remove a search term from query</s>
 - <s>unique URLs per query w/ react-router</s>
-- <s>**BUG**: app crashes from spamming the dropdowns</s>
+- <s>**BUG**: app crashes from spamming the dropdowns
   - think I fixed this by descending into callback hell
-  - still probably need a better state mgmt. solution
+  - still probably need a better state mgmt. solution</s>
 - <s>refactor resource scraping</s>
 - <s>real pagination</s>
   - <s>hide more button when useless</s>
@@ -62,9 +62,12 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>center table text and more space b/w edge of page</s>
 - <s>not found work correctly for bad ID routes
 - <s>login, signup styles</s>
-- react error about setState on unmounted component (CmdBox)
-  - event listener destroyed right way?
-- react modal error about accessibility
+- <s>react error about setState on unmounted component (CmdBox)
+  - stray setState calls after routing. fixed by hard returning history.push calls</s>
+- <s>react modal error about accessibility</s>
+- <s>[DOM] Input elements should have autocomplete attributes</s>
+- <s>[Violation] Added non-passive event listener to a scroll-blocking 'mousewheel' event.
+  - this just disappeared idk</s>
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
@@ -82,6 +85,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - users can "subscribe" to standards, recieving email/notification when new resource submitted?
 - comments page for each resource?
   - shortid + react-router for resource id's
+  - redirect here after submission
 
 ## Resource Sources
 - <s>khanacademy</s>

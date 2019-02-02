@@ -41,7 +41,7 @@ class CmdBox extends React.Component {
     newOutput.push(cmd);
 
     if (cmd === 'home') {
-      this.props.history.push('/');
+      return this.props.history.push('/');
     }
     else if (cmd === 'help') {
       Object.entries(CMDS).forEach(c =>
@@ -65,20 +65,20 @@ class CmdBox extends React.Component {
         return this.props.history.push(`/submissions/${Meteor.userId()}`)
       }
     }
-    this.setState({ output: newOutput });
+    this.setState({ output: newOutput, cmd: '' });
   }
   isCmd = cmd => [...Object.keys(CMDS), ...Object.keys(USER_CMDS)].includes(cmd.toLowerCase());
   submit = () => {
     const { cmd } = this.state
-    if (this.isCmd(cmd)) this.runCmd();
+    if (this.isCmd(cmd)) {
+      this.runCmd();
+    }
 
     else if (!cmd.includes('http')) {
       this.props.history.push(cmd);
-      this.setState({ output: DEF_OUTPUT });
     }
 
     else window.location = cmd;
-    this.setState({ cmd: '' });
   }
   keyDown = e => {
     const { cmd } = this.state;

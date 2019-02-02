@@ -35,11 +35,11 @@ class Login extends React.Component {
         <form onSubmit={this.submit}>
           <div className="form-group">
             <label>Email</label>
-            <input className="form-control" type="email" name="email" placeholder="Email" />
+            <input className="form-control" type="email" name="email" placeholder="Email" autoComplete="email" />
           </div>
           <div className="form-group">
             <label>Password</label>
-            <input className="form-control" type="password" name="password" placeholder="Password" />
+            <input className="form-control" type="password" name="password" placeholder="Password" autoComplete="email" />
           </div>
           <div className="form-group">
             <button className="btn btn-primary">Login</button>
