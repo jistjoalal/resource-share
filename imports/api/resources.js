@@ -61,7 +61,7 @@ Meteor.methods({
     const score = 0;
     const favoritedBy = [];
     const comments = [];
-    Resources.insert({
+    return Resources.insert({
       title,
       url,
       username,

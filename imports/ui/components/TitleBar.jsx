@@ -23,7 +23,7 @@ class TitleBar extends React.Component {
   componentWillReceiveProps() {
     this.setState({ showMessage: true });
   }
-  close = () => {
+  clearMessage = () => {
     Session.set('message', '');
     this.setState({ showMessage: false });
   }
@@ -33,7 +33,7 @@ class TitleBar extends React.Component {
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-          <Link className="nav-link" to={`/cc/${homeTo}`}>
+          <Link className="nav-link" to={`/cc/${homeTo}`} onClick={this.clearMessage}>
             <span className="navbar-brand text-white">
               {title}
             </span>
@@ -48,12 +48,12 @@ class TitleBar extends React.Component {
               {!userId &&
               <>
                 <li className="nav-item">
-                  <button className="btn">
+                  <button className="btn" onClick={this.clearMessage}>
                     <LoginButton />
                   </button>
                 </li>
                 <li className="nav-item">
-                  <button className="btn">
+                  <button className="btn" onClick={this.clearMessage}>
                     <SignupButton />
                   </button>
                 </li>
@@ -62,16 +62,16 @@ class TitleBar extends React.Component {
               {!!userId &&
                 <>
                   <li className="nav-item">
-                    <button className="btn">
+                    <button className="btn" onClick={this.clearMessage}>
                       <Link className="nav-link" to={`/favorites/${userId}`}>My Favorites</Link>
                     </button>
                   </li>
                   <li className="nav-item">
-                    <button className="btn">
+                    <button className="btn" onClick={this.clearMessage}>
                       <Link className="nav-link" to={`/submissions/${userId}`}>My Submissions</Link>
                     </button>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item" onClick={this.clearMessage}>
                     <button className="btn">
                       <LogoutButton />
                     </button>
@@ -79,8 +79,7 @@ class TitleBar extends React.Component {
                 </>}
             </ul>
 
-
-            {query && query.grade &&
+            {!!userId && query && query.grade &&
               <AddResource />}
           </div>
         </nav>
@@ -94,7 +93,7 @@ class TitleBar extends React.Component {
     return !!message && showMessage && (
       <div className="alert alert-success alert-dismissible fade show" role="alert">
         {message}
-        <button type="button" className="close" onClick={this.close}>
+        <button type="button" className="close" onClick={this.clearMessage}>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

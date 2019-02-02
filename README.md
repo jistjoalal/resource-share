@@ -70,8 +70,9 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - this just disappeared idk</s>
 - <s>ability to remove submissions</s>
 - <s>comments page for each resource?</s>
-  - redirect here after submission
+  - <s>redirect here after submission</s>
 - add createdAt date's to everything
+- add a MOFO icon library to the project (no CDNS!)
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash

@@ -18,13 +18,13 @@ export default class AddComment extends React.Component {
                 <p className="alert alert-warning">{err}</p>
               </div>}
             <div className="form-group mt-2">
-              <h3>Add Comment</h3>
+              <h3>New Comment</h3>
             </div>
             <div className="form-group">
-              <textarea className="form-control" name="text" rows={3} />
+              <textarea className="form-control" name="text" rows={3} placeholder="New Comment" />
             </div>
             <div className="form-group">
-              <button className="btn btn-primary" type="submit">Add Comment</button> 
+              <button className="btn btn-primary" type="submit">Submit</button> 
             </div>
           </form>
         </div>
@@ -37,6 +37,8 @@ export default class AddComment extends React.Component {
     const text = e.target.text.value;
     Meteor.call('comments.add', text, resource._id, (err, res) => {
       if (err) return this.setState({ err: err.reason });
+      else this.setState({ err: '' });
     });
+    if (!this.state.err) e.target.text.value = '';
   }
 }

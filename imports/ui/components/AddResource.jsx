@@ -72,7 +72,7 @@ class AddResource extends React.Component {
       cluster || '',
       standard || '',
       component || '',
-      (err, res) => {
+      (err, _id) => {
         if (err) {
           this.setState({ err: err.reason });
         }
@@ -80,7 +80,9 @@ class AddResource extends React.Component {
           // reset form
           url.value = '';
           title.value = '';
+          this.props.history.push(`/comments/${_id}`)
           this.close();
+          Session.set('message', 'Post Created!');
         }
       }
     ); 
