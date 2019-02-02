@@ -60,6 +60,12 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - login, signup styles
 - not found work correctly for bad ID routes
   - right now it just tries the invalid queries
+- react error about setState on unmounted component (CmdBox)
+  - event listener destroyed right way?
+- react modal error about accessibility
+- heart emoji doesnt get colored by css on mobile
+- not found too narrow on mobile
+- center table text and more space b/w edge of page
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash

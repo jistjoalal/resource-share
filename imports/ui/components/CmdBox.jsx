@@ -15,15 +15,17 @@ const USER_CMDS = {
   subs: 'Your submissions page',
 }
 
+const DEF_OUTPUT = [
+  "Whoops, couldn't find that page.",
+  "Where to next?",
+];
+
 class CmdBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       cmd: 'Home',
-      output: [
-        "Whoops, couldn't find that page.",
-        "Where to next?",
-      ],
+      output: DEF_OUTPUT,
     };
   }
   componentDidMount() {
@@ -37,6 +39,7 @@ class CmdBox extends React.Component {
     const cmd = this.state.cmd.toLowerCase();
     const newOutput = output.slice();
     newOutput.push(cmd);
+
     if (cmd === 'home') {
       this.props.history.push('/');
     }
@@ -56,21 +59,22 @@ class CmdBox extends React.Component {
     }
     else if (Meteor.userId()) {
       if (cmd === 'favs') {
-        this.props.history.push(`/favorites/${Meteor.userId()}`)
+        return this.props.history.push(`/favorites/${Meteor.userId()}`)
       }
       else if (cmd === 'subs') {
-        this.props.history.push(`/submissions/${Meteor.userId()}`)
+        return this.props.history.push(`/submissions/${Meteor.userId()}`)
       }
     }
     this.setState({ output: newOutput });
   }
+  isCmd = cmd => [...Object.keys(CMDS), ...Object.keys(USER_CMDS)].includes(cmd.toLowerCase());
   submit = () => {
     const { cmd } = this.state
-    const cmdExists = [...Object.keys(CMDS), ...Object.keys(USER_CMDS)]
-      .includes(cmd.toLowerCase());
-
-    if (cmdExists) this.runCmd();
-    else if (!cmd.includes('http')) this.props.history.push(cmd);
+    if (this.isCmd(cmd)) this.runCmd();
+    else if (!cmd.includes('http')) {
+      this.props.history.push(cmd);
+      this.setState({ output: DEF_OUTPUT });
+    }
     else window.location = cmd;
     this.setState({ cmd: '' });
   }
@@ -89,14 +93,19 @@ class CmdBox extends React.Component {
     }
   }
   render() {
-    const href = this.state.cmd.toLowerCase() === 'home' ? '/' : this.state.cmd;
+    const { cmd, output } = this.state;
+    const href = cmd.toLowerCase() === 'home' ? '/' : cmd;
     return (
       <div onKeyDown={this.keyDown}>
-        {this.state.output.map(line =>
-          <p key={Math.random()} className="text-muted text-monospace">
-            > {line}
-          </p>
-        )}
+        {output.map(line => {
+          return (
+            <p key={Math.random()} className="text-muted text-monospace">
+              {this.isCmd(line) ?
+                <strong>> {line}</strong>
+              : <span>> {line}</span>}
+            </p>
+          );
+        })}
 
         <p className="text-monospace notFoundFun">
           >&nbsp;

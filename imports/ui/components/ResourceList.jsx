@@ -22,7 +22,7 @@ export default class ResourceList extends React.Component {
   }
   renderTitle() {
     const { user, title } = this.props;
-    if (title === 'Resources') return <h1>Resources</h1>;
+    if (title === 'Resources') return null;
 
     const username = user.emails[0].address;
     const titleText = title === 'Resources' ? title : `${username}'s ${title}`;
