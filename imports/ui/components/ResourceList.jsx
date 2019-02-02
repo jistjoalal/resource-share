@@ -25,7 +25,7 @@ export default class ResourceList extends React.Component {
 
     const username = user.emails[0].address;
     const titleText = title === 'Resources' ? title : `${username}'s ${title}`;
-    return <h2 className="Resource--title">{titleText}</h2>
+    return <h2 className="p-2">{titleText}</h2>
   }
   renderPageMenu() {
     const { limit, total, title } = this.props;

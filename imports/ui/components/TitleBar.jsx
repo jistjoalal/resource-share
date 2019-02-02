@@ -79,7 +79,8 @@ class TitleBar extends React.Component {
                 </>}
             </ul>
 
-            {!!userId && query && query.grade &&
+
+            {query && query.grade &&
               <AddResource />}
           </div>
         </nav>

@@ -69,6 +69,9 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>[Violation] Added non-passive event listener to a scroll-blocking 'mousewheel' event.
   - this just disappeared idk</s>
 - <s>ability to remove submissions</s>
+- <s>comments page for each resource?</s>
+  - redirect here after submission
+- add createdAt date's to everything
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
@@ -83,9 +86,6 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 ### Ideas
 - <s>alert for displaying messages like "thx for signup", "must be logged in", etc.</s>
 - users can "subscribe" to standards, recieving email/notification when new resource submitted?
-- comments page for each resource?
-  - shortid + react-router for resource id's
-  - redirect here after submission
 
 ## Resource Sources
 - <s>khanacademy</s>

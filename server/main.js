@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 
 import '../imports/config/simple-schema-config';
 import '../imports/api/users';
+import '../imports/api/resources';
+import '../imports/api/comments';
 
 import { resetResources, insertResources } from '../imports/api/sources';
 import { search, save, restore } from '../imports/api/sources/better.lesson';

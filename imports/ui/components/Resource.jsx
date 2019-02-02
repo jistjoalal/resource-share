@@ -42,7 +42,7 @@ export default class Resource extends React.Component {
   }
   deleteButton = () => {
     const { user, resource } = this.props;
-    if (resource.authorId !== user._id) return null;
+    if (!user || resource.authorId !== user._id) return null;
     return (
       <button className="btn text-danger p-0 mb-1" onClick={this.delete}>
         <i className="fa fa-trash-alt"></i> 
