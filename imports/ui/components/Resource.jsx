@@ -9,11 +9,10 @@ export default class Resource extends React.Component {
     return (
       <div className="Resource row p-2">
         <span className="col-2 d-flex align-items-center p-0">
-          {this.favoriteButton()}
           <span className="text-truncate ml-1"> {resource.score}</span>
         </span>
 
-        <span className="col-7 d-flex align-items-center p-0"> 
+        <span className="col-6 d-flex align-items-center p-0"> 
           <a href={resource.url} className="text-truncate"> 
             {resource.title}
           </a>
@@ -25,17 +24,29 @@ export default class Resource extends React.Component {
           {resource.username}
         </Link>
 
-        <div className="col-1 d-flex align-items-center p-0">
+        <div className="col-2 d-flex align-items-center p-0">
+          {this.favoriteButton()}
+          {this.commentsLink()}
           {this.deleteButton()}
         </div>
       </div>
     )
   }
+  commentsLink = () => {
+    const { resource } = this.props;
+    return (
+      <Link className="fav btn text-secondary p-0 mb-1" to={`/comments/${resource._id}`}>
+        <i className="fa fa-comments"></i>
+      </Link>
+    );
+  }
   deleteButton = () => {
     const { user, resource } = this.props;
     if (resource.authorId !== user._id) return null;
     return (
-      <button className="btn text-danger p-0 mb-0" onClick={this.delete}>&times;</button>
+      <button className="btn text-danger p-0 mb-1" onClick={this.delete}>
+        <i className="fa fa-trash-alt"></i> 
+      </button>
     );
   }
   delete = () => {
@@ -49,10 +60,10 @@ export default class Resource extends React.Component {
     return (
       (user.favorites && user.favorites.includes(resource._id) ?
         <a className="fav btn text-danger p-0 mb-1" onClick={this.unFav}>
-          <div className="heart heart--red"></div> 
+          <i className="fa fa-heart"></i>
         </a>
       : <a className="fav btn text-secondary p-0 mb-1" onClick={this.favorite}>
-          <div className="heart"></div> 
+          <i className="fa fa-heart"></i>
         </a>)
     );
   }

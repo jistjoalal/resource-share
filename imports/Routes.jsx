@@ -8,6 +8,7 @@ import Login from './ui/pages/Login';
 import NotFound from './ui/pages/NotFound';
 import Favorites from './ui/pages/Favorites';
 import Submissions from './ui/pages/Submissions';
+import Comments from './ui/pages/Comments';
 
 export default Routes = () =>
   <Router>
@@ -24,6 +25,7 @@ export default Routes = () =>
         <Route path="/" exact component={App} />
         <Route path="/favorites/:userId" component={Favorites} />
         <Route path="/submissions/:userId" component={Submissions} />
+        <Route path="/comments/:resourceId" component={Comments} />
         <Route path="/cc/:id" component={App} />
         <Route path="/cc" component={App} />
         {/* Default */}

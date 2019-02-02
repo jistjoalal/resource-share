@@ -19,6 +19,7 @@ const insertResource = (source, keys) => {
     authorId: '1234',
     score: 123,
     favoritedBy: [],
+    comments: [],
     grade: grade.code,
     domain: (domain && domain.code) || '',
     cluster: (cluster && cluster.code) || '',

@@ -60,6 +60,7 @@ Meteor.methods({
     const authorId = this.userId;
     const score = 0;
     const favoritedBy = [];
+    const comments = [];
     Resources.insert({
       title,
       url,
@@ -67,6 +68,7 @@ Meteor.methods({
       authorId,
       score,
       favoritedBy,
+      comments,
       grade,
       domain,
       cluster,

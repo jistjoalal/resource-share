@@ -12,9 +12,8 @@ export default class ResourceList extends React.Component {
     const { user, title } = this.props;
     if (!user && title !== 'Resources') return <NotFound />
     return (
-      <div className="m-4 p-1">
+      <div className="container border shadow-sm">
         {this.renderTitle()}
-        {this.renderHeaders()}
         {this.renderResources()}
         {this.renderPageMenu()}
       </div>
@@ -32,9 +31,9 @@ export default class ResourceList extends React.Component {
     const { limit, total, title } = this.props;
     const amt = limit > total ? total : limit;
     return (
-      <div className="d-flex flex-column align-items-center">
+      <div className="d-flex flex-column align-items-center justify-contenter-center">
         {total > 0 ?  // hacky - depends on resource existing for each standard
-          <p>{`${amt}/${total} ${title}`}</p>
+          <div>{`${amt}/${total} ${title}`}</div>
         : <p>{`No ${title}`}</p>}
 
         {limit < total &&
@@ -46,23 +45,13 @@ export default class ResourceList extends React.Component {
     const { resources, user, loading } = this.props;
     if (!resources) return null;
     return (
-      <div className="ResourceList">
+      <>
         {resources.map(resource =>
           <Resource key={resource._id} resource={resource} user={user} />
         )}
         {loading && <p>Loading...</p>}
-      </div>
+      </>
     );
-  }
-  renderHeaders() {
-    return (
-      <div className="Resource row border-bottom">
-        <span className="col-2 p-0"></span>
-        <span className="col-7 p-0 text-truncate">Resource</span>
-        <span className="col-2 p-0 text-truncate">User</span>
-        <span className="col-1 p-0"></span>
-      </div>
-    )
   }
   nextPage = () => {
     const page = Session.get('page'); 
