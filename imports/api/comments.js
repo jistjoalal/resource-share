@@ -21,7 +21,7 @@ Meteor.methods({
       text: {
         type: String,
         min: 1,
-        max: 255,
+        max: 10000,
       },
       resourceId: {
         type: String,
@@ -31,7 +31,13 @@ Meteor.methods({
 
     const username = Meteor.users.findOne({ _id: this.userId }).emails[0].address;
 
-    Comments.insert({ text, resourceId, username, authorId: this.userId });
+    Comments.insert({
+      text,
+      resourceId,
+      username,
+      authorId: this.userId,
+      createdAt: new Date(),
+    });
   },
   'comments.delete'(_id) {
     if (!this.userId) throw notAuthErr;

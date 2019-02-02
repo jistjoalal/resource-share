@@ -1,5 +1,6 @@
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
+import moment from 'moment';
 
 import Comments from '../../api/comments';
 
@@ -10,14 +11,16 @@ class CommentsPage extends React.Component {
   render() {
     const { resource, comments } = this.props;
     if (!resource) return null;
+    const time = moment(resource.createdAt).fromNow();
     return (
       <div className="container">
         <div className="row d-flex flex-column border shadow-sm p-2">
           <a href={resource.url}>
             <h2>{resource.title}</h2>
           </a>
-          <p className="lead mb-0 text-secondary">
+          <p className="mb-0 text-secondary">
             Submitted by <a href={`/submissions/${resource.authorId}`}>{resource.username}</a>
+            <span className="text-muted"> - {time}</span>
           </p>
         </div>
         <CommentList comments={comments} /> 

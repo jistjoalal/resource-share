@@ -61,6 +61,7 @@ Meteor.methods({
     const score = 0;
     const favoritedBy = [];
     const comments = [];
+    const createdAt = new Date();
     return Resources.insert({
       title,
       url,
@@ -74,6 +75,7 @@ Meteor.methods({
       cluster,
       standard,
       component,
+      createdAt,
     });
   },
   'resources.delete'(_id) {

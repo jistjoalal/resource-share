@@ -25,6 +25,7 @@ const insertResource = (source, keys) => {
     cluster: (cluster && cluster.code) || '',
     standard: (standard && standard.code) || '',
     component: (component && component.code) || '',
+    createdAt: new Date(),
   });
 }
 
