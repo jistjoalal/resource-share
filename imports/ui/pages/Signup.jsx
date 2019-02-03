@@ -38,7 +38,7 @@ class Signup extends React.Component {
       <div className="container w-75 mx-auto my-4 shadow-sm border bg-light p-3 rounded">
         <h1 className="border-bottom mb-4">Signup</h1>
 
-        {err && <p>{err}</p>}
+        {err && <p className="alert alert-warning">{err}</p>}
 
         <form onSubmit={this.submit}>
           <div className="form-group">
