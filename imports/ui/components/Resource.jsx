@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaComments, FaTrashAlt, FaHeart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 export default class Resource extends React.Component {
@@ -36,7 +37,7 @@ export default class Resource extends React.Component {
     const { resource } = this.props;
     return (
       <Link className="fav btn text-secondary p-0 mb-1" to={`/comments/${resource._id}`}>
-        <i className="fa fa-comments"></i>
+        <FaComments />
       </Link>
     );
   }
@@ -45,7 +46,7 @@ export default class Resource extends React.Component {
     if (!user || resource.authorId !== user._id) return null;
     return (
       <button className="btn text-danger p-0 mb-1" onClick={this.delete}>
-        <i className="fa fa-trash-alt"></i> 
+        <FaTrashAlt />
       </button>
     );
   }
@@ -60,10 +61,10 @@ export default class Resource extends React.Component {
     return (
       (user.favorites && user.favorites.includes(resource._id) ?
         <a className="fav btn text-danger p-0 mb-1" onClick={this.unFav}>
-          <i className="fa fa-heart"></i>
+          <FaHeart />
         </a>
       : <a className="fav btn text-secondary p-0 mb-1" onClick={this.favorite}>
-          <i className="fa fa-heart"></i>
+          <FaHeart />
         </a>)
     );
   }

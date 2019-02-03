@@ -72,7 +72,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>comments page for each resource?</s>
   - <s>redirect here after submission</s>
 - <s>add createdAt date's to everything</s>
-- add a MOFO icon library to the project (no CDNS!)
+- <s>add a MOFO icon library to the project (no CDNS!)</s>
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash

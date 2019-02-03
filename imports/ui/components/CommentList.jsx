@@ -1,5 +1,6 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
+import { FaTrashAlt } from 'react-icons/fa';
 import moment from 'moment';
 
 export default class CommentList extends React.Component {
@@ -20,7 +21,7 @@ export default class CommentList extends React.Component {
             <p className="p-2 mb-0">{comment.text}</p>
             {comment.authorId === Meteor.userId() ?
               <button className="btn" onClick={() => this.delete(comment._id)}>
-                <i className="fa fa-trash-alt"></i> 
+                <FaTrashAlt />
               </button>
             : <p className="text-muted p-2 mb-0">{comment.username} - {time}</p>}
           </div> 
