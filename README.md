@@ -18,8 +18,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 
 - All grade levels for Math
   - Elementary
-    - <s>K-3</s>
-    - 4-5
+    - <s>K-5</s>
   - Middle
   - HS
 - All grade levels for English
@@ -74,6 +73,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>add createdAt date's to everything</s>
 - <s>add a MOFO icon library to the project (no CDNS!)</s>
 - <s>style w/ bootstrap</s>
+- <s>deploy to heroku</s>
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
@@ -81,8 +81,6 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - is there a way to manually cancel the old sub?
   - if server goes offline, favorites and submissions links render same as App
 - finish adding grade levels
-- deploy to heroku
-- refactor
 
 ### Ideas
 - <s>alert for displaying messages like "thx for signup", "must be logged in", etc.</s>

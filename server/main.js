@@ -19,6 +19,7 @@ Meteor.startup(() => {
   // once they're found, no reason to search again
   // just run to find new standards
   // search(); 
+  // save();
 
   // restore from backup if meteor reset
   // restore();

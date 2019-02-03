@@ -847,4 +847,523 @@ export default {
       }
     },
   },
+  '4': {
+    title: 'Fourth Grade',
+    code: '4',
+    domains: {
+      OA: {
+        title: 'Operations & Algebraic Thinking',
+        code: 'OA',
+        clusters: {
+          A: {
+            title: 'Use the four operations with whole numbers to solve problems.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Interpret a multiplication equation as a comparison, e.g., interpret 35 = 5 × 7 as a statement that 35 is 5 times as many as 7 and 7 times as many as 5. Represent verbal statements of multiplicative comparisons as multiplication equations.',
+                code: '1',
+              },
+              '2': {
+                title: 'Multiply or divide to solve word problems involving multiplicative comparison, e.g., by using drawings and equations with a symbol for the unknown number to represent the problem, distinguishing multiplicative comparison from additive comparison.',
+                code: '2',
+              },
+              '3': {
+                title: 'Solve multistep word problems posed with whole numbers and having whole-number answers using the four operations, including problems in which remainders must be interpreted. Represent these problems using equations with a letter standing for the unknown quantity. Assess the reasonableness of answers using mental computation and estimation strategies including rounding.',
+                code: '3',
+              },
+            },
+          },
+          B: {
+            title: 'Gain familiarity with factors and multiples.',
+            code: 'B',
+            standards: {
+              '4': {
+                title: 'Find all factor pairs for a whole number in the range 1-100. Recognize that a whole number is a multiple of each of its factors. Determine whether a given whole number in the range 1-100 is a multiple of a given one-digit number. Determine whether a given whole number in the range 1-100 is prime or composite.',
+                code: '4',
+              },
+            },
+          },
+          C: {
+            title: 'Generate and analyze patterns.',
+            code: 'C',
+            standards: {
+              '5': {
+                title: 'Generate a number or shape pattern that follows a given rule. Identify apparent features of the pattern that were not explicit in the rule itself.',
+                code: '5',
+              },
+            },
+          },
+        },
+      },
+      NBT: {
+        title: 'Number & Operations in Base Ten',
+        code: 'NBT',
+        clusters: {
+          A: {
+            title: 'Generalize place value understanding for multi-digit whole numbers.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Recognize that in a multi-digit whole number, a digit in one place represents ten times what it represents in the place to its right.',
+                code: '1',
+              },
+              '2': {
+                title: 'Read and write multi-digit whole numbers using base-ten numerals, number names, and expanded form. Compare two multi-digit numbers based on meanings of the digits in each place, using >, =, and < symbols to record the results of comparisons.',
+                code: '2',
+              },
+              '3': {
+                title: 'Use place value understanding to round multi-digit whole numbers to any place.',
+                code: '3',
+              }
+            }
+          }
+        },
+      },
+      NF: {
+        title: 'Number & Operations--Fractions',
+        code: 'NF',
+        clusters: {
+          A: {
+            title: 'Extend understanding of fraction equivalence and ordering.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Explain why a fraction a/b is equivalent to a fraction (n × a)/(n × b) by using visual fraction models, with attention to how the number and size of the parts differ even though the two fractions themselves are the same size. Use this principle to recognize and generate equivalent fractions.',
+                code: '1',
+              },
+              '2': {
+                title: 'Compare two fractions with different numerators and different denominators, e.g., by creating common denominators or numerators, or by comparing to a benchmark fraction such as 1/2. Recognize that comparisons are valid only when the two fractions refer to the same whole. Record the results of comparisons with symbols >, =, or <, and justify the conclusions, e.g., by using a visual fraction model.',
+                code: '2',
+              },
+            },
+          },
+          B: {
+            title: 'Build fractions from unit fractions.',
+            code: 'B',
+            standards: {
+              '3': {
+                title: 'Understand a fraction a/b with a > 1 as a sum of fractions 1/b.',
+                code: '3',
+                components: {
+                  a: {
+                    title: 'Understand addition and subtraction of fractions as joining and separating parts referring to the same whole.',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'Decompose a fraction into a sum of fractions with the same denominator in more than one way, recording each decomposition by an equation. Justify decompositions, e.g., by using a visual fraction model.',
+                    code: 'b',
+                  },
+                  c: {
+                    title: 'Add and subtract mixed numbers with like denominators, e.g., by replacing each mixed number with an equivalent fraction, and/or by using properties of operations and the relationship between addition and subtraction.',
+                    code: 'c',
+                  },
+                  d: {
+                    title: 'Solve word problems involving addition and subtraction of fractions referring to the same whole and having like denominators, e.g., by using visual fraction models and equations to represent the problem.',
+                    code: 'd',
+                  },
+                },
+              },
+              '4': {
+                title: 'Apply and extend previous understandings of multiplication to multiply a fraction by a whole number.',
+                code: '4',
+                components: {
+                  a: {
+                    title: 'Understand a fraction a/b as a multiple of 1/b. ',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'Understand a multiple of a/b as a multiple of 1/b, and use this understanding to multiply a fraction by a whole number. ',
+                    code: 'b',
+                  },
+                  c: {
+                    title: 'Solve word problems involving multiplication of a fraction by a whole number, e.g., by using visual fraction models and equations to represent the problem.',
+                    code: 'c',
+                  },
+                },
+              },
+            },
+          },
+          C: {
+            title: 'Understand decimal notation for fractions, and compare decimal fractions.',
+            code: 'C',
+            standards: {
+              '5': {
+                title: 'Express a fraction with denominator 10 as an equivalent fraction with denominator 100, and use this technique to add two fractions with respective denominators 10 and 100.',
+                code: '5',
+              },
+              '6': {
+                title: 'Use decimal notation for fractions with denominators 10 or 100.',
+                code: '6',
+              },
+              '7': {
+                title: 'Compare two decimals to hundredths by reasoning about their size. Recognize that comparisons are valid only when the two decimals refer to the same whole. Record the results of comparisons with the symbols >, =, or <, and justify the conclusions, e.g., by using a visual model.',
+                code: '7',
+              },
+            },
+          },
+        },
+      },
+      MD: {
+        title: 'Measurement & Data',
+        code: 'MD',
+        clusters: {
+          A: {
+            title: 'Solve problems involving measurement and conversion of measurements.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Know relative sizes of measurement units within one system of units including km, m, cm; kg, g; lb, oz.; l, ml; hr, min, sec. Within a single system of measurement, express measurements in a larger unit in terms of a smaller unit. Record measurement equivalents in a two-column table.',
+                code: '1',
+              },
+              '2': {
+                title: 'Use the four operations to solve word problems involving distances, intervals of time, liquid volumes, masses of objects, and money, including problems involving simple fractions or decimals, and problems that require expressing measurements given in a larger unit in terms of a smaller unit. Represent measurement quantities using diagrams such as number line diagrams that feature a measurement scale.',
+                code: '2',
+              },
+              '3': {
+                title: 'Apply the area and perimeter formulas for rectangles in real world and mathematical problems.',
+                code: '3',
+              },
+            },
+          },
+          B: {
+            title: 'Represent and interpret data.',
+            code: 'B',
+            standards: {
+              '4': {
+                title: 'Make a line plot to display a data set of measurements in fractions of a unit (1/2, 1/4, 1/8). Solve problems involving addition and subtraction of fractions by using information presented in line plots.',
+                code: '4',
+              },
+            },
+          },
+          C: {
+            title: 'Geometric measurement: understand concepts of angle and measure angles.',
+            code: 'C',
+            standards: {
+              '5': {
+                title: 'Recognize angles as geometric shapes that are formed wherever two rays share a common endpoint, and understand concepts of angle measurement.',
+                code: '5',
+                components: {
+                  a: {
+                    title: 'An angle is measured with reference to a circle with its center at the common endpoint of the rays, by considering the fraction of the circular arc between the points where the two rays intersect the circle. An angle that turns through 1/360 of a circle is called a "one-degree angle," and can be used to measure angles.',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'An angle that turns through n one-degree angles is said to have an angle measure of n degrees.',
+                    code: 'b',
+                  },
+                },
+              },
+              '6': {
+                title: 'Measure angles in whole-number degrees using a protractor. Sketch angles of specified measure.',
+                code: '6',
+              },
+              '7': {
+                title: 'Recognize angle measure as additive. When an angle is decomposed into non-overlapping parts, the angle measure of the whole is the sum of the angle measures of the parts. Solve addition and subtraction problems to find unknown angles on a diagram in real world and mathematical problems, e.g., by using an equation with a symbol for the unknown angle measure.',
+                code: '7',
+              },
+            }
+          },
+        },
+      },
+      G: {
+        title: 'Geometry',
+        code: 'G',
+        clusters: {
+          A: {
+            title: 'Draw and identify lines and angles, and classify shapes by properties of their lines and angles.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Draw points, lines, line segments, rays, angles (right, acute, obtuse), and perpendicular and parallel lines. Identify these in two-dimensional figures.',
+                code: '1',
+              },
+              '2': {
+                title: 'Classify two-dimensional figures based on the presence or absence of parallel or perpendicular lines, or the presence or absence of angles of a specified size. Recognize right triangles as a category, and identify right triangles.',
+                code: '2',
+              },
+              '3': {
+                title: 'Recognize a line of symmetry for a two-dimensional figure as a line across the figure such that the figure can be folded along the line into matching parts. Identify line-symmetric figures and draw lines of symmetry.',
+                code: '3',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  '5': {
+    title: 'Fifth Grade',
+    code: '5',
+    domains: {
+      OA: {
+        title: 'Operations & Algebraic Thinking',
+        code: 'OA',
+        clusters: {
+          A: {
+            title: 'Write and interpret numerical expressions.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Use parentheses, brackets, or braces in numerical expressions, and evaluate expressions with these symbols.',
+                code: '1',
+              },
+              '2': {
+                title: 'Write simple expressions that record calculations with numbers, and interpret numerical expressions without evaluating them.',
+                code: '2',
+              },
+            },
+          },
+          B: {
+            title: 'Analyze patterns and relationships.',
+            code: 'B',
+            standards: {
+              '3': {
+                title: 'Generate two numerical patterns using two given rules. Identify apparent relationships between corresponding terms. Form ordered pairs consisting of corresponding terms from the two patterns, and graph the ordered pairs on a coordinate plane.',
+                code: '3',
+              },
+            },
+          },
+        },
+      },
+      NBT: {
+        title: 'Number & Operations in Base Ten',
+        code: 'NBT',
+        clusters: {
+          A: {
+            title: 'Understand the place value system.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Recognize that in a multi-digit number, a digit in one place represents 10 times as much as it represents in the place to its right and 1/10 of what it represents in the place to its left.',
+                code: '1',
+              },
+              '2': {
+                title: 'Explain patterns in the number of zeros of the product when multiplying a number by powers of 10, and explain patterns in the placement of the decimal point when a decimal is multiplied or divided by a power of 10. Use whole-number exponents to denote powers of 10.',
+                code: '2',
+              },
+              '3': {
+                title: 'Read, write, and compare decimals to thousandths.',
+                code: '3',
+                components: {
+                  a: {
+                    title: 'Read and write decimals to thousandths using base-ten numerals, number names, and expanded form.',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'Compare two decimals to thousandths based on meanings of the digits in each place, using >, =, and < symbols to record the results of comparisons.',
+                    code: 'b'
+                  },
+                },
+              },
+              '4': {
+                title: 'Use place value understanding to round decimals to any place.',
+                code: '4',
+              },
+            },
+          },
+          B: {
+            title: 'Perform operations with multi-digit whole numbers and with decimals to hundredths.',
+            code: 'B',
+            standards: {
+              '5': {
+                title: 'Fluently multiply multi-digit whole numbers using the standard algorithm.',
+                code: '5',
+              },
+              '6': {
+                title: 'Find whole-number quotients of whole numbers with up to four-digit dividends and two-digit divisors, using strategies based on place value, the properties of operations, and/or the relationship between multiplication and division. Illustrate and explain the calculation by using equations, rectangular arrays, and/or area models.',
+                code: '6',
+              },
+              '7': {
+                title: 'Add, subtract, multiply, and divide decimals to hundredths, using concrete models or drawings and strategies based on place value, properties of operations, and/or the relationship between addition and subtraction; relate the strategy to a written method and explain the reasoning used.',
+                code: '7',
+              },
+            },
+          },
+        },
+      },
+      NF: {
+        title: 'Number & Operations--Fractions',
+        code: 'NF',
+        clusters: {
+          A: {
+            title: 'Use equivalent fractions as a strategy to add and subtract fractions.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Add and subtract fractions with unlike denominators (including mixed numbers) by replacing given fractions with equivalent fractions in such a way as to produce an equivalent sum or difference of fractions with like denominators. ',
+                code: '1',
+              },
+              '2': {
+                title: 'Solve word problems involving addition and subtraction of fractions referring to the same whole, including cases of unlike denominators, e.g., by using visual fraction models or equations to represent the problem. Use benchmark fractions and number sense of fractions to estimate mentally and assess the reasonableness of answers. ',
+                code: '2',
+              },
+            },
+          },
+          B: {
+            title: 'Apply and extend previous understandings of multiplication and division.',
+            code: 'B',
+            standards: {
+              '3': {
+                title: 'Interpret a fraction as division of the numerator by the denominator (a/b = a ÷ b). Solve word problems involving division of whole numbers leading to answers in the form of fractions or mixed numbers, e.g., by using visual fraction models or equations to represent the problem.',
+                code: '3',
+              },
+              '4': {
+                title: 'Apply and extend previous understandings of multiplication to multiply a fraction or whole number by a fraction.',
+                code: '4',
+                components: {
+                  a: {
+                    title: 'Interpret the product (a/b) × q as a parts of a partition of q into b equal parts; equivalently, as the result of a sequence of operations a × q ÷ b.',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'Find the area of a rectangle with fractional side lengths by tiling it with unit squares of the appropriate unit fraction side lengths, and show that the area is the same as would be found by multiplying the side lengths. Multiply fractional side lengths to find areas of rectangles, and represent fraction products as rectangular areas.',
+                    code: 'b',
+                  },
+                },
+              },
+              '5': {
+                title: 'Interpret multiplication as scaling (resizing).',
+                code: '5',
+                components: {
+                  a: {
+                    title: 'Comparing the size of a product to the size of one factor on the basis of the size of the other factor, without performing the indicated multiplication.',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'Explaining why multiplying a given number by a fraction greater than 1 results in a product greater than the given number (recognizing multiplication by whole numbers greater than 1 as a familiar case); explaining why multiplying a given number by a fraction less than 1 results in a product smaller than the given number; and relating the principle of fraction equivalence a/b = (n × a)/(n × b) to the effect of multiplying a/b by 1.',
+                    code: 'b',
+                  },
+                },
+              },
+              '6': {
+                title: 'Solve real world problems involving multiplication of fractions and mixed numbers, e.g., by using visual fraction models or equations to represent the problem.',
+                code: '6',
+              },
+              '7': {
+                title: 'Apply and extend previous understandings of division to divide unit fractions by whole numbers and whole numbers by unit fractions.',
+                code: '7',
+                components: {
+                  a: {
+                    title: 'Interpret division of a unit fraction by a non-zero whole number, and compute such quotients.',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'Interpret division of a whole number by a unit fraction, and compute such quotients.',
+                    code: 'b',
+                  },
+                  c: {
+                    title: 'Solve real world problems involving division of unit fractions by non-zero whole numbers and division of whole numbers by unit fractions, e.g., by using visual fraction models and equations to represent the problem.',
+                    code: 'c',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      MD: {
+        title: 'Measurement & Data',
+        code: 'MD',
+        clusters: {
+          A: {
+            title: 'Convert like measurement units within a given measurement system.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Convert among different-sized standard measurement units within a given measurement system (e.g., convert 5 cm to 0.05 m), and use these conversions in solving multi-step, real world problems.',
+                code: '1',
+              },
+            },
+          },
+          B: {
+            title: 'Represent and interpret data.',
+            code: 'B',
+            standards: {
+              '2': {
+                title: 'Make a line plot to display a data set of measurements in fractions of a unit (1/2, 1/4, 1/8). Use operations on fractions for this grade to solve problems involving information presented in line plots.',
+                code: '2',
+              },
+            },
+          },
+          C: {
+            title: 'Geometric measurement: understand concepts of volume.',
+            code: 'C',
+            standards: {
+              '3': {
+                title: 'Recognize volume as an attribute of solid figures and understand concepts of volume measurement.',
+                code: '3',
+                components: {
+                  a: {
+                    title: 'A cube with side length 1 unit, called a "unit cube," is said to have "one cubic unit" of volume, and can be used to measure volume.',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'A solid figure which can be packed without gaps or overlaps using n unit cubes is said to have a volume of n cubic units.',
+                    code: 'b',
+                  },
+                },
+              },
+              '4': {
+                title: 'Measure volumes by counting unit cubes, using cubic cm, cubic in, cubic ft, and improvised units.',
+                code: '4',
+              },
+              '5': {
+                title: 'Relate volume to the operations of multiplication and addition and solve real world and mathematical problems involving volume',
+                code: '5',
+                components: {
+                  a: {
+                    title: 'Find the volume of a right rectangular prism with whole-number side lengths by packing it with unit cubes, and show that the volume is the same as would be found by multiplying the edge lengths, equivalently by multiplying the height by the area of the base. Represent threefold whole-number products as volumes, e.g., to represent the associative property of multiplication.',
+                    code: 'a',
+                  },
+                  b: {
+                    title: 'Apply the formulas V = l × w × h and V = b × h for rectangular prisms to find volumes of right rectangular prisms with whole-number edge lengths in the context of solving real world and mathematical problems.',
+                    code: 'b',
+                  },
+                  c: {
+                    title: 'Recognize volume as additive. Find volumes of solid figures composed of two non-overlapping right rectangular prisms by adding the volumes of the non-overlapping parts, applying this technique to solve real world problems.',
+                    code: 'c',
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      G: {
+        title: 'Geometry',
+        code: 'G',
+        clusters: {
+          A: {
+            title: 'Graph points on the coordinate plane to solve real-world and mathematical problems.',
+            code: 'A',
+            standards: {
+              '1': {
+                title: 'Use a pair of perpendicular number lines, called axes, to define a coordinate system, with the intersection of the lines (the origin) arranged to coincide with the 0 on each line and a given point in the plane located by using an ordered pair of numbers, called its coordinates.',
+                code: '1',
+              },
+              '2': {
+                title: 'Represent real world and mathematical problems by graphing points in the first quadrant of the coordinate plane, and interpret coordinate values of points in the context of the situation.',
+                code: '2',
+              },
+            },
+          },
+          B: {
+            title: 'Classify two-dimensional figures into categories based on their properties.',
+            code: 'B',
+            standards: {
+              '3': {
+                title: 'Understand that attributes belonging to a category of two-dimensional figures also belong to all subcategories of that category. ',
+                code: '3',
+              },
+              '4': {
+                title: 'Classify two-dimensional figures in a hierarchy based on properties.',
+                code: '4',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  //
 };
