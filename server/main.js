@@ -5,11 +5,12 @@ import '../imports/api/users';
 import '../imports/api/resources';
 import '../imports/api/comments';
 
-import { resetResources, insertResources } from '../imports/api/sources';
+import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/sources';
 import { search, save, restore } from '../imports/api/sources/better.lesson';
 
 Meteor.startup(() => {
   // resetResources(() => insertResources());
+  restoreIfEmpty();
 
   // restore from backup if meteor reset
   // restore();

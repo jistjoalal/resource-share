@@ -29,6 +29,11 @@ const insertResource = (source, keys) => {
   });
 }
 
+export const restoreIfEmpty = () => {
+  const empty = Resources.find().fetch().length < 1;
+  if (empty) insertResources();
+}
+
 export const insertResources = () => {
   let keys = {};
   const insert = sources =>
