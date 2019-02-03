@@ -1,7 +1,9 @@
 import Resources from '../resources';
 import GRADES from '../grades';
+import fs from 'fs';
 
-import SourceBL from './better.lesson';
+// only needed for ghetto BL scraping stuff
+// import SourceBL, { restore } from './better.lesson';
 
 export const resetResources = callback => {
   console.log('resetting resources...');
@@ -31,7 +33,9 @@ const insertResource = (source, keys) => {
 
 export const restoreIfEmpty = () => {
   const empty = Resources.find().fetch().length < 1;
-  if (empty) insertResources();
+  if (empty) {
+    insertResources();
+  }
 }
 
 export const insertResources = () => {
@@ -70,10 +74,12 @@ const blccCode = keys => {
   : ccCode(keys);
 }
 
+const BL_FILE = process.env['PWD'] + '/imports/api/sources/better.lesson/backup.json';
+const records = JSON.parse(fs.readFileSync(BL_FILE).toString());
 const betterLesson = keys => {
   // no dot before component
   const blCode = blccCode(keys);
-  const record = SourceBL.find({ name: blCode }).fetch()[0];
+  const record = records.filter(r => r.name === blCode);
   if (record) {
     return {
       url: `https://api.betterlesson.com/search?standards=${record.id}`,
