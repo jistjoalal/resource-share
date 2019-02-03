@@ -14,7 +14,7 @@ export default class Resource extends React.Component {
         </span>
 
         <span className="col-7 d-flex align-items-center p-0"> 
-          <a href={resource.url} className="text-truncate"> 
+          <a href={resource.url} target="_blank" className="text-truncate"> 
             {resource.title}
           </a>
         </span>
