@@ -79,7 +79,7 @@ const records = JSON.parse(fs.readFileSync(BL_FILE).toString());
 const betterLesson = keys => {
   // no dot before component
   const blCode = blccCode(keys);
-  const record = records.filter(r => r.name === blCode);
+  const record = records.filter(r => r.name === blCode)[0];
   if (record) {
     return {
       url: `https://api.betterlesson.com/search?standards=${record.id}`,
