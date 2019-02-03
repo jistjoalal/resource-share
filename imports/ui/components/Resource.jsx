@@ -9,11 +9,11 @@ export default class Resource extends React.Component {
     const { resource } = this.props;
     return (
       <div className="Resource row p-2">
-        <span className="col-2 d-flex align-items-center p-0">
-          <span className="text-truncate ml-1"> {resource.score}</span>
+        <span className="col-1 d-flex align-items-center p-0">
+          <span className="text-truncate text-secondary">{resource.score}</span>
         </span>
 
-        <span className="col-6 d-flex align-items-center p-0"> 
+        <span className="col-7 d-flex align-items-center p-0"> 
           <a href={resource.url} className="text-truncate"> 
             {resource.title}
           </a>
@@ -36,7 +36,7 @@ export default class Resource extends React.Component {
   commentsLink = () => {
     const { resource } = this.props;
     return (
-      <Link className="fav btn text-secondary p-0 mb-1" to={`/comments/${resource._id}`}>
+      <Link className="fav btn text-info p-0 mb-1" to={`/comments/${resource._id}`}>
         <FaComments />
       </Link>
     );
@@ -45,7 +45,7 @@ export default class Resource extends React.Component {
     const { user, resource } = this.props;
     if (!user || resource.authorId !== user._id) return null;
     return (
-      <button className="btn text-danger p-0 mb-1" onClick={this.delete}>
+      <button className="btn text-secondary p-0 mb-1" onClick={this.delete}>
         <FaTrashAlt />
       </button>
     );

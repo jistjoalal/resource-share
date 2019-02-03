@@ -17,7 +17,7 @@ const insertResource = (source, keys) => {
     url,
     username: 'Jist',
     authorId: '1234',
-    score: 123,
+    score: 0,
     favoritedBy: [],
     comments: [],
     grade: grade.code,

@@ -73,6 +73,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - <s>redirect here after submission</s>
 - <s>add createdAt date's to everything</s>
 - <s>add a MOFO icon library to the project (no CDNS!)</s>
+- <s>style w/ bootstrap</s>
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
@@ -80,7 +81,6 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - is there a way to manually cancel the old sub?
   - if server goes offline, favorites and submissions links render same as App
 - finish adding grade levels
-- style w/ bootstrap
 - deploy to heroku
 - refactor
 
