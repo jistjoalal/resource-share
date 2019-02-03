@@ -1,6 +1,6 @@
 import Resources from '../resources';
 import GRADES from '../grades';
-import fs from 'fs';
+import { records } from './better.lesson/backup';
 
 // only needed for ghetto BL scraping stuff
 // import SourceBL, { restore } from './better.lesson';
@@ -74,8 +74,6 @@ const blccCode = keys => {
   : ccCode(keys);
 }
 
-const BL_FILE = process.env['PWD'] + '/imports/api/sources/better.lesson/backup.json';
-const records = JSON.parse(fs.readFileSync(BL_FILE).toString());
 const betterLesson = keys => {
   // no dot before component
   const blCode = blccCode(keys);

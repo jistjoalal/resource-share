@@ -9,14 +9,17 @@ import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/
 import { search, save, restore } from '../imports/api/sources/better.lesson';
 
 Meteor.startup(() => {
-  // resetResources(() => insertResources());
   restoreIfEmpty();
 
-  // restore from backup if meteor reset
-  // restore();
+  // dev stuff
+  // resetResources(() => insertResources());
+  // resetResources(() => restoreIfEmpty());
 
   // search for BL id's
   // once they're found, no reason to search again
   // just run to find new standards
   // search(); 
+
+  // restore from backup if meteor reset
+  // restore();
 });
