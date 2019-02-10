@@ -2,6 +2,9 @@
 
 A place to share the best Teaching/Learning resources for common core standards.
 
+# Demo
+[Demo URL](https://ccshare.herokuapp.com/cc/)
+
 ## Overview
 
 Meteor+React app w/ one collection (`resources`), and an enormous JS object (`standards`) mapping the CC standards.
@@ -71,7 +74,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>comments page for each resource?</s>
   - <s>redirect here after submission</s>
 - <s>add createdAt date's to everything</s>
-- <s>add a MOFO icon library to the project (no CDNS!)</s>
+- <s>add a icon library to the project (no CDNS!)</s>
 - <s>style w/ bootstrap</s>
 - <s>deploy to heroku</s>
 
