@@ -81,6 +81,7 @@ class CmdBox extends React.Component {
     else window.location = cmd;
   }
   keyDown = e => {
+    e.preventDefault();
     const { cmd } = this.state;
     if (e.key === 'Backspace') {
       this.setState({ cmd: cmd.slice(0, cmd.length - 1) });
