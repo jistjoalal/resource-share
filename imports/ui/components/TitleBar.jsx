@@ -7,6 +7,7 @@ import LoginButton from '../components/LoginButton';
 import SignupButton from '../components/SignupButton';
 import LogoutButton from '../components/LogoutButton';
 import AddResource from '../components/AddResource';
+import InstallButton from '../components/InstallButton';
 
 class TitleBar extends React.Component {
   constructor(props) {
@@ -38,6 +39,8 @@ class TitleBar extends React.Component {
               {title}
             </span>
           </Link>
+
+          <InstallButton />
 
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>

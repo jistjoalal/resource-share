@@ -77,6 +77,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>add a icon library to the project (no CDNS!)</s>
 - <s>style w/ bootstrap</s>
 - <s>deploy to heroku</s>
+- <s>PWA-ify</s>
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
