@@ -1,5 +1,5 @@
 import Resources from '../resources';
-import GRADES from '../grades';
+import GRADES from '../ccssi/math-stds';
 import { records } from './better.lesson/backup';
 
 // only needed for ghetto BL scraping stuff
@@ -47,16 +47,16 @@ export const insertResources = () => {
   Object.values(GRADES).forEach(grade => {
     keys = { grade };
     insert(sources.grade);
-    Object.values(grade.domains).forEach(domain => {
+    Object.values(grade).forEach(domain => {
       keys = { grade, domain };
       insert(sources.domain);
-      Object.values(domain.clusters).forEach(cluster => {
+      Object.values(domain).forEach(cluster => {
         keys = { grade, domain, cluster };
         insert(sources.cluster);
-        Object.values(cluster.standards).forEach(standard => {
+        Object.values(cluster).forEach(standard => {
           keys = { grade, domain, cluster, standard };
           insert(sources.standard);
-          Object.values(standard.components || []).forEach(component => {
+          Object.values(standard || []).forEach(component => {
             keys = {grade, domain, cluster, standard, component };
             insert(sources.component);
           });
@@ -130,7 +130,7 @@ const hcpss = keys => {
   };
   return {
     url: urls[keys.grade.code],
-    title: `Howard County Public Schools ${keys.grade.title} Course`,
+    title: `Howard County Public Schools ${keys.grade.code} Course`,
   };
 }
 
@@ -142,7 +142,7 @@ const ixl = keys => {
   : `${baseUrl}grade-${grade.code}`);
   return {
     url,
-    title: `IXL ${grade.title} Skills Practice`
+    title: `IXL ${grade.code} Skills Practice`
   }
 }
 

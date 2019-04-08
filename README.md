@@ -78,13 +78,24 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>style w/ bootstrap</s>
 - <s>deploy to heroku</s>
 - <s>PWA-ify</s>
+- <s>finish adding grade levels
+  - use the XML file from CCSS</s>
+  - need to scrape resources properly now (new stds messed em up)
+- file upload/download
+- 'back to top' button by 'more' button
+- \# hearts + \# comments (next to icons)
+- heart button missing pointer cursor
+- refactor
+  - insertResources
+  - trackers
+  - login+signup button
+  - whats the point of BL json, js, and mongo collection??
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
   - i think this happens from the client side minimongo "lagging" behind the new sub
   - is there a way to manually cancel the old sub?
   - if server goes offline, favorites and submissions links render same as App
-- finish adding grade levels
 
 ### Ideas
 - <s>alert for displaying messages like "thx for signup", "must be logged in", etc.</s>

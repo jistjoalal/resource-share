@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import axios from 'axios';
 import fs from 'fs';
 
-import GRADES from '../../grades';
+import GRADES from '../../ccssi/math-stds';
 
 export default SourceBL = new Mongo.Collection('sourceBL');
 
@@ -30,9 +30,14 @@ export const restore = () => {
 const ccCode = keys => Object.values(keys).map(v => v.code).join('.');
 const blccCode = keys => {
   const { grade, domain, cluster, standard, component } = keys;
+  // high school
+  if (!/\d/.test(grade.code)) {
+    return `${grade.code}-${domain.code}.${cluster.code}.${standard.code}`
+  }
+  // K-8
   return keys.component ?
-    `${[ grade.code, domain.code, cluster.code, standard.code].join('.') + component.code}`
-  : ccCode(keys);
+    [ grade.code, domain.code, cluster.code, standard.code ].join('.') + component.code
+  : ccCode({grade, domain, cluster, standard});
 }
 
 const searchForMatches = q => {
@@ -48,32 +53,21 @@ const searchForMatches = q => {
         count++;
       }
     });
-    console.log(`${count} new matches found`);
+    console.log(`${count} new matches found for ${q}`);
   })
   .catch(err => console.log(err))
 }
 
 export const search = () => {
   Object.values(GRADES).forEach(grade => {
-    keys = { grade };
-    searchForMatches(blccCode(keys));
-    searchForMatches(grade.title);
-    Object.values(grade.domains).forEach(domain => {
-      keys = { grade, domain };
-      searchForMatches(blccCode(keys));
-      searchForMatches(domain.title);
-      Object.values(domain.clusters).forEach(cluster => {
-        keys = { grade, domain, cluster };
-        searchForMatches(blccCode(keys));
-        searchForMatches(cluster.title);
-        Object.values(cluster.standards).forEach(standard => {
-          keys = { grade, domain, cluster, standard };
-          searchForMatches(blccCode(keys));
-          searchForMatches(standard.title);
-          Object.values(standard.components || []).forEach(component => {
-            keys = {grade, domain, cluster, standard, component };
-            searchForMatches(blccCode(keys));
-            searchForMatches(component.title);
+    if (/\d/.test(grade.code) && +grade.code < 6) return;
+    Object.values(grade).forEach(domain => {
+      Object.values(domain).forEach(cluster => {
+        Object.values(cluster).forEach(standard => {
+          searchForMatches(blccCode({ grade, domain, cluster, standard }));
+          Object.values(standard).forEach(component => {
+            if (!component) return;
+            searchForMatches(blccCode({grade, domain, cluster, standard, component }));
           });
         });
       });

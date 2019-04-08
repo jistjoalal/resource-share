@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Session } from 'meteor/session';
 
-import GRADES from '../../api/grades';
+import GRADES from '../../api/ccssi/math-stds';
 
 import ResourceList from '../containers/ResourceListContainer';
 import QuerySelect from '../components/QuerySelect';
@@ -37,7 +37,7 @@ class App extends React.Component {
   getList = key => {
     if (key === 'grade') return GRADES;
     const prevKey = KEYS[KEYS.indexOf(key) - 1];
-    return this.state[prevKey][`${key}s`];
+    return this.state[prevKey];
   }
   render() {
     return (
