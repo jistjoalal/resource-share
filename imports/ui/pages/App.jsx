@@ -80,6 +80,8 @@ class App extends React.Component {
     // apply to url
     this.props.history.replace(`/cc/${keys}`);
     this.setQuery();
+    // reset page
+    Session.set('page', 1);
   }
   setQuery = () => {
     const query = {};
