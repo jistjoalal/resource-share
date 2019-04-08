@@ -27,6 +27,10 @@ select {
   background: theme-color('light');
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .fav {
   outline: none;
   font-size: 1.5rem;

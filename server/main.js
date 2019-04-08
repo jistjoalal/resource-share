@@ -9,9 +9,10 @@ import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/
 import { search, save, restore } from '../imports/api/sources/better.lesson';
 
 Meteor.startup(() => {
-  restoreIfEmpty();
+  // restoreIfEmpty();
 
   // dev stuff
+  // resetResources();
   // resetResources(() => insertResources());
   // resetResources(() => restoreIfEmpty());
 

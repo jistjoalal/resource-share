@@ -59,18 +59,5 @@ const searchForMatches = q => {
 }
 
 export const search = () => {
-  Object.values(GRADES).forEach(grade => {
-    if (/\d/.test(grade.code) && +grade.code < 6) return;
-    Object.values(grade).forEach(domain => {
-      Object.values(domain).forEach(cluster => {
-        Object.values(cluster).forEach(standard => {
-          searchForMatches(blccCode({ grade, domain, cluster, standard }));
-          Object.values(standard).forEach(component => {
-            if (!component) return;
-            searchForMatches(blccCode({grade, domain, cluster, standard, component }));
-          });
-        });
-      });
-    });
-  });
+  // idk how to scrape these anymore
 }

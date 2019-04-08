@@ -81,10 +81,10 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>finish adding grade levels
   - use the XML file from CCSS</s>
   - need to scrape resources properly now (new stds messed em up)
+  - for now im leaving it empty (in dev)
+  - if I don't push anything in main/server.js to prod I'll keep
+    the old resources up there (lower grade level)
 - file upload/download
-- 'back to top' button by 'more' button
-- \# hearts + \# comments (next to icons)
-- heart button missing pointer cursor
 - refactor
   - insertResources
   - trackers

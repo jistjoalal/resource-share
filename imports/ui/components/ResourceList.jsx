@@ -36,8 +36,26 @@ export default class ResourceList extends React.Component {
           <div>{`${amt}/${total} ${title}`}</div>
         : <p>{`No ${title}`}</p>}
 
-        {limit < total &&
-          <a className="btn btn-outline-secondary" onClick={this.nextPage}>More</a>}
+        <div>
+          {limit < total &&
+            <a
+              className="btn btn-outline-secondary"
+              onClick={this.nextPage}
+            >
+              More
+            </a>
+          }
+          
+          { total > 20 &&
+            <a
+              className="btn btn-outline-secondary mr-2"
+              onClick={_ => window.scrollTo(0, 0)}
+            >
+              Top
+            </a>
+          }
+        </div>
+        
       </div>
     )
   }
