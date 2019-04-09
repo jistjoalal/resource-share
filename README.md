@@ -84,7 +84,15 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - for now im leaving it empty (in dev)
   - if I don't push anything in main/server.js to prod I'll keep
     the old resources up there (lower grade level)
+
+- add analytics
+
 - file upload/download
+  - s3 bucket: info in `env` file (gitignored)
+
+- spamming resources.count while resources are loading
+  - throttle somehow
+
 - refactor
   - insertResources
   - trackers
