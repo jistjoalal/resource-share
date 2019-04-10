@@ -91,11 +91,11 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - s3 bucket: info in `env` file (gitignored)
   - using edgee:slingshot meteor pkg
   - <s>get working for right filetypes (doc, ppt, etc.)</s>
-    - need some indication to what types are allowed
     - ask/research/think about what else we need on whitelist
-  - 'Submit Resource' form should toggle b/w URL and file
-    - right now just ignores url if file is specified
-  - progress bar better than spinner?
+  - how to delete from s3 when user removes post?
+  - styles
+    - better err msgs
+    - progress bar better than spinner?
 
 - spamming resources.count while resources are loading
   - throttle somehow
