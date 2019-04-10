@@ -3,12 +3,15 @@ import { Meteor } from 'meteor/meteor';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
+import LoadingIcon from './LoadingIcon';
+
 class AddResource extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       err: '',
       show: false,
+      uploading: false,
     };
   }
   componentDidMount() {
@@ -21,7 +24,7 @@ class AddResource extends React.Component {
     this.setState({ show: false, err: '' });
   }
   render() {
-    const { err, show } = this.state;
+    const { err, show, uploading } = this.state;
     const code = Object.values(Session.get('query') || {}).join('.');
     return (
       <span className="my-1">
@@ -41,16 +44,22 @@ class AddResource extends React.Component {
               <label>Title</label>
               <input type="text" ref="title" name="title" className="form-control" placeholder="Title" />
             </div>
-            
+
             <div className="form-group">
               <label>URL</label>
               <input type="text" name="url" className="form-control" placeholder="URL" />
             </div>
 
             <div className="form-group">
+              <input type="file" name="fileUpload" />
+            </div>
+
+            <div className="form-group">
               <button className="btn btn-primary m-1" type="submit">Submit</button>
               <button className="btn btn-outline-danger m-1" onClick={this.close}>Close</button>
             </div>
+
+            {uploading && <em>uploading...<LoadingIcon /></em>}
           </form>
         </Modal>
       </span>
@@ -58,15 +67,39 @@ class AddResource extends React.Component {
   }
   newResource = e => {
     e.preventDefault();
+    const { url, title, fileUpload } = e.target;
+    const file = fileUpload.files[0];
+
+    if (file) {
+      this.uploadViaS3(title.value, file);
+    }
+    else {
+      this.insertResource(title.value, url.value);  
+    }
+  }
+  // upload to s3, then insert the s3 url
+  uploadViaS3 = (title, file) => {
+    this.setState({ uploading: true });
+    const uploader = new Slingshot.Upload("files");
+    uploader.send(file, (error, downloadUrl) => {
+      if (error) {
+        console.error('Error uploading', uploader.xhr.response);
+        alert(error);
+      }
+      else {
+        this.setState({ uploading: false });
+        this.insertResource(title, downloadUrl);
+      }
+    });
+  }
+  insertResource = (title, url) => {
     const { pathname } = this.props.history.location;
     const [ grade, domain, cluster, standard, component ] = 
       pathname.split('/cc/')[1].split('.');
-    const { url, title} = e.target;
 
-    // db
     Meteor.call('resources.new',
-      title.value,
-      url.value,
+      title,
+      url,
       grade,
       domain || '',
       cluster || '',
@@ -77,15 +110,12 @@ class AddResource extends React.Component {
           this.setState({ err: err.reason });
         }
         else {
-          // reset form
-          url.value = '';
-          title.value = '';
           this.props.history.push(`/comments/${_id}`)
-          this.close();
           Session.set('message', 'Post Created!');
+          Session.set('query', {});
         }
       }
-    ); 
+    );
   }
 }
 

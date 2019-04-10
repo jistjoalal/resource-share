@@ -87,8 +87,13 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 
 - add analytics
 
-- file upload/download
+- <s>file upload/download</s>
   - s3 bucket: info in `env` file (gitignored)
+  - using edgee:slingshot meteor pkg
+  - get working for right filetypes
+  - 'Submit Resource' form should toggle b/w URL and file
+    - right now just ignores url if file is specified
+  - progress bar better than spinner?
 
 - spamming resources.count while resources are loading
   - throttle somehow
