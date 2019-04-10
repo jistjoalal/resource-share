@@ -83,8 +83,9 @@ class AddResource extends React.Component {
     const uploader = new Slingshot.Upload("files");
     uploader.send(file, (error, downloadUrl) => {
       if (error) {
-        console.error('Error uploading', uploader.xhr.response);
-        alert(error);
+        console.log(error);
+        const err = error.reason.length > 30 ? 'Upload Failed' : error.reason;
+        this.setState({ err, uploading: false });
       }
       else {
         this.setState({ uploading: false });

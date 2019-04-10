@@ -20,10 +20,17 @@ if (Meteor.isServer) {
 const notAuthMsg = 'You must be logged in to do that.';
 const notAuthErr = new Meteor.Error(notAuthMsg, notAuthMsg);
 
+const notUniqMsg = 'Resource already exists.';
+const notUniqErr = new Meteor.Error(notUniqMsg, notUniqMsg);
+
 Meteor.methods({
   'resources.new'(title, url, grade, domain, cluster, standard, component) {
 
     if (!this.userId) throw notAuthErr;
+
+    // url must be unique
+    const resource = Resources.findOne({ url });
+    if (resource) throw notUniqErr;
 
     new SimpleSchema({
       title: {
