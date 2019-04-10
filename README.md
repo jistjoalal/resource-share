@@ -92,7 +92,6 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - using edgee:slingshot meteor pkg
   - <s>get working for right filetypes (doc, ppt, etc.)</s>
     - ask/research/think about what else we need on whitelist
-  - how to delete from s3 when user removes post?
   - styles
     - better err msgs
     - progress bar better than spinner?
@@ -100,8 +99,11 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - spamming resources.count while resources are loading
   - throttle somehow
 
+- 'post created' msg sticks around too long
+
 - refactor
   - insertResources
+  - collections
   - trackers
   - login+signup button
   - whats the point of BL json, js, and mongo collection??

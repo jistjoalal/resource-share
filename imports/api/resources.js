@@ -87,8 +87,18 @@ Meteor.methods({
   },
   'resources.delete'(_id) {
     if (!this.userId) throw notAuthErr;
+    const resource = Resources.findOne({ _id });
 
     // user can only remove their own submissions
+    if (resource.authorId !== this.userId) {
+      throw notAuthErr;
+    }
+    // remove files from s3
+    console.log(resource)
+    if (resource.url.includes('.amazonaws.com/')) {
+      Meteor.call('s3.delete', resource.url);
+    }
+
     Resources.remove({ _id, authorId: this.userId });
   },
   'resources.count'(query) {
