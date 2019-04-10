@@ -94,7 +94,6 @@ Meteor.methods({
       throw notAuthErr;
     }
     // remove files from s3
-    console.log(resource)
     if (resource.url.includes('.amazonaws.com/')) {
       Meteor.call('s3.delete', resource.url);
     }
