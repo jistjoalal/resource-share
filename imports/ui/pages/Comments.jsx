@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import moment from 'moment';
 
@@ -12,7 +13,12 @@ import DeleteButton from '../components/DeleteButton';
 class CommentsPage extends React.Component {
   render() {
     const { resource, comments, user } = this.props;
-    if (!resource) return null;
+    if (!resource) return (
+      <div className="alert alert-warning">
+        <p className="lead">Resource Not Found</p>
+        <Link to="/">Home</Link>
+      </div>
+    );
     const time = moment(resource.createdAt).fromNow();
     return (
       <div className="container">
