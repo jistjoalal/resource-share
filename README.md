@@ -85,8 +85,6 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - if I don't push anything in main/server.js to prod I'll keep
     the old resources up there (lower grade level)
 
-- add analytics
-
 - <s>file upload/download</s>
   - s3 bucket: info in `env` file (gitignored)
   - using edgee:slingshot meteor pkg
