@@ -2,9 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 
 import COMMENT_SCHEMA from './schema';
-
-const notAuthMsg = 'You must be logged in to do that.';
-const notAuthErr = new Meteor.Error(notAuthMsg, notAuthMsg);
+import { notAuthErr } from '../helpers';
 
 Meteor.methods({ 
   'comments.add'(text, resourceId) {
