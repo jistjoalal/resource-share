@@ -4,7 +4,7 @@ import '../imports/config/simple-schema-config';
 import '../imports/api/users';
 import '../imports/api/resources';
 import '../imports/api/comments';
-import '../imports/api/slingshot';
+import '../imports/api/s3';
 
 // dev stuff
 import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/sources';
