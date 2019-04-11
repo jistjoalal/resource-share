@@ -6,8 +6,10 @@ import '../imports/api/resources';
 import '../imports/api/comments';
 import '../imports/api/slingshot';
 
-import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/sources';
-import { search, save, restore } from '../imports/api/sources/better.lesson';
+// dev stuff
+// import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/sources';
+// import { search, save, restore } from '../imports/api/sources/better.lesson';
+// import { search } from '../imports/api/sources/problem.attic';
 
 Meteor.startup(() => {
   // restoreIfEmpty();
@@ -16,13 +18,4 @@ Meteor.startup(() => {
   // resetResources();
   // resetResources(() => insertResources());
   // resetResources(() => restoreIfEmpty());
-
-  // search for BL id's
-  // once they're found, no reason to search again
-  // just run to find new standards
-  // search(); 
-  // save();
-
-  // restore from backup if meteor reset
-  // restore();
 });

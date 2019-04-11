@@ -1,6 +1,7 @@
 import Resources from '../resources';
 import GRADES from '../ccssi/math-stds';
 import { records } from './better.lesson/backup';
+import SourcePA from './problem.attic';
 
 export const resetResources = callback => {
   console.log('resetting resources...');
@@ -89,6 +90,16 @@ const betterLesson = keys => {
   return nullParse;
 }
 
+const problemAttic = keys => {
+  const { grade } = keys;
+  const record = SourcePA.findOne({ grade: grade.code });
+  if (!record) return nullParse;
+  return {
+    url: record.URL,
+    title: `Problem Attic - ${grade.code}`,
+  };
+}
+
 const khanAcad = keys => {
   const { grade, domain } = keys;
   const baseUrl = 'https://www.khanacademy.org/commoncore/grade-';
@@ -140,7 +151,7 @@ const ixl = keys => {
 }
 
 const sources = {
-  grade: [ ixl ],
+  grade: [ ixl, problemAttic ],
   domain: [ khanAcad ],
   cluster: [ ],
   standard: [ illMath ],
