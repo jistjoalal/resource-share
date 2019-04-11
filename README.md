@@ -81,9 +81,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>finish adding grade levels
   - use the XML file from CCSS</s></s>
   - need to scrape resources properly now (new stds messed em up)
-  - for now im leaving it empty (in dev)
-  - if I don't push anything in main/server.js to prod I'll keep
-    the old resources up there (lower grade level)
+    - still need to fix betterlesson
 
 - <s>file upload/download</s>
   - s3 bucket: info in `env` file (gitignored)

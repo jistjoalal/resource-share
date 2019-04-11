@@ -2,9 +2,6 @@ import Resources from '../resources';
 import GRADES from '../ccssi/math-stds';
 import { records } from './better.lesson/backup';
 
-// only needed for ghetto BL scraping stuff
-// import SourceBL, { restore } from './better.lesson';
-
 export const resetResources = callback => {
   console.log('resetting resources...');
   Resources.remove({}, callback)
@@ -74,6 +71,11 @@ const blccCode = keys => {
   : ccCode(keys);
 }
 
+const nullParse = {
+  url: null,
+  title: null,
+}
+
 const betterLesson = keys => {
   // no dot before component
   const blCode = blccCode(keys);
@@ -84,33 +86,35 @@ const betterLesson = keys => {
       title: `${ccCode(keys)} - BetterLesson Lesson Plans`,
     };
   }
-  return {
-    url: null,
-    title: null,
-  };
+  return nullParse;
 }
 
 const khanAcad = keys => {
-  const { grade, domain, cluster, standard, component } = keys;
-  return {
-    url: ('https://www.khanacademy.org/commoncore/grade-'
-      + `${grade.code}-${domain.code}`
-      + `#${grade.code}.${domain.code}.${cluster.code}.${standard.code}`
-      + (component ? component.code : '')
-    ),
-    title: `${ccCode(keys)} - KhanAcademy Exercises`
+  const { grade, domain } = keys;
+  const baseUrl = 'https://www.khanacademy.org/commoncore/grade-';
+  if (!grade.code || !domain.code) {
+    return nullParse;
   }
-}
-
-const eduDotCom = keys => {
+  const title = `${ccCode(keys)} - KhanAcademy Exercises`;
+  // high school
+  if (grade.code[0] == 'H') {
+    return {
+      url: baseUrl + `${grade.code}-${grade.code[2]}-${domain.code}`, 
+      title,
+    }
+  }
+  // K-8
   return {
-    url: `https://www.education.com/common-core/CCSS.MATH.CONTENT.${ccCode(keys)}/`,
-    title: `${ccCode(keys)} - Worksheets, Workbooks, Lesson Plans, and Games`, 
-  };
+    url: baseUrl + `${grade.code}-${domain.code}`,
+    title,
+  }
 }
 
 const illMath = keys => {
   const { grade, domain, cluster, standard } = keys;
+  if (!grade.code || !domain.code || !cluster.code || !standard.code) {
+    return nullParse;
+  }
   return {
     url: ('https://tasks.illustrativemathematics.org/content-standards/'
       + `${grade.code}/${domain.code}/${cluster.code}/${standard.code}`
@@ -119,37 +123,26 @@ const illMath = keys => {
   };
 }
 
-const hcpss = keys => {
-  const urls = {
-    K: 'https://hcpss.instructure.com/courses/124',
-    '1': 'https://hcpss.instructure.com/courses/9414',
-    '2': 'https://hcpss.instructure.com/courses/106',
-    '3': 'https://hcpss.instructure.com/courses/97',
-    '4': 'https://hcpss.instructure.com/courses/107',
-    '5': 'https://hcpss.instructure.com/courses/108',
-  };
-  return {
-    url: urls[keys.grade.code],
-    title: `Howard County Public Schools ${keys.grade.code} Course`,
-  };
-}
-
 const ixl = keys => {
   const baseUrl = 'https://www.ixl.com/standards/common-core/math/';
   const { grade } = keys;
-  const url = (grade.code === 'K' ?
-    `${baseUrl}kindergarten`
-  : `${baseUrl}grade-${grade.code}`);
+  const url = (
+    grade.code === 'K'    ? `${baseUrl}kindergarten`
+  : grade.code[0] === 'H' ? `${baseUrl}high-school`
+  :                         `${baseUrl}grade-${grade.code}`);
+  const title = (
+    grade.code[0] === 'H' ? `IXL ${grade.code} Skills Practice`
+    :                       `IXL Grade ${grade.code} Skills Practice`)
   return {
     url,
-    title: `IXL ${grade.code} Skills Practice`
+    title,
   }
 }
 
 const sources = {
-  grade: [ hcpss, ixl ],
-  domain: [],
-  cluster: [],
-  standard: [ eduDotCom, khanAcad, illMath, betterLesson ],
-  component: [ khanAcad, betterLesson ],
+  grade: [ ixl ],
+  domain: [ khanAcad ],
+  cluster: [ ],
+  standard: [ illMath ],
+  component: [ ],
 }
