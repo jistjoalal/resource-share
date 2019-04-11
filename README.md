@@ -95,9 +95,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - styles
     - better err msgs
     - progress bar better than spinner?
-
-- spamming resources.count while resources are loading
-  - throttle somehow
+      - slingshot progress is WHACK, idk how to use
 
 - 'post created' msg sticks around too long
 

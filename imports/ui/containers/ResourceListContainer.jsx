@@ -20,11 +20,13 @@ const withResources = withTracker(() => {
   const user = Meteor.users.find().fetch()[0];
 
   // page stats
-  Meteor.call('resources.count', query, (err, res) => {
-    if (!err) Session.set('total', res);
-  });
+  if (!loading) {  // only serve total count when done loading
+    Meteor.call('resources.count', query, (err, res) => {
+      if (!err) Session.set('total', res);
+    });
+  }
   const limit = 10 * page;
-  const total = Session.get('total');
+  const total = Session.get('total') || 0;
   const title = "Resources";
 
   return { resources, loading, limit, total, title, user };
