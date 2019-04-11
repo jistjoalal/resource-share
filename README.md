@@ -90,12 +90,6 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - using edgee:slingshot meteor pkg
   - <s>get working for right filetypes (doc, ppt, etc.)</s>
     - ask/research/think about what else we need on whitelist
-  - styles
-    - better err msgs
-    - progress bar better than spinner?
-      - slingshot progress is WHACK, idk how to use
-
-- 'post created' msg sticks around too long
 
 - refactor
   - insertResources

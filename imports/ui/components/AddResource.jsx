@@ -94,7 +94,7 @@ class AddResource extends React.Component {
   newResource = e => {
     e.preventDefault();
     const { url, title, fileUpload } = e.target;
-    const file = fileUpload.files[0];
+    const file = fileUpload && fileUpload.files[0];
 
     if (file) {
       this.uploadViaS3(title.value, file);
