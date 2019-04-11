@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Resource from './Resource';
-import NotFound from '../pages/NotFound';
 
 export default class ResourceList extends React.Component {
   componentDidMount() {
@@ -9,8 +8,6 @@ export default class ResourceList extends React.Component {
     Session.set('query', {});
   }
   render() {
-    const { user, title } = this.props;
-    if (!user && title !== 'Resources') return <NotFound />
     return (
       <div className="container border shadow-sm">
         {this.renderTitle()}
@@ -20,11 +17,10 @@ export default class ResourceList extends React.Component {
     );
   }
   renderTitle() {
-    const { user, title } = this.props;
+    const { title, author } = this.props;
     if (title === 'Resources') return null;
 
-    const username = user.emails[0].address;
-    const titleText = title === 'Resources' ? title : `${username}'s ${title}`;
+    const titleText = title === 'Resources' ? title : `${author}'s ${title}`;
     return <h2 className="p-2">{titleText}</h2>
   }
   renderPageMenu() {

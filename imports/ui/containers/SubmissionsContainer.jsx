@@ -17,8 +17,10 @@ const withSubmissions = withTracker(({ match }) => {
   const loading = !resourcesHandle.ready();
 
   // user data
-  Meteor.subscribe('userData', userId);
-  const user = Meteor.users.findOne({ _id: userId });
+  Meteor.subscribe('userData', Meteor.userId());
+  const user = Meteor.users.findOne({ _id: Meteor.userId() });
+  const authorUser = Meteor.users.findOne({ _id: userId });
+  const author = authorUser ? authorUser.emails[0].address : 'Jist';
 
   // page stats
   Meteor.call('resources.count', query, (err, res) => {
@@ -28,7 +30,7 @@ const withSubmissions = withTracker(({ match }) => {
   const total = Session.get('total');
   const title = "Submissions";
 
-  return { resources, loading, limit, total, title, user };
+  return { resources, loading, limit, total, title, user, author };
 });
 
 export default withSubmissions(ResourceList);
