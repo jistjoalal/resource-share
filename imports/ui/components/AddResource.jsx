@@ -48,6 +48,7 @@ class AddResource extends React.Component {
               <label>What are you sharing?</label>
               <button
                 className="btn btn-outline-primary ml-2"
+                type="button"
                 onClick={this.toggleTypeSelect}
               >
                 {typeSelect}

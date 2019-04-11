@@ -101,6 +101,8 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 
 - 'post created' msg sticks around too long
 
+- spoof Jist user somehow
+
 - refactor
   - insertResources
   - collections
