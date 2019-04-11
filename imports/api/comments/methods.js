@@ -1,42 +1,27 @@
-import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 
-export default Comments = new Mongo.Collection('comments');
+import COMMENT_SCHEMA from './schema';
 
 const notAuthMsg = 'You must be logged in to do that.';
 const notAuthErr = new Meteor.Error(notAuthMsg, notAuthMsg);
-
-if (Meteor.isServer) {
-  Meteor.publish('comments', resourceId => {
-    return Comments.find({ resourceId });
-  });
-}
 
 Meteor.methods({ 
   'comments.add'(text, resourceId) {
     if (!this.userId) throw notAuthErr;
 
-    new SimpleSchema({
-      text: {
-        type: String,
-        min: 1,
-        max: 10000,
-      },
-      resourceId: {
-        type: String,
-        min: 1,
-      },
-    }).validate({ text, resourceId });
+    const authorId = this.userId;
+    const username = Meteor.users.findOne({ _id: authorId }).emails[0].address;
+    const createdAt = new Date();
 
-    const username = Meteor.users.findOne({ _id: this.userId }).emails[0].address;
+    COMMENT_SCHEMA.validate({ text, resourceId, username, authorId, createdAt });
 
     Comments.insert({
       text,
       resourceId,
       username,
-      authorId: this.userId,
-      createdAt: new Date(),
+      authorId,
+      createdAt,
     });
   },
   'comments.delete'(_id) {

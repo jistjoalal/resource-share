@@ -2,6 +2,43 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 
+const notAuthMsg = 'You must be logged in to do that.';
+const notAuthErr = new Meteor.Error(notAuthMsg, notAuthMsg);
+
+const notUniqMsg = 'Resource already exists.';
+const notUniqErr = new Meteor.Error(notUniqMsg, notUniqMsg);
+
+const RESOURCE_SCHEMA = new SimpleSchema({
+  title: {
+    type: String,
+    min: 1,
+    max: 40,
+  },
+  url: {
+    label: 'Your link',
+    type: String,
+    regEx: SimpleSchema.RegEx.Url,
+  },
+  grade: {
+    type: String,
+  },
+  domain: {
+    type: String,
+  },
+  cluster: {
+    type: String,
+    optional: true,
+  },
+  standard: {
+    type: String,
+    optional: true,
+  },
+  component: {
+    type: String,
+    optional: true,
+  },
+})
+
 export default Resources = new Mongo.Collection('resources');
 
 if (Meteor.isServer) {
@@ -10,18 +47,12 @@ if (Meteor.isServer) {
     check(page, Number);
     return Resources.find(
       query,
-      { sort: { score: -1, title: -1 },
+      { sort: { score: -1, title: 1 },
         limit: page * 10,
       },
     );
   });
 }
-
-const notAuthMsg = 'You must be logged in to do that.';
-const notAuthErr = new Meteor.Error(notAuthMsg, notAuthMsg);
-
-const notUniqMsg = 'Resource already exists.';
-const notUniqErr = new Meteor.Error(notUniqMsg, notUniqMsg);
 
 Meteor.methods({
   'resources.new'(title, url, grade, domain, cluster, standard, component) {
@@ -32,36 +63,7 @@ Meteor.methods({
     const resource = Resources.findOne({ url });
     if (resource) throw notUniqErr;
 
-    new SimpleSchema({
-      title: {
-        type: String,
-        min: 1,
-        max: 40,
-      },
-      url: {
-        label: 'Your link',
-        type: String,
-        regEx: SimpleSchema.RegEx.Url,
-      },
-      grade: {
-        type: String,
-      },
-      domain: {
-        type: String,
-      },
-      cluster: {
-        type: String,
-        optional: true,
-      },
-      standard: {
-        type: String,
-        optional: true,
-      },
-      component: {
-        type: String,
-        optional: true,
-      },
-    }).validate({ title, url, grade, domain, cluster, standard, component })
+    RESOURCE_SCHEMA.validate({ title, url, grade, domain, cluster, standard, component })
 
     const username = Meteor.user().emails[0].address;
     const authorId = this.userId;
