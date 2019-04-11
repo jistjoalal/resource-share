@@ -86,9 +86,12 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - <s>get working for right filetypes (doc, ppt, etc.)</s>
     - ask/research/think about what else we need on whitelist
 
+- loading icon on resource list
+
 - refactor
   - insertResources
   - trackers
+  - some of these components kinda long...
 
 - does betterlesson have an API?
 
