@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
-import LoadingIcon from './LoadingIcon';
+import LoadingIcon from '../LoadingIcon';
 
 const ERR_MSG = (
   'Upload Failed. Allowed filetypes include images, text, and Microsoft Office.'

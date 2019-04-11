@@ -88,10 +88,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 
 - refactor
   - insertResources
-  - collections
   - trackers
-  - login+signup button
-  - whats the point of BL json, js, and mongo collection??
 
 - does betterlesson have an API?
 

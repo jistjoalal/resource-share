@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import LoginButton from '../components/LoginButton';
-import SignupButton from '../components/SignupButton';
-import LogoutButton from '../components/LogoutButton';
-import AddResource from '../components/AddResource';
-import InstallButton from '../components/InstallButton';
+import LoginButton from './LoginButton';
+import SignupButton from './SignupButton';
+import LogoutButton from './LogoutButton';
+import AddResource from './AddResource';
+import InstallButton from './InstallButton';
 
 class TitleBar extends React.Component {
   constructor(props) {

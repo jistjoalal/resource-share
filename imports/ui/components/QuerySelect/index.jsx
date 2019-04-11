@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GRADES from '../../api/ccssi/math-stds';
+import GRADES from '../../../api/ccssi/math-stds';
 
 import Select from './Select';
 

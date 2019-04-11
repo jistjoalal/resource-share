@@ -2,8 +2,8 @@ import React from 'react';
 import { FaComments } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
-import FavoriteButton from './FavoriteButton';
-import DeleteButton from './DeleteButton';
+import FavoriteButton from '../FavoriteButton';
+import DeleteButton from '../DeleteButton';
 
 export default class Resource extends React.Component {
   render() {
