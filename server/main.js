@@ -8,7 +8,6 @@ import '../imports/api/slingshot';
 
 // dev stuff
 // import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/sources';
-// import { search, save, restore } from '../imports/api/sources/better.lesson';
 // import { search } from '../imports/api/sources/problem.attic';
 
 Meteor.startup(() => {

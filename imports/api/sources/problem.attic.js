@@ -1,6 +1,18 @@
 import $ from 'cheerio';
 import axios from 'axios';
 
+import { nullParse } from './index';
+
+export const problemAttic = keys => {
+  const { grade } = keys;
+  const record = SourcePA.findOne({ grade: grade.code });
+  if (!record) return nullParse;
+  return {
+    url: record.URL,
+    title: `Problem Attic - ${grade.code}`,
+  };
+}
+
 const URL = 'https://www.problem-attic.com';
 
 export default SourcePA = new Mongo.Collection('sourcePA');

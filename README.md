@@ -80,9 +80,6 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 - <s>PWA-ify</s>
 - <s>finish adding grade levels
   - use the XML file from CCSS</s></s>
-  - need to scrape resources properly now (new stds messed em up)
-    - still need to fix betterlesson
-
 - <s>file upload/download</s>
   - s3 bucket: info in `env` file (gitignored)
   - using edgee:slingshot meteor pkg
@@ -95,6 +92,8 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
   - trackers
   - login+signup button
   - whats the point of BL json, js, and mongo collection??
+
+- does betterlesson have an API?
 
 ### Non-priority / Later
 - **BUG** when opening favorites page, resources from resourceList component flash
