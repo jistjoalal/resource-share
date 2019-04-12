@@ -21,7 +21,7 @@ export default class ResourceList extends React.Component {
     const { title, author } = this.props;
     if (title === 'Resources') return null;
 
-    const titleText = title === 'Resources' ? title : `${author}'s ${title}`;
+    const titleText = `${author}'s ${title}`;
     return <h2 className="p-2">{titleText}</h2>
   }
   renderPageMenu() {
