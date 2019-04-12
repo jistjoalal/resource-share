@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Resource from './Resource';
+import LoadingIcon from '../LoadingIcon';
 
 export default class ResourceList extends React.Component {
   componentDidMount() {
@@ -63,7 +64,11 @@ export default class ResourceList extends React.Component {
         {resources.map(resource =>
           <Resource key={resource._id} resource={resource} user={user} />
         )}
-        {loading && <p>Loading...</p>}
+        {loading &&
+          <div className="text-center p-2">
+            <LoadingIcon />
+          </div>
+        }
       </>
     );
   }
