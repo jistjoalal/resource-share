@@ -10,7 +10,8 @@ const allowedFileTypes = [
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   "application/onenote",
-  // dev
+  // misc
+  "application/pdf",
   "text/plain",
 ];
 
