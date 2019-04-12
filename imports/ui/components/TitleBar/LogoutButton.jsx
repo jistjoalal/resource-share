@@ -5,7 +5,9 @@ import { Accounts } from 'meteor/accounts-base';
 class LogoutButton extends React.Component {
   render() {
     return (
-      <a className="nav-link" onClick={this.logout}>Logout</a>
+      <a className="nav-link" onClick={this.logout}>
+        Logout
+      </a>
     );
   }
   logout = () => {

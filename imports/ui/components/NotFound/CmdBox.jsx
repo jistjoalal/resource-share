@@ -34,6 +34,37 @@ class CmdBox extends React.Component {
   componentWillUnmount() {
     document.removeEventListener('keydown', this.keyDown);
   }
+  render() {
+    const { cmd, output } = this.state;
+    const href = cmd.toLowerCase() === 'home' ? '/' : cmd;
+    return (
+      <div onKeyDown={this.keyDown}>
+
+        {output.map(line =>
+          <p
+            key={Math.random()}
+            className="text-muted text-monospace"
+          >
+            {this.isCmd(line) ?
+              <strong>> {line}</strong>
+            : <span>> {line}</span>}
+          </p>
+        )}
+
+        <p className="text-monospace notFoundFun">
+
+          <span>>&nbsp;</span>
+          
+          <a href={href}>
+            <span className="blink" type="text" data-end="█">
+              {this.state.cmd}
+            </span>
+          </a>
+          
+        </p>
+      </div>
+    );
+  }
   runCmd = () => {
     const { output } = this.state;
     const cmd = this.state.cmd.toLowerCase();
@@ -43,6 +74,7 @@ class CmdBox extends React.Component {
     if (cmd === 'home') {
       return this.props.history.push('/');
     }
+
     else if (cmd === 'help') {
       Object.entries(CMDS).forEach(c =>
         newOutput.push(`${c[0]}:\t${c[1]}`)
@@ -54,9 +86,11 @@ class CmdBox extends React.Component {
         )
       }
     }
+
     else if (cmd === 'clear') {
       newOutput.splice(0,newOutput.length);
     }
+
     else if (Meteor.userId()) {
       if (cmd === 'favs') {
         return this.props.history.push(`/favorites/${Meteor.userId()}`)
@@ -65,9 +99,15 @@ class CmdBox extends React.Component {
         return this.props.history.push(`/submissions/${Meteor.userId()}`)
       }
     }
+
     this.setState({ output: newOutput, cmd: '' });
   }
-  isCmd = cmd => [...Object.keys(CMDS), ...Object.keys(USER_CMDS)].includes(cmd.toLowerCase());
+  isCmd = cmd => {
+    return [
+      ...Object.keys(CMDS),
+      ...Object.keys(USER_CMDS)
+    ].includes(cmd.toLowerCase());
+  }
   submit = () => {
     const { cmd } = this.state
     if (this.isCmd(cmd)) {
@@ -83,41 +123,21 @@ class CmdBox extends React.Component {
   keyDown = e => {
     e.preventDefault();
     const { cmd } = this.state;
+
     if (e.key === 'Backspace') {
       this.setState({ cmd: cmd.slice(0, cmd.length - 1) });
     }
-    else if ('0123456789abcdefghijklmnopqrstuvwxyz/:.'
-      .includes(e.key.toLowerCase()))
-    {
+    
+    else if (
+      '0123456789abcdefghijklmnopqrstuvwxyz/:.'
+      .includes(e.key.toLowerCase())
+    ) {
       this.setState({ cmd: cmd + e.key });
     }
+    
     else if (e.key === 'Enter') {
       this.submit();
     }
-  }
-  render() {
-    const { cmd, output } = this.state;
-    const href = cmd.toLowerCase() === 'home' ? '/' : cmd;
-    return (
-      <div onKeyDown={this.keyDown}>
-        {output.map(line =>
-          <p key={Math.random()} className="text-muted text-monospace">
-            {this.isCmd(line) ?
-              <strong>> {line}</strong>
-            : <span>> {line}</span>}
-          </p>
-        )}
-
-        <p className="text-monospace notFoundFun">
-          >&nbsp;
-          <a href={href}>
-            <span className="blink" type="text" data-end="█">
-              {this.state.cmd}
-            </span>
-          </a>
-        </p>
-      </div>
-    );
   }
 }
 

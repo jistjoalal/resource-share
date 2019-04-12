@@ -88,7 +88,7 @@ Meteor+React app w/ one collection (`resources`), and an enormous JS object (`st
 
 - refactor
   - insertResources
-  - some of these components kinda long...
+  - styles
 
 - does betterlesson have an API?
 

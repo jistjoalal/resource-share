@@ -5,10 +5,6 @@ import Modal from 'react-modal';
 
 import LoadingIcon from '../LoadingIcon';
 
-const ERR_MSG = (
-  'Upload Failed. Allowed filetypes include images, text, and Microsoft Office.'
-);
-
 class AddResource extends React.Component {
   constructor(props) {
     super(props);
@@ -27,21 +23,40 @@ class AddResource extends React.Component {
     const code = Object.values(Session.get('query') || {}).join('.');
     return (
       <span className="my-1">
-        <button className="btn btn-primary" onClick={this.open}>Submit new Resource</button>
+
+        <button
+          className="btn btn-primary"
+          onClick={this.open}
+        >
+          Submit new Resource
+        </button>
 
         <Modal
           isOpen={show}
           contentLabel="Submit new Resource"
           onRequestClose={this.close}
         >
-          <form className="form-group" onSubmit={this.newResource}>
-            <h3>Submit New <strong>{code}</strong> Resource</h3>
+          <form onSubmit={this.newResource}>
 
-            {err && <p className="alert alert-warning">{err}</p>}
+            <h3>
+              Submit New <strong>{code}</strong> Resource
+            </h3>
+
+            {err &&
+              <p className="alert alert-warning">
+                {err}
+              </p>
+            }
 
             <div className="form-group">
               <label>Title</label>
-              <input type="text" ref="title" name="title" className="form-control" placeholder="Title" />
+              <input
+                className="form-control"
+                type="text"
+                ref="title"
+                name="title"
+                placeholder="Title"
+              />
             </div>
 
             <div className="form-group">
@@ -58,7 +73,12 @@ class AddResource extends React.Component {
             {typeSelect === 'Link' &&
               <div className="form-group">
                 <label>URL</label>
-                <input type="text" name="url" className="form-control" placeholder="URL" />
+                <input
+                  type="text"
+                  name="url"
+                  className="form-control"
+                  placeholder="URL"
+                />
               </div>
             }
 
@@ -69,11 +89,27 @@ class AddResource extends React.Component {
             }
 
             <div className="form-group">
-              <button className="btn btn-primary m-1" type="submit">Submit</button>
-              <button className="btn btn-outline-danger m-1" onClick={this.close}>Close</button>
+
+              <button
+                className="btn btn-primary m-1"
+                type="submit"
+              >
+                Submit
+              </button>
+              
+              <button
+                className="btn btn-outline-danger m-1"
+                onClick={this.close}
+              >
+                Close
+              </button>
+              
             </div>
 
-            {uploading && <em>uploading...<LoadingIcon /></em>}
+            {uploading &&
+              <em>uploading...<LoadingIcon /></em>
+            }
+
           </form>
         </Modal>
       </span>
@@ -85,10 +121,10 @@ class AddResource extends React.Component {
     const newTypeSelect = typeSelect === 'Link' ? 'File' : 'Link';
     this.setState({ typeSelect: newTypeSelect })
   }
-  open = () => {
+  open = _ => {
     this.setState({ show: true });
   }
-  close = () => {
+  close = _ => {
     this.setState({ show: false, err: '' });
   }
   newResource = e => {
@@ -115,7 +151,9 @@ class AddResource extends React.Component {
     uploader.send(file, (error, downloadUrl) => {
       if (error) {
         console.log(error);
-        const err = error.reason.length > 30 ? ERR_MSG : error.reason;
+        // filter verbose errors
+        const { reason } = error;
+        const err = reason.length > 30 ? 'Upload Failed' : reason;
         this.setState({ err, uploading: false });
       }
       else {

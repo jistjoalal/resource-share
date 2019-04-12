@@ -8,6 +8,13 @@ import SignupButton from './SignupButton';
 import LogoutButton from './LogoutButton';
 import AddResource from './AddResource';
 import InstallButton from './InstallButton';
+import ToggleButton from './ToggleButton';
+import NavItem from './NavItem';
+
+const NavLink = ({ children, ...rest }) =>
+  <Link className="nav-link" {...rest}>
+    {children}
+  </Link>
 
 class TitleBar extends React.Component {
   constructor(props) {
@@ -15,6 +22,105 @@ class TitleBar extends React.Component {
     this.state = {
       showMessage: true,
     };
+  }
+  render() {
+    const { title, userId, query, message } = this.props;
+    const { showMessage } = this.state;
+    const homeTo = Object.values(query || {}).join('.');
+    const showAddResource = !!userId && query && query.grade;
+    return (
+      <div>
+        <nav className="navbar navbar-expand-lg navbar-light bg-primary">
+
+          <NavLink to={`/cc/${homeTo}`}>
+            <span className="navbar-brand text-white">
+              {title}
+            </span>
+          </NavLink>
+          
+          <InstallButton />
+
+          <ToggleButton />
+
+          <div
+            className="collapse navbar-collapse"
+            id="navbarSupportedContent"
+          >
+            <ul className="navbar-nav flex-grow-1">
+
+              { !userId && this.loggedOutLinks() }
+
+              { !!userId && this.loggedInLinks() }
+
+            </ul>
+
+            { showAddResource && <AddResource /> }
+
+          </div>
+
+        </nav>
+
+        {!!message && showMessage && this.renderMessage()}
+
+      </div>
+    );
+  }
+  loggedOutLinks() {
+    return (
+      <>
+        <NavItem>
+          <LoginButton />
+        </NavItem>
+
+        <NavItem>
+          <SignupButton />
+        </NavItem>
+      </>
+    )
+  }
+  loggedInLinks() {
+    const { userId } = this.props;
+    return (
+      <>
+        <NavItem>
+          <NavLink to={`/favorites/${userId}`}>
+            My Favorites
+          </NavLink>
+        </NavItem>
+          
+        <NavItem>
+          <NavLink to={`/submissions/${userId}`}>
+            My Submissions
+          </NavLink>
+        </NavItem>
+
+        <NavItem>
+          <LogoutButton />
+        </NavItem>
+      </>
+    )
+  }
+  renderMessage() {
+    const { message } = this.props;
+    return (
+      <div
+        className="alert alert-success alert-dismissible fade show"
+        role="alert"
+      >
+        <span>{message}</span>
+
+        <button
+          type="button"
+          className="close"
+          onClick={this.clearMessage}
+        >
+          <span aria-hidden="true">
+            &times;
+          </span>
+        </button>
+
+      </div>
+    );
   }
   // bootstrap + react is stupid
   // the way bootstrap closes the alert w/ jquery doesnt allow for it to be re-rendered
@@ -27,80 +133,6 @@ class TitleBar extends React.Component {
   clearMessage = () => {
     Session.set('message', '');
     this.setState({ showMessage: false });
-  }
-  render() {
-    const { title, userId, query } = this.props;
-    const homeTo = Object.values(query || {}).join('.');
-    return (
-      <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-primary">
-          <Link className="nav-link" to={`/cc/${homeTo}`} onClick={this.clearMessage}>
-            <span className="navbar-brand text-white">
-              {title}
-            </span>
-          </Link>
-
-          <InstallButton />
-
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav flex-grow-1">
-              {!userId &&
-              <>
-                <li className="nav-item">
-                  <button className="btn" onClick={this.clearMessage}>
-                    <LoginButton />
-                  </button>
-                </li>
-                <li className="nav-item">
-                  <button className="btn" onClick={this.clearMessage}>
-                    <SignupButton />
-                  </button>
-                </li>
-              </>}
-
-              {!!userId &&
-                <>
-                  <li className="nav-item">
-                    <button className="btn" onClick={this.clearMessage}>
-                      <Link className="nav-link" to={`/favorites/${userId}`}>My Favorites</Link>
-                    </button>
-                  </li>
-                  <li className="nav-item">
-                    <button className="btn" onClick={this.clearMessage}>
-                      <Link className="nav-link" to={`/submissions/${userId}`}>My Submissions</Link>
-                    </button>
-                  </li>
-                  <li className="nav-item" onClick={this.clearMessage}>
-                    <button className="btn">
-                      <LogoutButton />
-                    </button>
-                  </li>
-                </>}
-            </ul>
-
-            {!!userId && query && query.grade &&
-              <AddResource />}
-          </div>
-        </nav>
-        {this.renderMessage()}
-      </div>
-    );
-  }
-  renderMessage() {
-    const { message } = this.props;
-    const { showMessage } = this.state;
-    return !!message && showMessage && (
-      <div className="alert alert-success alert-dismissible fade show" role="alert">
-        {message}
-        <button type="button" className="close" onClick={this.clearMessage}>
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    );
   }
 }
 

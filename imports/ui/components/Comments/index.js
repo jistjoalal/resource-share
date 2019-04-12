@@ -10,12 +10,19 @@ import DeleteButton from '../DeleteButton';
 export default class CommentsPage extends React.Component {
   render() {
     const { resource, comments, user } = this.props;
+    
     if (!resource) return (
       <div className="alert alert-warning">
-        <p className="lead">Resource Not Found</p>
+
+        <p className="lead">
+          Resource Not Found
+        </p>
+
         <Link to="/">Home</Link>
+        
       </div>
     );
+    
     const time = moment(resource.createdAt).fromNow();
     return (
       <div className="container">
@@ -33,7 +40,9 @@ export default class CommentsPage extends React.Component {
               Submitted by:
             </span>
             
-            <a href={`/submissions/${resource.authorId}`}>{resource.username}</a>
+            <a href={`/submissions/${resource.authorId}`}>
+              {resource.username}
+            </a>
 
             <span className="mr-2"> - {time}</span>
             

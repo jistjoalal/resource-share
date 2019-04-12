@@ -12,17 +12,25 @@ export default class Resource extends React.Component {
     const { resource, user } = this.props;
     return (
       <div className="Resource row p-2">
+
         <span className="col-1 d-flex align-items-center p-0">
-          <span className="text-truncate text-secondary">{resource.score}</span>
+          <span className="text-truncate text-secondary">
+            {resource.score}
+          </span>
         </span>
 
         <span className="col-7 d-flex align-items-center p-0"> 
-          <a href={resource.url} target="_blank" className="text-truncate"> 
+          <a
+            className="text-truncate"
+            href={resource.url}
+            target="_blank"
+          > 
             {resource.title}
           </a>
         </span>
         
-        <Link className="col-2 d-flex align-items-center text-secondary text-truncate p-0"
+        <Link
+          className="col-2 d-flex align-items-center text-secondary text-truncate p-0"
           to={`/submissions/${resource.authorId}`}
         >
           {resource.username}
@@ -32,7 +40,10 @@ export default class Resource extends React.Component {
 
           <FavoriteButton user={user} resource={resource} />
           
-          <Link className="fav btn text-info p-0 mb-1" to={`/comments/${resource._id}`}>
+          <Link
+            className="fav btn text-info p-0 mb-1"
+            to={`/comments/${resource._id}`}
+          >
             <FaComments />
           </Link>
           

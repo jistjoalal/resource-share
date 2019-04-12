@@ -29,9 +29,11 @@ export default class ResourceList extends React.Component {
     const amt = limit > total ? total : limit;
     return (
       <div className="d-flex flex-column align-items-center justify-contenter-center">
+
         {total > 0 ?  // hacky - depends on resource existing for each standard
           <div>{`${amt}/${total} ${title}`}</div>
-        : <p>{`No ${title}`}</p>}
+        : <p>{`No ${title}`}</p>
+        }
 
         <div>
           {limit < total &&

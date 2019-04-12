@@ -13,19 +13,34 @@ export default class AddComment extends React.Component {
       <div className="row">
         <div className="col border shadow-sm">
           <form onSubmit={this.submit}>
+
             {err &&
               <div className="form-group mt-2">
-                <p className="alert alert-warning">{err}</p>
-              </div>}
+                <p className="alert alert-warning">
+                  {err}
+                </p>
+              </div>
+            }
+
             <div className="form-group mt-2">
               <h3>New Comment</h3>
             </div>
+            
             <div className="form-group">
-              <textarea className="form-control" name="text" rows={3} placeholder="New Comment" />
+              <textarea
+                className="form-control"
+                name="text"
+                rows={3}
+                placeholder="New Comment"
+              />
             </div>
+
             <div className="form-group">
-              <button className="btn btn-primary" type="submit">Submit</button> 
+              <button className="btn btn-primary" type="submit">
+                Submit
+              </button> 
             </div>
+
           </form>
         </div>
       </div>
