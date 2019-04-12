@@ -1,3 +1,5 @@
-import Submissions from '../containers/SubmissionsContainer'
+import withSubmissions from '../containers/SubmissionsContainer'
 
-export default Submissions;
+import ResourceList from '../components/ResourceList';
+
+export default withSubmissions(ResourceList);

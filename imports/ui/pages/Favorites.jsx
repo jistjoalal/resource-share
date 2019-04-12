@@ -1,3 +1,5 @@
-import Favorites from '../containers/FavoritesContainer';
+import withFavorites from '../containers/FavoritesContainer';
 
-export default Favorites;
+import ResourceList from '../components/ResourceList';
+
+export default withFavorites(ResourceList);
