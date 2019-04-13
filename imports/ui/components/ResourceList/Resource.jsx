@@ -1,9 +1,34 @@
 import React from 'react';
-import { FaComments } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import {
+  FaComments,
+  FaExternalLinkAlt,
+  FaFilePdf,
+  FaEdit,
+  FaImage,
+  FaFilePowerpoint,
+  FaFileWord,
+  FaFileUpload,
+} from 'react-icons/fa';
 
 import FavoriteButton from '../FavoriteButton';
 import DeleteButton from '../DeleteButton';
+
+const TYPE_ICONS = {
+  // images
+  png: <FaImage />,
+  jpeg: <FaImage />,
+  gif: <FaImage />,
+  // microsoft office
+  ppt: <FaFilePowerpoint />,
+  pptx: <FaFilePowerpoint />,
+  doc: <FaFileWord />,
+  docx: <FaFileWord />,
+  // misc
+  URL: <FaExternalLinkAlt />,
+  pdf: <FaFilePdf />,
+  txt: <FaEdit />,
+}
 
 export default class Resource extends React.Component {
   render() {
@@ -20,6 +45,9 @@ export default class Resource extends React.Component {
         </span>
 
         <span className="col-7 d-flex align-items-center p-0"> 
+          <span className="mx-2 text-secondary">
+            {TYPE_ICONS[resource.type] || <FaFileUpload />}
+          </span>
           <a
             className="text-truncate"
             href={resource.url}

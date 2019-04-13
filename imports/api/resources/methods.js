@@ -5,16 +5,18 @@ import RESOURCE_SCHEMA from './schema';
 import { notAuthErr, notUniqErr } from '../helpers';
 
 Meteor.methods({
-  'resources.new'(title, url, grade, domain, cluster, standard, component) {
+  'resources.new'(resource, isFile=false) {
 
     if (!this.userId) throw notAuthErr;
 
     // url must be unique
-    const resource = Resources.findOne({ url });
-    if (resource) throw notUniqErr;
+    const url = resource.url;
+    const resourceExists = Resources.findOne({ url });
+    if (resourceExists) throw notUniqErr;
 
-    RESOURCE_SCHEMA.validate({ title, url, grade, domain, cluster, standard, component })
+    RESOURCE_SCHEMA.validate(resource)
 
+    const type = isFile ? url.slice(url.lastIndexOf`.` + 1) : 'URL';
     const username = Meteor.user().emails[0].address;
     const authorId = this.userId;
     const score = 0;
@@ -22,18 +24,13 @@ Meteor.methods({
     const comments = [];
     const createdAt = new Date();
     return Resources.insert({
-      title,
-      url,
+      ...resource,
+      type,
       username,
       authorId,
       score,
       favoritedBy,
       comments,
-      grade,
-      domain,
-      cluster,
-      standard,
-      component,
       createdAt,
     });
   },

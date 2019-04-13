@@ -45,6 +45,7 @@ const insertResource = (source, keys) => {
   Resources.insert({
     title,
     url,
+    type: 'URL',
     username: 'Jist',
     authorId: '1234',
     score: 0,

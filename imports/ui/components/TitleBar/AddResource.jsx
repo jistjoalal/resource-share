@@ -158,24 +158,25 @@ class AddResource extends React.Component {
       }
       else {
         this.setState({ uploading: false });
-        this.insertResource(title, downloadUrl);
+        this.insertResource(title, downloadUrl, true);
       }
     });
   }
-  insertResource = (title, url) => {
+  insertResource = (title, url, isFile=false) => {
     const { pathname } = this.props.history.location;
     const [ grade, domain, cluster, standard, component ] = 
       pathname.split('/cc/')[1].split('.');
-
-    Meteor.call('resources.new',
+    const resource = {
       title,
       url,
       grade,
-      domain || '',
-      cluster || '',
-      standard || '',
-      component || '',
-      (err, _id) => {
+      domain: domain || '',
+      cluster: cluster || '',
+      standard: standard || '',
+      component: component || '',
+    };
+
+    Meteor.call('resources.new', resource, isFile, (err, _id) => {
         if (err) {
           this.setState({ err: err.reason });
         }
