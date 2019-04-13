@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { Session } from 'meteor/session';
 
 import ResourceList from '../containers/ResourceListContainer';
-import QuerySelect from '../components/QuerySelect';
+import QuerySelect from './QuerySelect';
 
 class App extends React.Component {
   constructor(props) {
@@ -103,7 +103,8 @@ class App extends React.Component {
       if (this.state[key])
         query[key] = this.state[key].code;
     });
-    Session.set('query', query);
+    const queryString = this.props.history.location.pathname.split('/cc/')[1];
+    Session.set('query', queryString);
   }
 }
 

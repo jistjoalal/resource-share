@@ -2,7 +2,7 @@ import React from 'react';
 
 import MATH_STDS from '../../api/ccssi/math-stds';
 
-import App from './App';
+import App from '../components/App';
 
 const MATH_KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 

@@ -6,7 +6,7 @@ import LoadingIcon from '../LoadingIcon';
 export default class ResourceList extends React.Component {
   componentDidMount() {
     Session.set('page', 1);
-    Session.set('query', {});
+    Session.set('query', '');
   }
   render() {
     return (

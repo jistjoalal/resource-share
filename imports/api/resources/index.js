@@ -11,7 +11,7 @@ if (Meteor.isServer) {
     check(page, Number);
     return Resources.find(
       query,
-      { sort: { score: -1, title: 1 },
+      { sort: { score: -1, createdAt: 1 },
         limit: page * 10,
       },
     );

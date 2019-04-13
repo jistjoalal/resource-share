@@ -41,22 +41,17 @@ export const restoreIfEmpty = () => {
 const insertResource = (source, keys) => {
   const { title, url } = source(keys);
   if (!title || !url) return;
-  const { grade, domain, cluster, standard, component } = keys;
+  const code = 'Math/' + ccCode(keys);
   Resources.insert({
     title,
     url,
+    code,
     type: 'URL',
-    subject: 'Math',
     username: 'Jist',
     authorId: '1234',
     score: 0,
     favoritedBy: [],
     comments: [],
-    grade: grade.code,
-    domain: (domain && domain.code) || '',
-    cluster: (cluster && cluster.code) || '',
-    standard: (standard && standard.code) || '',
-    component: (component && component.code) || '',
     createdAt: new Date(),
   });
 }

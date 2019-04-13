@@ -11,22 +11,7 @@ export default RESOURCE_SCHEMA = new SimpleSchema({
     type: String,
     regEx: SimpleSchema.RegEx.Url,
   },
-  grade: {
+  code: {
     type: String,
   },
-  domain: {
-    type: String,
-  },
-  cluster: {
-    type: String,
-    optional: true,
-  },
-  standard: {
-    type: String,
-    optional: true,
-  },
-  component: {
-    type: String,
-    optional: true,
-  },
-})
+});

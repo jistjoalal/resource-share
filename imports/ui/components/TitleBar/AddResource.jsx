@@ -20,7 +20,7 @@ class AddResource extends React.Component {
   }
   render() {
     const { err, show, uploading, typeSelect } = this.state;
-    const code = Object.values(Session.get('query') || {}).join('.');
+    const code = Session.get('query');
     return (
       <span className="my-1">
 
@@ -164,16 +164,10 @@ class AddResource extends React.Component {
   }
   insertResource = (title, url, isFile=false) => {
     const { pathname } = this.props.history.location;
-    const [ grade, domain, cluster, standard, component ] = 
-      pathname.split('/cc/')[1].split('.');
     const resource = {
       title,
       url,
-      grade,
-      domain: domain || '',
-      cluster: cluster || '',
-      standard: standard || '',
-      component: component || '',
+      code: pathname.split`/cc/`[1],
     };
 
     Meteor.call('resources.new', resource, isFile, (err, _id) => {
@@ -183,7 +177,7 @@ class AddResource extends React.Component {
         else {
           this.props.history.push(`/comments/${_id}`)
           Session.set('message', 'Post Created!');
-          Session.set('query', {});
+          Session.set('query', '');
         }
       }
     );

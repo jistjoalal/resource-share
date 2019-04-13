@@ -10,6 +10,9 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - <s>All grade levels for Math</s>
 - All grade levels for English
+  - fix columns for CCRA?
+  - find some english resources
+  - style home page / subject selection
 
 ### todos
 - <s>file upload/download</s>
@@ -19,7 +22,6 @@ A place to share the best Teaching/Learning resources for common core standards.
   - insertResources
   - styles
   - i dont think i like having code in index files
-  - App + QuerySelect = mess, need to cleanup
 
 ### Ideas
 - users can "subscribe" to standards,

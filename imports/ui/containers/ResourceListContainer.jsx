@@ -6,7 +6,10 @@ import ResourceList from '../components/ResourceList';
 
 const withResources = withTracker(_ => {
   // resources (matching query + page)
-  const query = Session.get('query') || {};
+  const queryString = Session.get('query') || '';
+  const query = {
+    code: queryString,
+  };
 
   return {
     title: 'Resources',

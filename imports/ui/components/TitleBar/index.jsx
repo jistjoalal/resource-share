@@ -26,7 +26,7 @@ class TitleBar extends React.Component {
   render() {
     const { title, userId, query, message } = this.props;
     const { showMessage } = this.state;
-    const showAddResource = !!userId && query && query.grade;
+    const showAddResource = !!userId && query;
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-primary">
