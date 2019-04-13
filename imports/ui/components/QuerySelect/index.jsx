@@ -7,56 +7,36 @@
  */
 import React from 'react';
 
-import MATH_STDS from '../../../api/ccssi/math-stds';
-
 import Select from './Select';
 
 export default class QuerySelect extends React.Component {
   render() {
-    const { grade, domain, cluster, standard, component } = this.props;
+    const {
+      STDS,
+      KEYS,
+      state,
+    } = this.props;
     return (
       <div className="app-section bg-light p-1 border">
 
         <div className="d-flex flex-wrap">
 
           <this.selectInput
-            name="grade"
-            value={grade}
-            options={MATH_STDS}
+            name={KEYS[0]}
+            value={state[KEYS[0]]}
+            options={STDS}
           />
 
-          {grade &&
-            <this.selectInput
-              name="domain"
-              value={domain}
-              options={grade}
-            />
-          }
+          {KEYS.slice(0,-1).map((k, i) =>
+            state[k] && Object.keys(state[k]).length > 1 &&
+              <this.selectInput
+                key={i}
+                name={KEYS[i+1]}
+                value={state[KEYS[i+1]]}
+                options={state[k]}
+              />
+          )}
 
-          {domain &&
-            <this.selectInput
-              name="cluster"
-              value={cluster}
-              options={domain}
-            />
-          }
-
-          {cluster && 
-            <this.selectInput
-              name="standard"
-              value={standard}
-              options={cluster}
-            />
-          }
-
-          {standard && Object.keys(standard).length > 1 &&
-            <this.selectInput
-              name="component"
-              value={component}
-              options={standard}
-            />
-          }
-          
         </div>
       </div>
     );

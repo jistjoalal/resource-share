@@ -2,18 +2,14 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Session } from 'meteor/session';
 
-import GRADES from '../../api/ccssi/math-stds';
-
 import ResourceList from '../containers/ResourceListContainer';
 import QuerySelect from '../components/QuerySelect';
-
-const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    KEYS.forEach(key => this.state[key] = null);
+    props.KEYS.forEach(key => this.state[key] = null);
   }
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -22,6 +18,7 @@ class App extends React.Component {
   }
   setStateFromRoute = (vals, i = 0) => {
     if (vals[0]) {
+      const { KEYS } = this.props;
       const list = this.getList(KEYS[i])[vals[0]];
       this.setState({ [KEYS[i]]: list }, () => {
         this.setStateFromRoute(vals.slice(1), i + 1);
@@ -35,14 +32,26 @@ class App extends React.Component {
   // example: 'cluster' --> GRADES[grade.code].domains[domain.code].clusters
   // - (returns children of type key @ this.state's point in the curr. hierarchy)
   getList = key => {
-    if (key === 'grade') return GRADES;
+    const { KEYS, STDS } = this.props;
+    if (key === KEYS[0]) return STDS;
     const prevKey = KEYS[KEYS.indexOf(key) - 1];
     return this.state[prevKey];
   }
   render() {
+    const { KEYS, STDS, subject } = this.props;
     return (
       <>
-        <QuerySelect change={this.changeKey} {...this.state} /> 
+        <h2>
+          Common Core {subject}
+        </h2>
+        
+        <QuerySelect
+          change={this.changeKey}
+          STDS={STDS}
+          KEYS={KEYS}
+          state={this.state}
+        /> 
+
         <ResourceList />
       </>
     );
@@ -60,8 +69,9 @@ class App extends React.Component {
     // remove key, updating route
     this.setState({ [key]: null }, () => {
       // remove sub-keys
+      const { KEYS } = this.props;
       const idx = KEYS.indexOf(key);
-      if (key !== 'component') {
+      if (idx < KEYS.length - 1) {
         this.removeKey(KEYS[idx + 1], callback);
       }
       // callback at end of chain
@@ -78,13 +88,16 @@ class App extends React.Component {
     const keys = Object.values(this.state)
       .filter(v => !!v).map(v => v.code).join('.');
     // apply to url
-    this.props.history.replace(`/cc/${keys}`);
+    const { subject } = this.props;
+    this.props.history.replace(`/cc/${subject}/${keys}`);
     this.setQuery();
     // reset page
     Session.set('page', 1);
   }
   setQuery = () => {
     const query = {};
+    const { KEYS, subject } = this.props;
+    query.subject = subject;
     // all keys in state are reflected in query (by code)
     KEYS.forEach(key => {
       if (this.state[key])
