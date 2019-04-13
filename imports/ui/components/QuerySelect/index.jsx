@@ -6,12 +6,19 @@
  *   (used in App component)
  */
 import React from 'react';
+import { FaCalculatorAlt, FaBook } from 'react-icons/fa';
 
 import Select from './Select';
+
+const SUBJ_ICONS = {
+  Math: <FaCalculatorAlt />,
+  ELA: <FaBook />,
+}
 
 export default class QuerySelect extends React.Component {
   render() {
     const {
+      subject,
       STDS,
       KEYS,
       state,
@@ -19,7 +26,14 @@ export default class QuerySelect extends React.Component {
     return (
       <div className="app-section bg-light p-1 border">
 
-        <div className="d-flex flex-wrap">
+        <div className="d-flex align-items-center flex-wrap">
+
+          <h2 className="border m-2 p-2">
+            <span className="text-primary mx-2">
+              {SUBJ_ICONS[subject]}
+            </span>
+            {subject}
+          </h2>
 
           <this.selectInput
             name={KEYS[0]}

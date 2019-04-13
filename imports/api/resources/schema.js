@@ -13,5 +13,6 @@ export default RESOURCE_SCHEMA = new SimpleSchema({
   },
   code: {
     type: String,
+    min: 1,
   },
 });

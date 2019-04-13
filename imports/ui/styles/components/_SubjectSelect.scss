@@ -1,0 +1,27 @@
+.SubjectSelect {
+  @extend .jumbotron, .border, .border-primary, .shadow, .mt-4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.SubjectSelect img {
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+}
+
+.SubjectSelect__title {
+  @extend .text-dark, .m-2;
+}
+
+.SubjectSelect__text {
+  @extend .d-flex, .border-dark, .p-2;
+  background: rgba(222,222,222,0.75);
+}

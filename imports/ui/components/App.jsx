@@ -41,17 +41,13 @@ class App extends React.Component {
     const { KEYS, STDS, subject } = this.props;
     return (
       <>
-        <h2>
-          Common Core {subject}
-        </h2>
-        
         <QuerySelect
           change={this.changeKey}
+          subject={subject}
           STDS={STDS}
           KEYS={KEYS}
           state={this.state}
         /> 
-
         <ResourceList />
       </>
     );

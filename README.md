@@ -12,7 +12,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - All grade levels for English
   - fix columns for CCRA?
   - find some english resources
-  - style home page / subject selection
 
 ### todos
 - <s>file upload/download</s>
