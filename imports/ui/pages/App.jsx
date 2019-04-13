@@ -2,12 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Session } from 'meteor/session';
 
-import GRADES from '../../api/ccssi/math-stds';
+import { KEYS, STDS } from '../../constants/standards';
 
 import ResourceList from '../containers/ResourceListContainer';
 import QuerySelect from '../components/QuerySelect';
-
-const KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 
 class App extends React.Component {
   constructor(props) {
@@ -20,6 +18,17 @@ class App extends React.Component {
     if (id) this.setStateFromRoute(id.split('.')); 
     else this.setQuery();
   }
+  render() {
+    return (
+      <>
+        <QuerySelect change={this.changeKey} {...this.state} /> 
+        <ResourceList />
+      </>
+    );
+  }
+  /**
+   * Routing
+   */
   setStateFromRoute = (vals, i = 0) => {
     if (vals[0]) {
       const list = this.getList(KEYS[i])[vals[0]];
@@ -29,24 +38,19 @@ class App extends React.Component {
     }
     else this.setQuery();
   }
-  // returns list of vals for key
-  // example: 'grade'   --> root of GRADES
-  // example: 'domain'  --> GRADES[this.state.grade.code].domains
-  // example: 'cluster' --> GRADES[grade.code].domains[domain.code].clusters
-  // - (returns children of type key @ this.state's point in the curr. hierarchy)
-  getList = key => {
-    if (key === 'grade') return GRADES;
-    const prevKey = KEYS[KEYS.indexOf(key) - 1];
-    return this.state[prevKey];
+  route = () => {
+    // get code from state
+    const keys = Object.values(this.state)
+      .filter(v => !!v).map(v => v.code).join('.');
+    // apply to url
+    this.props.history.replace(`/cc/${keys}`);
+    this.setQuery();
+    // reset page
+    Session.set('page', 1);
   }
-  render() {
-    return (
-      <>
-        <QuerySelect change={this.changeKey} {...this.state} /> 
-        <ResourceList />
-      </>
-    );
-  }
+  /**
+   * Query Alteration
+   */
   changeKey = (key, code) => {
     // remove key, and sub-keys
     this.removeKey(key, () => {
@@ -73,16 +77,6 @@ class App extends React.Component {
       }
     });
   }
-  route = () => {
-    // get code from state
-    const keys = Object.values(this.state)
-      .filter(v => !!v).map(v => v.code).join('.');
-    // apply to url
-    this.props.history.replace(`/cc/${keys}`);
-    this.setQuery();
-    // reset page
-    Session.set('page', 1);
-  }
   setQuery = () => {
     const query = {};
     // all keys in state are reflected in query (by code)
@@ -91,6 +85,14 @@ class App extends React.Component {
         query[key] = this.state[key].code;
     });
     Session.set('query', query);
+  }
+  // returns list of vals for key
+  getList = key => {
+    const { subject } = this.state;
+    if (key === 'subject') return STDS;
+    if (key === 'grade') return STDS[subject.code] || [];
+    const prevKey = KEYS[KEYS.indexOf(key) - 1];
+    return this.state[prevKey];
   }
 }
 

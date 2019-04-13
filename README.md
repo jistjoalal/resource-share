@@ -18,6 +18,7 @@ A place to share the best Teaching/Learning resources for common core standards.
 - refactor
   - insertResources
   - styles
+  - i dont think i like having code in index files
 
 ### Ideas
 - users can "subscribe" to standards,

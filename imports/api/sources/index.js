@@ -46,6 +46,7 @@ const insertResource = (source, keys) => {
     title,
     url,
     type: 'URL',
+    subject: 'Math',
     username: 'Jist',
     authorId: '1234',
     score: 0,
