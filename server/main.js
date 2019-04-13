@@ -11,7 +11,7 @@ import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/
 // import { search } from '../imports/api/sources/problem.attic';
 
 Meteor.startup(() => {
-  // restoreIfEmpty();
+  restoreIfEmpty();
 
   // dev stuff
   // resetResources();
