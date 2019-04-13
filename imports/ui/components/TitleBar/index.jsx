@@ -26,13 +26,12 @@ class TitleBar extends React.Component {
   render() {
     const { title, userId, query, message } = this.props;
     const { showMessage } = this.state;
-    const homeTo = Object.values(query || {}).join('.');
     const showAddResource = !!userId && query && query.grade;
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-primary">
 
-          <NavLink to={`/cc/${homeTo}`}>
+          <NavLink to="/">
             <span className="navbar-brand text-white">
               {title}
             </span>
