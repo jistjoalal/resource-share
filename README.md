@@ -22,6 +22,8 @@ A place to share the best Teaching/Learning resources for common core standards.
   - styles
   - i dont think i like having code in index files
 
+- accessibility
+
 ### Ideas
 - users can "subscribe" to standards,
   recieving email/notification when new resource submitted?
