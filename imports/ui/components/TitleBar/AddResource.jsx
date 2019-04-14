@@ -164,7 +164,7 @@ class AddResource extends React.Component {
         console.log(error);
         // filter verbose errors
         const { reason } = error;
-        const err = reason.length > 30 ? 'Upload Failed' : reason;
+        const err = reason.length > 50 ? 'Upload Failed' : reason;
         this.setState({ err, uploading: false });
       }
       else {

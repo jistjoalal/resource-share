@@ -18,7 +18,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - click std code to popup modal description of standard
 - resource already exists err should link to the resource
-- increase err msg max size on addResource
 
 - I broke s3 deletion by encoding URLs
 
