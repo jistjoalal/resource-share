@@ -9,8 +9,11 @@ Meteor.methods({
 
     if (!this.userId) throw notAuthErr;
 
+    // encode url
+    const url = encodeURI(resource.url);
+    resource.url = url;
+
     // url must be unique
-    const url = resource.url;
     const resourceExists = Resources.findOne({ url });
     if (resourceExists) throw notUniqErr;
 
