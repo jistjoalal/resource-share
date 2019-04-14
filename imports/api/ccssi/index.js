@@ -13,22 +13,24 @@ const ELA_OUT = fileName('ela-stds.json');
 const parseStds = (file, key) => {
   const json = require(file);
   const items = json.LearningStandards.LearningStandardItem;
-  return items.map(({ RefURI }) => RefURI.split(key)[1]);
+  return items.map(({ RefURI }) => ({
+    code: RefURI.split(key)[1],
+  }));
 }
 
 // write parsed stds to JSON file
 const saveStds = (stds_file, output_file, key) => {
   let r = {};
   const stds = parseStds(stds_file, key);
-  for (let j = 0; j < stds.length; j++) {
-    if (!stds[j]) break;
-    const s = stds[j].split(/\//g);
+  for (let std of stds) {
+    if (!std.code) break;
+    const s = std.code.split(/\//g);
     let root = r;
-    for (let i = 0; i < s.length; i++) {
-      if (s[i] && !root[s[i]]) {
-        root[s[i]] = { code: s[i] };
+    for (let c of s) {
+      if (c && !root[c]) {
+        root[c] = { code: c };
       }
-      root = root[s[i]];
+      root = root[c];
     }
   }
   fs.writeFileSync(output_file, JSON.stringify(r));
