@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import LoadingIcon from '../LoadingIcon';
+import FileInput from './FileInput';
 
 class AddResource extends React.Component {
   constructor(props) {
@@ -12,14 +13,14 @@ class AddResource extends React.Component {
       err: '',
       show: false,
       uploading: false,
-      typeSelect: 'Link',
+      isFile: false,
     };
   }
   componentDidMount() {
     Modal.setAppElement('body');  // deals w/ err msg from react-modal
   }
   render() {
-    const { err, show, uploading, typeSelect } = this.state;
+    const { err, show, uploading, isFile } = this.state;
     const code = Session.get('query');
     return (
       <span className="my-1">
@@ -60,17 +61,24 @@ class AddResource extends React.Component {
             </div>
 
             <div className="form-group">
-              <label>What are you sharing?</label>
+              <p>What are you sharing?</p>
               <button
-                className="btn btn-outline-primary ml-2"
+                className={`btn btn-outline-primary ml-2 ${isFile ? '' : 'active'}`}
                 type="button"
-                onClick={this.toggleTypeSelect}
+                onClick={_ => this.setState({ isFile: false })}
               >
-                {typeSelect}
+                Link
+              </button>
+              <button
+                className={`btn btn-outline-primary ml-2 ${isFile ? 'active' : ''}`}
+                type="button"
+                onClick={_ => this.setState({ isFile: true })}
+              >
+                File
               </button>
             </div>
 
-            {typeSelect === 'Link' &&
+            {!isFile &&
               <div className="form-group">
                 <label>URL</label>
                 <input
@@ -82,10 +90,8 @@ class AddResource extends React.Component {
               </div>
             }
 
-            {typeSelect === 'File' &&
-              <div className="form-group">
-                <input type="file" name="fileUpload" />
-              </div>
+            {isFile &&
+              <FileInput />
             }
 
             <div className="form-group">

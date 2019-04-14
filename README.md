@@ -18,9 +18,9 @@ A place to share the best Teaching/Learning resources for common core standards.
   - other allowed filetypes??
 
 - file/link toggle button (show both, one active)
-- upload file failed on surface+chrome??
 - standard code next to dropdowns
   - click to popup modal description of standard
+- resource already exists err should link to the resource
 
 - accessibility
 
