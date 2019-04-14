@@ -125,7 +125,12 @@ class AddResource extends React.Component {
     this.setState({ show: true });
   }
   close = _ => {
-    this.setState({ show: false, err: '' });
+    this.setState({
+      show: false,
+      err: '',
+      uploading: false,
+      typSelect: 'Link',
+    });
   }
   newResource = e => {
     e.preventDefault();
