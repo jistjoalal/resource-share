@@ -15,11 +15,8 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 ### todos
 - <s>file upload/download</s>
-  - other allowed filetypes??
 
-- file/link toggle button (show both, one active)
-- standard code next to dropdowns
-  - click to popup modal description of standard
+- click std code to popup modal description of standard
 - resource already exists err should link to the resource
 
 - accessibility

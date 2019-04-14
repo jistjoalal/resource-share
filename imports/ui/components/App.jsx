@@ -38,12 +38,11 @@ class App extends React.Component {
     return this.state[prevKey];
   }
   render() {
-    const { KEYS, STDS, subject } = this.props;
+    const { KEYS, STDS } = this.props;
     return (
       <>
         <QuerySelect
           change={this.changeKey}
-          subject={subject}
           STDS={STDS}
           KEYS={KEYS}
           state={this.state}

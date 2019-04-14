@@ -6,22 +6,17 @@
  *   (used in App component)
  */
 import React from 'react';
-import { FaCalculatorAlt, FaBook } from 'react-icons/fa';
+import { withTracker } from 'meteor/react-meteor-data';
 
 import Select from './Select';
 
-const SUBJ_ICONS = {
-  Math: <FaCalculatorAlt />,
-  ELA: <FaBook />,
-}
-
-export default class QuerySelect extends React.Component {
+class QuerySelect extends React.Component {
   render() {
     const {
-      subject,
       STDS,
       KEYS,
       state,
+      queryString,
     } = this.props;
     return (
       <div className="app-section bg-light p-1 border">
@@ -29,10 +24,7 @@ export default class QuerySelect extends React.Component {
         <div className="d-flex align-items-center flex-wrap">
 
           <h2 className="border m-2 p-2">
-            <span className="text-primary mx-2">
-              {SUBJ_ICONS[subject]}
-            </span>
-            {subject}
+            {queryString}
           </h2>
 
           <this.selectInput
@@ -73,3 +65,8 @@ export default class QuerySelect extends React.Component {
     );
   }
 }
+
+export default withTracker(_ => {
+  const queryString = Session.get('query');
+  return { queryString };
+})(QuerySelect);
