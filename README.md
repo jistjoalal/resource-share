@@ -19,8 +19,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - click std code to popup modal description of standard
 - resource already exists err should link to the resource
 
-- I broke s3 deletion by encoding URLs
-
 - possible to overwrite existing resources by
   uploading file w/ same name?
 

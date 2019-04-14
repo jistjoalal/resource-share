@@ -17,7 +17,7 @@ Meteor.methods({
   's3.delete'(url) {
     const params = {
       Bucket: process.env.AWSBucket,
-      Key: url.split('aws.com/')[1],
+      Key: decodeURI(url).split('aws.com/')[1],
     }
     s3.deleteObject(params, (error, data) => {
       if(error) {
