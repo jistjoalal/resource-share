@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
@@ -9,12 +8,7 @@ import LogoutButton from './LogoutButton';
 import AddResource from './AddResource';
 import InstallButton from './InstallButton';
 import ToggleButton from './ToggleButton';
-import NavItem from './NavItem';
-
-const NavLink = ({ children, ...rest }) =>
-  <Link className="nav-link" {...rest}>
-    {children}
-  </Link>
+import { NavItem, NavLink } from './Nav';
 
 class TitleBar extends React.Component {
   constructor(props) {
