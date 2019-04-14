@@ -35,5 +35,5 @@ const saveStds = (stds_file, output_file, key) => {
   }
   fs.writeFileSync(output_file, JSON.stringify(r));
 }
-saveStds(MATH_IN, MATH_OUT, 'Content/');
-saveStds(ELA_IN, ELA_OUT, 'ELA-Literacy/');
+// saveStds(MATH_IN, MATH_OUT, 'Content/');
+// saveStds(ELA_IN, ELA_OUT, 'ELA-Literacy/');
