@@ -17,7 +17,7 @@ A place to share the best Teaching/Learning resources for common core standards.
 - <s>file upload/download</s>
 
 - click std code to popup modal description of standard
-- resource already exists err should link to the resource
+- show std code on comments page
 
 - possible to overwrite existing resources by
   uploading file w/ same name?

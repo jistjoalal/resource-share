@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import Modal from 'react-modal';
 
 import LoadingIcon from '../LoadingIcon';
@@ -181,18 +181,31 @@ class AddResource extends React.Component {
       code: pathname.split`/cc/`[1],
     };
 
-    Meteor.call('resources.new', resource, isFile, (err, _id) => {
-        if (err) {
-          this.setState({ err: err.reason });
-        }
-        else {
-          this.props.history.push(`/comments/${_id}`)
-          Session.set('message', 'Post Created!');
-          Session.set('query', '');
-        }
+    Meteor.call('resources.new', resource, isFile, (error, _id) => {
+      if (error) {
+        this.setState({ err: parseErr(error) });
       }
-    );
+      else {
+        this.props.history.push(`/comments/${_id}`)
+        Session.set('message', 'Post Created!');
+        Session.set('query', '');
+      }
+    });
   }
+}
+
+const parseErr = error => {
+  let err = error.reason;
+  if (err.includes('Resource already exists.')) {
+    const _id = err.split`.`[1];
+    err = (
+      <span>
+        Resource already exists
+        <Link to={`/comments/${_id}`} target="_blank"> Here</Link>
+      </span>
+    )
+  }
+  return err;
 }
 
 export default withRouter(AddResource);

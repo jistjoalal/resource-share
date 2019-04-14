@@ -15,7 +15,7 @@ Meteor.methods({
 
     // url must be unique
     const resourceExists = Resources.findOne({ url });
-    if (resourceExists) throw notUniqErr;
+    if (resourceExists) throw notUniqErr(resourceExists);
 
     RESOURCE_SCHEMA.validate(resource)
 
