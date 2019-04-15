@@ -41,11 +41,17 @@ class App extends React.Component {
   }
   render() {
     const { KEYS, STDS, query } = this.props;
+    const invalidCode = !/^(Math|ELA)(\/\w+(\.(\w|-)+)*)*$/.test(query);
     return (
       <>
         <Helmet>
           <title>{query}</title>
         </Helmet>
+        {invalidCode &&
+          <p className="alert alert-warning">
+            Invalid Standard Code: {query}
+          </p>
+        }
         <QuerySelect
           change={this.changeKey}
           STDS={STDS}

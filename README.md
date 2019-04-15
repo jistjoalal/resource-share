@@ -21,7 +21,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - possible to overwrite existing resources by
   uploading file w/ same name?
-- how do we handle bad code in cc/...url's?
 - change subject selection
 
 - accessibility
