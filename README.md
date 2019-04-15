@@ -19,7 +19,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - click/hover std code to popup modal description of standard
   - need to parse std descriptions/titles somehow
 
-- show std code on comments page
 - possible to overwrite existing resources by
   uploading file w/ same name?
 - how do we handle bad code in cc/...url's?

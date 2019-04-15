@@ -37,9 +37,15 @@ export default class CommentsPage extends React.Component {
             <title>{resource.title}</title>
           </Helmet>
 
-          <a href={resource.url} target="_blank">
-            <h2>{resource.title}</h2>
-          </a>
+          <div className="d-flex justify-content-between">
+            <a href={resource.url} target="_blank">
+              <h2>{resource.title}</h2>
+            </a>
+
+            <h4 className="text-muted">
+              {resource.code}
+            </h4>
+          </div>
           
           <p className="mb-0 text-secondary">
           
