@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
@@ -14,6 +15,10 @@ export default class CommentsPage extends React.Component {
     if (!resource) return (
       <div className="alert alert-warning">
 
+        <Helmet>
+          <title>Resource Not Found</title>
+        </Helmet>
+
         <p className="lead">
           Resource Not Found
         </p>
@@ -27,6 +32,10 @@ export default class CommentsPage extends React.Component {
     return (
       <div className="container">
         <div className="row d-flex flex-column border shadow-sm p-2">
+
+          <Helmet>
+            <title>{resource.title}</title>
+          </Helmet>
 
           <a href={resource.url} target="_blank">
             <h2>{resource.title}</h2>

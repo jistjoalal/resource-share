@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import Resource from './Resource';
 import LoadingIcon from '../LoadingIcon';
@@ -22,7 +23,12 @@ export default class ResourceList extends React.Component {
     if (title === 'Resources') return null;
 
     const titleText = `${author}'s ${title}`;
-    return <h2 className="p-2">{titleText}</h2>
+    return <>
+      <Helmet>
+        <title>{titleText}</title>
+      </Helmet>
+      <h2 className="p-2">{titleText}</h2>
+    </>
   }
   renderPageMenu() {
     const { limit, total, title } = this.props;

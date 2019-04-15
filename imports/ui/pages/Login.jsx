@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Meteor } from 'meteor/meteor';
 import { Link, withRouter } from 'react-router-dom';
 import { Session } from 'meteor/session';
@@ -28,6 +29,10 @@ class Login extends React.Component {
     const { err } = this.state;
     return (
       <div className="container w-75 mx-auto my-4 shadow-sm border bg-light p-3 rounded">
+
+        <Helmet>
+          <title>Login to Resource Share</title>
+        </Helmet>
 
         <h1 className="border-bottom mb-4">
           Login to Resource Share

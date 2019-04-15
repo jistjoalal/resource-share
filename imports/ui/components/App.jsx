@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Helmet } from 'react-helmet';
 import { Session } from 'meteor/session';
 
 import ResourceList from '../containers/ResourceListContainer';
@@ -38,9 +40,12 @@ class App extends React.Component {
     return this.state[prevKey];
   }
   render() {
-    const { KEYS, STDS } = this.props;
+    const { KEYS, STDS, query } = this.props;
     return (
       <>
+        <Helmet>
+          <title>{query}</title>
+        </Helmet>
         <QuerySelect
           change={this.changeKey}
           STDS={STDS}
@@ -103,4 +108,9 @@ class App extends React.Component {
   }
 }
 
-export default withRouter(App);
+const withQuery = withTracker(_ => {
+  const query = Session.get('query');
+  return { query };
+});
+
+export default withRouter(withQuery(App));

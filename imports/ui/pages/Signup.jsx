@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Accounts } from 'meteor/accounts-base';
 import { Link, withRouter } from 'react-router-dom';
 
@@ -36,6 +37,10 @@ class Signup extends React.Component {
     const { err } = this.state;
     return (
       <div className="container w-75 mx-auto my-4 shadow-sm border bg-light p-3 rounded">
+
+        <Helmet>
+          <title>Signup for Resource Share</title>
+        </Helmet>
 
         <h1 className="border-bottom mb-4">
           Signup
