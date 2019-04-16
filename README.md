@@ -18,6 +18,7 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - <s>parse std descriptions/titles</s>
   - change subject selection to be more like common core site
+  - need to filter weird characters
 
 - accessibility
 
