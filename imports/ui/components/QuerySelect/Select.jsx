@@ -6,8 +6,6 @@ export default class Select extends React.Component {
     return (
       <div className="Select d-flex flex-column justify-content-between border m-2 p-1">
 
-        <span>{title}</span>
-
         <div className="d-flex justify-content-between align-items-center">
 
           <select

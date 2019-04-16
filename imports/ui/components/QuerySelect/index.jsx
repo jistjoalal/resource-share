@@ -20,11 +20,15 @@ class QuerySelect extends React.Component {
       queryString,
     } = this.props;
     return (
-      <div className="app-section bg-light p-1 border">
+      <div className="section bg-light p-1 border">
+
+        <h2 className="m-2">
+          {queryString}
+        </h2>
+
+        <StdDescription code={queryString} />
 
         <div className="d-flex align-items-center flex-wrap">
-
-          <StdDescription code={queryString} />
 
           <this.selectInput
             name={KEYS[0]}
@@ -43,6 +47,7 @@ class QuerySelect extends React.Component {
           )}
 
         </div>
+        
       </div>
     );
   }

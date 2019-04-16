@@ -10,8 +10,9 @@ export default withDescription = withTracker(({ code }) => {
   const description = Descriptions.findOne({});
   const title = description && description.title
   const desc = description && description.desc;
-  const tooltip = title == +title ? desc : title;
+  const useTitle = title && /[a-z]/.test(title) && title.length > 1;
+  const text = useTitle ? title : desc;
   return {
-    tooltip,
+    text,
   }
 })
