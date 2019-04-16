@@ -1,11 +1,18 @@
 import './methods';
 import './allowed.filetypes';
 
+const { AWSBucket, AWSRegion, AWSAccessKeyId, AWSSecretAccessKey } = process.env;
+
+if (!AWSBucket) throw new Meteor.Error('AWSBucket not set');
+if (!AWSRegion) throw new Meteor.Error('AWSRegion not set');
+if (!AWSAccessKeyId) throw new Meteor.Error('AWSAccessKeyId not set');
+if (!AWSSecretAccessKey) throw new Meteor.Error('AWSSecretAccessKey not set');
+
 Slingshot.createDirective("files", Slingshot.S3Storage, {
-  bucket: process.env.AWSBucket,
-  region: process.env.AWSRegion,
-  AWSAccessKeyId: process.env.AWSAccessKeyId,
-  AWSSecretAccessKey: process.env.AWSSecretAccessKey,
+  bucket: AWSBucket,
+  region: AWSRegion,
+  AWSAccessKeyId: AWSAccessKeyId,
+  AWSSecretAccessKey: AWSSecretAccessKey,
 
   acl: "public-read",
 

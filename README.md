@@ -16,12 +16,9 @@ A place to share the best Teaching/Learning resources for common core standards.
 ### todos
 - <s>file upload/download</s>
 
-- click/hover std code to popup modal description of standard
-  - need to parse std descriptions/titles somehow
-
-- possible to overwrite existing resources by
-  uploading file w/ same name?
-- change subject selection
+- need to parse std descriptions/titles somehow
+  - click/hover std code to popup modal description of standard
+  - change subject selection to more like common core site
 
 - accessibility
 
