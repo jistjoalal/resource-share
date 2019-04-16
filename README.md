@@ -16,9 +16,8 @@ A place to share the best Teaching/Learning resources for common core standards.
 ### todos
 - <s>file upload/download</s>
 
-- need to parse std descriptions/titles somehow
-  - click/hover std code to popup modal description of standard
-  - change subject selection to more like common core site
+- <s>parse std descriptions/titles</s>
+  - change subject selection to be more like common core site
 
 - accessibility
 

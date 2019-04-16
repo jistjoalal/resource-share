@@ -41,7 +41,7 @@ class App extends React.Component {
   }
   render() {
     const { KEYS, STDS, query } = this.props;
-    const invalidCode = !/^(Math|ELA)(\/\w+(\.(\w|-)+)*)*$/.test(query);
+    const invalidCode = !/^(Math|ELA)(\/|\/\w+(\.(\w|-)+)*)*$/.test(query);
     return (
       <>
         <Helmet>

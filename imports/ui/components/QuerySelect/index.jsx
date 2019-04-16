@@ -9,6 +9,7 @@ import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 
 import Select from './Select';
+import StdDescription from './StdDescription';
 
 class QuerySelect extends React.Component {
   render() {
@@ -23,9 +24,7 @@ class QuerySelect extends React.Component {
 
         <div className="d-flex align-items-center flex-wrap">
 
-          <h2 className="border m-2 p-2">
-            {queryString}
-          </h2>
+          <StdDescription code={queryString} />
 
           <this.selectInput
             name={KEYS[0]}
