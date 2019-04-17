@@ -19,7 +19,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - <s>parse std descriptions/titles</s>
 
 - refactor
-  - i dont think i like having code in index files
   - styles
   - insertResources
     - using stdCodes func from desc-scraper
@@ -27,7 +26,7 @@ A place to share the best Teaching/Learning resources for common core standards.
 - accessibility
 
 ### Ideas
-- change subject selection to be more like common core site
+- fully automate stds scraping?
 - does betterlesson have an API?
 - actual search (by title / std.)
 - batch upload?
