@@ -10,6 +10,8 @@ const ELA_STDS = require('./ela-stds.json');
 const ELA_URL = 'http://www.corestandards.org/ELA-Literacy';
 const ELA_OUT = 'ela-desc.json';
 
+// how many requests to make at a time to common core
+const REQUEST_SPEED = 50;
 
 /**
  * Scrape
@@ -22,7 +24,7 @@ const scrapeAndSave = (subject, stds_file, desc_file, base_url) => {
 
 const scrapeStds = async (stds, baseUrl, subject) => {
   const codes = stdCodes(stds);
-  return await(serialScrape(codes, baseUrl, subject));
+  return await serialScrape(codes, baseUrl, subject);
 }
 
 const stdCodes = (stds, s='') => {
@@ -35,19 +37,33 @@ const stdCodes = (stds, s='') => {
   return r;
 }
 
+// scrapes a list of stds all at once
+const parallelScrape = async (codes, baseUrl, subject) => {
+  return await Promise.all(codes.map(scrapeStd(baseUrl, subject)))
+}
+
+// scrapes a list of stds in groups of REQUEST_SPEED
 const serialScrape = async (codes, baseUrl, subject) => {
   if (!codes[0]) return await [];
-  const desc = await scrapeStd(codes[0], baseUrl, subject)
-  const rest = await serialScrape(codes.slice(1), baseUrl, subject)
+  const head = await parallelScrape(
+    codes.slice(0,REQUEST_SPEED),
+    baseUrl,
+    subject
+  );
+  const tail = await serialScrape(
+    codes.slice(REQUEST_SPEED), 
+    baseUrl, 
+    subject
+  );
   return [
-    desc,
-    ...rest,
+    ...head,
+    ...tail,
   ]
 }
 
-const scrapeStd = (code, baseUrl, subject) => {
+const scrapeStd = (baseUrl, subject) => async code => {
   console.log('scraping', code)
-  return fetch(code, baseUrl)
+  return await fetch(code, baseUrl)
   .then(parse(code, subject))
 }
 
@@ -85,21 +101,33 @@ const parseTitle = html => {
   return title.split`» `.slice(-1)[0];
 }
 
+// the text I want is buried and cluttered with <i>, <sup> tags
+// this parses just the text out
 const parseText = (target, html) => {
   const e = $(target, html)[0];
   const text = e && e.children.map(c => {
     const outer = c && c.data;
-    const inner = c && c.children && c.children[0].data;
+    // invalid child tag
+    if (c && c.name == 'sup') {
+      return '';
+    }
+    const inner = c && c.children && c.children[0] && c.children[0].data;
     return outer || inner;
   });
-  return text && text.join``.trim(); 
+  return cleanText(text); 
+}
+
+// replace weird text and whitespace
+// will probably need to add more cases once i notice more
+const cleanText = text => {
+  return text && text.join``.trim().replace('¹', '');
 }
 
 /**
  * Save
  */
 const fileName = local =>
-  process.env['PWD'] + '/imports/api/ccssi/' + local;
+  process.env['PWD'] + '/' + local;
 
 const saveDescs = filename => descs => {
   console.log('writing to', filename)
@@ -114,5 +142,5 @@ const saveDescs = filename => descs => {
 // scrapeAndSave('ELA', ELA_STDS, ELA_OUT, ELA_URL);
 // scrapeAndSave('ELA', ELA_1_STDS, ELA_OUT, ELA_URL);
 
-// scrapeStd('/3/NF/A/1', MATH_URL, 'Math')
+// scrapeStd(MATH_URL, 'Math')('/3/NF')
 // .then(console.log)

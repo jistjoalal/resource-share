@@ -17,7 +17,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - <s>file upload/download</s>
 
 - <s>parse std descriptions/titles</s>
-  - need to filter weird characters
 
 - refactor
   - i dont think i like having code in index files
