@@ -9,6 +9,7 @@ import AddResource from './AddResource';
 import InstallButton from './InstallButton';
 import ToggleButton from './ToggleButton';
 import { NavItem, NavLink } from './Nav';
+import AlertMessage from './AlertMessage';
 
 class TitleBar extends React.Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class TitleBar extends React.Component {
     };
   }
   render() {
-    const { title, userId, query, message } = this.props;
+    const { title, userId, query } = this.props;
     const { showMessage } = this.state;
     const showAddResource = !!userId && query;
     return (
@@ -53,7 +54,9 @@ class TitleBar extends React.Component {
 
         </nav>
 
-        {!!message && showMessage && this.renderMessage()}
+        {showMessage && 
+          <AlertMessage /> 
+        }
 
       </div>
     );
@@ -93,28 +96,6 @@ class TitleBar extends React.Component {
       </>
     )
   }
-  renderMessage() {
-    const { message } = this.props;
-    return (
-      <div
-        className="alert alert-success alert-dismissible fade show"
-        role="alert"
-      >
-        <span>{message}</span>
-
-        <button
-          type="button"
-          className="close"
-          onClick={this.clearMessage}
-        >
-          <span aria-hidden="true">
-            &times;
-          </span>
-        </button>
-
-      </div>
-    );
-  }
   // bootstrap + react is stupid
   // the way bootstrap closes the alert w/ jquery doesnt allow for it to be re-rendered
   // in the same session. (user logs in twice in same session)
@@ -123,15 +104,10 @@ class TitleBar extends React.Component {
   componentWillReceiveProps() {
     this.setState({ showMessage: true });
   }
-  clearMessage = () => {
-    Session.set('message', '');
-    this.setState({ showMessage: false });
-  }
 }
 
 export default container = withTracker(() => {
   const query = Session.get('query');
   const userId = Meteor.userId();
-  const message = Session.get('message');
-  return { query, userId, message };
+  return { query, userId };
 })(TitleBar);
