@@ -17,18 +17,18 @@ A place to share the best Teaching/Learning resources for common core standards.
 - <s>file upload/download</s>
 
 - <s>parse std descriptions/titles</s>
-  - change subject selection to be more like common core site
   - need to filter weird characters
-  - show subject when no description
+
+- refactor
+  - i dont think i like having code in index files
+  - styles
+  - insertResources
+    - using stdCodes func from desc-scraper
 
 - accessibility
 
-- refactor
-  - insertResources
-  - styles
-  - i dont think i like having code in index files
-
 ### Ideas
+- change subject selection to be more like common core site
 - does betterlesson have an API?
 - actual search (by title / std.)
 - batch upload?

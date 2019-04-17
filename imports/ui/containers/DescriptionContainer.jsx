@@ -10,8 +10,11 @@ export default withDescription = withTracker(({ code }) => {
   const description = Descriptions.findOne({});
   const title = description && description.title
   const desc = description && description.desc;
+  // swap title for description in the case that it's just a code
   const useTitle = title && /[a-z]/.test(title) && title.length > 1;
-  const text = useTitle ? title : desc;
+  const descText = useTitle ? title : desc;
+  // swap text for subject when empty (on subject page)
+  const text = descText || code.replace('/', '');
   return {
     text,
   }
