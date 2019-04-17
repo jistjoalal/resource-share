@@ -69,7 +69,7 @@ export default class Resource extends React.Component {
           <FavoriteButton user={user} resource={resource} />
           
           <Link
-            className="fav btn text-info p-0 mb-1"
+            className="Button text-info"
             to={`/comments/${resource._id}`}
           >
             <FaComments />

@@ -47,17 +47,20 @@ class App extends React.Component {
         <Helmet>
           <title>{query}</title>
         </Helmet>
+
         {invalidCode &&
           <p className="alert alert-warning">
             Invalid Standard Code: {query}
           </p>
         }
+
         <QuerySelect
           change={this.changeKey}
           STDS={STDS}
           KEYS={KEYS}
           state={this.state}
         /> 
+        
         <ResourceList />
       </>
     );

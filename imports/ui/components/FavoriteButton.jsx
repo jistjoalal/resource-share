@@ -13,7 +13,7 @@ export default FavoriteButton = ({ resource, user }) => {
   
   return (
     <a
-      className={"fav btn p-0 mb-1 text-" + color}
+      className={"Button text-" + color}
       onClick={favd ? unFav : favorite}
     >
       <FaHeart />

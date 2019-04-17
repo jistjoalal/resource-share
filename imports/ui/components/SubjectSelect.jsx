@@ -14,18 +14,25 @@ const SUBJ_BGS = {
 
 export default SubjectSelect = ({ subject }) => {
   const imgUrl = SUBJ_BGS[subject];
-  const background = 'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.1) 100%)'
   return (
-    <div className="SubjectSelect" style={{ background }}>
-      <Link to={`/cc/${subject}`} className="SubjectSelect__text">
+    <div className="SubjectSelect">
+
+      <Link
+        to={`/cc/${subject}`}
+        className="SubjectSelect__text"
+      >
         <h1>
           {SUBJ_ICONS[subject]} 
         </h1>
+
         <h2 className="SubjectSelect__title">
           {subject}
         </h2>
+
       </Link>
+
       <img src={imgUrl} />
+      
     </div>
   );
 }

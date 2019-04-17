@@ -34,7 +34,8 @@ select {
   cursor: pointer;
 }
 
-.fav {
+.Button {
+  @extend .btn, .p-0, .mb-1;
   outline: none;
   font-size: 1.5rem;
 }
