@@ -9,13 +9,13 @@ import '../imports/api/comments';
 import '../imports/api/s3';
 
 // dev stuff
-import { resetResources, insertResources, restoreIfEmpty } from '../imports/api/sources';
+import { resetResources, insertMathResources, restoreIfEmpty } from '../imports/api/sources';
 
 Meteor.startup(() => {
   // restoreIfEmpty();
 
   // dev stuff
   // resetResources();
-  // resetResources(insertResources);
+  // resetResources(insertMathResources);
   // resetResources(restoreIfEmpty);
 });

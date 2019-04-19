@@ -1,0 +1,12 @@
+
+.Modal__close {
+  width: 100%;
+  position: relative;
+}
+
+.Modal__closeButton {
+  @extend .btn, .btn-danger;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
