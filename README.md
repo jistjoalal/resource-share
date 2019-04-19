@@ -18,6 +18,8 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - <s>parse std descriptions/titles</s>
 
+- std code on comments page should link to that std page
+
 - accessibility
 
 ### Ideas

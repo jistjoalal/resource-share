@@ -14,7 +14,7 @@ export const resetResources = callback => {
 
 export const restoreIfEmpty = _ => {
   const empty = Resources.find().fetch().length < 1;
-  if (empty) insertResources();
+  if (empty) insertMathResources();
 }
 
 // used for avoiding errors
