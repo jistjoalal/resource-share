@@ -1,4 +1,5 @@
 import { ccCode } from './index'
+import Resources from '../resources';
 
 export default insertResources = (stds, keySet, sources, keys={}, i=0) => {
   Object.values(stds).forEach(std => {
@@ -13,7 +14,8 @@ export default insertResources = (stds, keySet, sources, keys={}, i=0) => {
 
 const insertResource = (source, keys) => {
   const { title, url } = source(keys);
-  if (!title || !url) return;
+  const exists = Resources.findOne({ url });
+  if (!title || !url || exists) return;
   const code = 'Math/' + ccCode(keys);
   Resources.insert({
     title,
