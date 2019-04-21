@@ -1,22 +1,19 @@
 /**
  * imports/api/sources
- * - index handles insertting these automated/scraped resources
+ * - insertResources handles insertting these automated/scraped resources
  * - source files (e.g. 'khan.acad') handle the unique fields for each source
  *   (url, title)
  */
 import Resources from '../resources';
-import GRADES from '../ccssi/math-stds';
 import { problemAttic } from './problem.attic';
 import { khanAcad } from './khan.acad';
 import { illMath } from './ill.math';
 import { ixl } from './ixl';
+import insertResources from './insertResources';
 
-export const nullParse = {
-  url: null,
-  title: null,
-}
-
-const sources = {
+import MATH_STDS from '../ccssi/math-stds';
+const MATH_KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
+const MATH_SOURCES = {
   grade: [ ixl, problemAttic ],
   domain: [ khanAcad ],
   cluster: [ ],
@@ -24,7 +21,18 @@ const sources = {
   component: [ ],
 }
 
-export const ccCode = keys => Object.values(keys).map(v => v.code).join('.');
+export const insertMathResources = _ => {
+  console.log('inserting math resources...')
+  insertResources(MATH_STDS, MATH_KEYS, MATH_SOURCES);
+}
+
+export const nullParse = {
+  url: null,
+  title: null,
+}
+
+export const ccCode = keys =>
+  Object.values(keys).map(v => v.code).join('.');
 
 export const resetResources = callback => {
   console.log('resetting resources...');
@@ -36,50 +44,4 @@ export const restoreIfEmpty = () => {
   if (empty) {
     insertResources();
   }
-}
-
-const insertResource = (source, keys) => {
-  const { title, url } = source(keys);
-  if (!title || !url) return;
-  const code = 'Math/' + ccCode(keys);
-  Resources.insert({
-    title,
-    url,
-    code,
-    type: 'URL',
-    username: 'Jist',
-    authorId: '1234',
-    score: 0,
-    favoritedBy: [],
-    comments: [],
-    createdAt: new Date(),
-  });
-}
-
-export const insertResources = () => {
-  let keys = {};
-  const insert = sources =>
-    sources.forEach(source => insertResource(source, keys));
-
-  console.log('inserting resources...');
-  Object.values(GRADES).forEach(grade => {
-    keys = { grade };
-    insert(sources.grade);
-    Object.values(grade).forEach(domain => {
-      keys = { grade, domain };
-      insert(sources.domain);
-      Object.values(domain).forEach(cluster => {
-        keys = { grade, domain, cluster };
-        insert(sources.cluster);
-        Object.values(cluster).forEach(standard => {
-          keys = { grade, domain, cluster, standard };
-          insert(sources.standard);
-          Object.values(standard || []).forEach(component => {
-            keys = {grade, domain, cluster, standard, component };
-            insert(sources.component);
-          });
-        });
-      });
-    });
-  });
 }
