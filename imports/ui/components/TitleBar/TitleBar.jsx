@@ -2,14 +2,13 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import LoginButton from './LoginButton';
-import SignupButton from './SignupButton';
-import LogoutButton from './LogoutButton';
 import AddResource from './AddResource';
 import InstallButton from './InstallButton';
 import ToggleButton from './ToggleButton';
-import { NavItem, NavLink } from './Nav';
+import { NavLink } from './Nav';
 import AlertMessage from './AlertMessage';
+import LoggedOutLinks from './LoggedOutLinks';
+import LoggedInLinks from './LoggedInLinks';
 
 class TitleBar extends React.Component {
   constructor(props) {
@@ -42,9 +41,13 @@ class TitleBar extends React.Component {
           >
             <ul className="navbar-nav flex-grow-1">
 
-              { !userId && this.loggedOutLinks() }
+              { !userId &&
+                <LoggedOutLinks />
+              }
 
-              { !!userId && this.loggedInLinks() }
+              { !!userId &&
+                <LoggedInLinks userId={userId} />
+              }
 
             </ul>
 
@@ -60,41 +63,6 @@ class TitleBar extends React.Component {
 
       </div>
     );
-  }
-  loggedOutLinks() {
-    return (
-      <>
-        <NavItem>
-          <LoginButton />
-        </NavItem>
-
-        <NavItem>
-          <SignupButton />
-        </NavItem>
-      </>
-    )
-  }
-  loggedInLinks() {
-    const { userId } = this.props;
-    return (
-      <>
-        <NavItem>
-          <NavLink to={`/favorites/${userId}`}>
-            My Favorites
-          </NavLink>
-        </NavItem>
-          
-        <NavItem>
-          <NavLink to={`/submissions/${userId}`}>
-            My Submissions
-          </NavLink>
-        </NavItem>
-
-        <NavItem>
-          <LogoutButton />
-        </NavItem>
-      </>
-    )
   }
   // bootstrap + react is stupid
   // the way bootstrap closes the alert w/ jquery doesnt allow for it to be re-rendered
