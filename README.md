@@ -21,8 +21,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - add http://www.openmiddle.com/ as source
 
 - refactor
-  - titlebar
-  - addresource
   - insertResources
     - using stdCodes func from desc-scraper
 

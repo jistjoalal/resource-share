@@ -2,7 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 
-import AddResource from './AddResource';
+import Modal from '../Modal';
+import AddResource from '../AddResource';
 import InstallButton from './InstallButton';
 import ToggleButton from './ToggleButton';
 import { NavLink } from './Nav';
@@ -51,7 +52,11 @@ class TitleBar extends React.Component {
 
             </ul>
 
-            { showAddResource && <AddResource /> }
+            { showAddResource &&
+              <Modal buttonText="Submit new Resource">
+                <AddResource />
+              </Modal>
+            }
 
           </div>
 

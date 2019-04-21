@@ -1,0 +1,9 @@
+.Modal__close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Modal__closeButton {
+  @extend .btn, .btn-danger;
+  position: absolute;
+}
