@@ -79,7 +79,7 @@ class TitleBar extends React.Component {
   }
 }
 
-export default container = withTracker(() => {
+export default container = withTracker(_ => {
   const query = Session.get('query');
   const userId = Meteor.userId();
   return { query, userId };

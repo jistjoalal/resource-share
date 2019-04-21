@@ -55,9 +55,9 @@ export default class CommentsPage extends React.Component {
               Submitted by:
             </span>
             
-            <a href={`/submissions/${resource.authorId}`}>
+            <Link to={`/submissions/${resource.authorId}`}>
               {resource.username}
-            </a>
+            </Link>
 
             <span className="mr-2"> - {time}</span>
             

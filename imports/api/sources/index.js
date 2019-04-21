@@ -40,9 +40,7 @@ export const resetResources = callback => {
   Resources.remove({}, callback)
 }
 
-export const restoreIfEmpty = () => {
+export const restoreIfEmpty = _ => {
   const empty = Resources.find().fetch().length < 1;
-  if (empty) {
-    insertResources();
-  }
+  if (empty) insertMathResources();
 }
