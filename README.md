@@ -18,8 +18,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - <s>parse std descriptions/titles</s>
 
-- add http://www.openmiddle.com/ as source
-
 - accessibility
 
 ### Ideas
@@ -30,4 +28,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - different way of selecting stds?
   - similar to commoncore site (pick grade, domain -> standard)
   - type like a search box
+- a way of reporting dead links?
+
 

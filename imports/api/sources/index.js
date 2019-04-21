@@ -7,6 +7,7 @@
 import Resources from '../resources';
 import { problemAttic } from './problem.attic';
 import { khanAcad } from './khan.acad';
+import { openMiddle } from './open.middle';
 import { illMath } from './ill.math';
 import { ixl } from './ixl';
 import insertResources from './insertResources';
@@ -14,8 +15,8 @@ import insertResources from './insertResources';
 import MATH_STDS from '../ccssi/math-stds';
 const MATH_KEYS = ['grade', 'domain', 'cluster', 'standard', 'component'];
 const MATH_SOURCES = {
-  grade: [ ixl, problemAttic ],
-  domain: [ khanAcad ],
+  grade: [ ixl, problemAttic, openMiddle ],
+  domain: [ khanAcad, openMiddle ],
   cluster: [ ],
   standard: [ illMath ],
   component: [ ],
