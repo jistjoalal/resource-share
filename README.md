@@ -34,5 +34,6 @@ A place to share the best Teaching/Learning resources for common core standards.
   - similar to commoncore site (pick grade, domain -> standard)
   - type like a search box
 - a way of reporting dead links?
+- tests (cypress, jest)
 
 - ill math new resources @ end of july

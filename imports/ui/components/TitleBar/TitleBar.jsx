@@ -6,6 +6,7 @@ import Modal from '../Modal';
 import AddResource from '../AddResource';
 import InstallButton from './InstallButton';
 import ToggleButton from './ToggleButton';
+import ShareButton from './ShareButton';
 import { NavLink } from './Nav';
 import AlertMessage from './AlertMessage';
 import LoggedOutLinks from './LoggedOutLinks';
@@ -33,6 +34,8 @@ class TitleBar extends React.Component {
           </NavLink>
           
           <InstallButton />
+
+          <ShareButton />
 
           <ToggleButton />
 
