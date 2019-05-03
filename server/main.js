@@ -15,7 +15,7 @@ Meteor.startup(() => {
   // restoreIfEmpty();
 
   // dev stuff
-  insertMathResources();
+  // insertMathResources();
   // resetResources();
   // resetResources(insertMathResources);
   // resetResources(restoreIfEmpty);

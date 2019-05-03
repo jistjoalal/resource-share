@@ -2,7 +2,13 @@
   "name": "resource-share",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor",
+    "start:e2e": "set METEOR_LOCAL_DIR=.meteor/test && meteor",
+    "start:e2e:prod": "METEOR_LOCAL_DIR=.meteor/test meteor --production",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "start-server-and-test start:e2e http://localhost:3000 cypress:open",
+    "test:prod": "start-server-and-test start:e2e:prod http://localhost:3000 cypress:run"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.3",
@@ -32,5 +38,9 @@
   },
   "engines": {
     "node": "8.15.1"
+  },
+  "devDependencies": {
+    "cypress": "^3.2.0",
+    "start-server-and-test": "^1.9.0"
   }
 }
