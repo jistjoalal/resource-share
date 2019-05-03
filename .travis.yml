@@ -4,8 +4,11 @@ node_js:
 
 cache: npm
 directories:
-  # we also need to cache folder with Cypress binary
+  # cypress
   - ~/.cache
+  # meteor
+  - ~/.meteor
+  - .meteor/local
 
 before_install:
   - "curl https://install.meteor.com | /bin/sh"
