@@ -1,5 +1,7 @@
 # Common Core Resource Share
 
+![ci](https://travis-ci.com/jistjoalal/resource-share.svg?token=twXeNQnipqLZqxvas2bx&branch=master)
+
 [CCShare](https://ccshare.herokuapp.com/cc/)
 
 A place to share the best Teaching/Learning resources for common core standards.
@@ -22,7 +24,7 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - accessibility
 
-- tests (cypress, jest)
+- tests w/ cypress
 
 ### Ideas
 - fully automate stds scraping?

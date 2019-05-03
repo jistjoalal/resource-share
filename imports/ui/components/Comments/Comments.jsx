@@ -29,6 +29,7 @@ export default class CommentsPage extends React.Component {
     );
     
     const time = moment(resource.createdAt).fromNow();
+    const stdUrl = '/cc/' + resource.code;
     return (
       <div className="container">
         <div className="row d-flex flex-column border shadow-sm p-2">
@@ -42,8 +43,10 @@ export default class CommentsPage extends React.Component {
               <h2>{resource.title}</h2>
             </a>
 
-            <h4 className="text-muted">
-              {resource.code}
+            <h4>
+              <Link to={stdUrl} className="text-muted">
+                {resource.code}
+              </Link>
             </h4>
           </div>
           
