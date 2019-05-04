@@ -4,10 +4,16 @@ import withDescription from '../../containers/DescriptionContainer';
 
 class StdDescription extends React.Component {
   render() {
-    const { text } = this.props;
+    const { text, subject } = this.props;
     return (
-      <div className="m-2">
-        {text}
+      <div>
+        <h2 className="StdDescription__code m-2">
+          {subject}
+        </h2>
+
+        <p className="StdDescription__text m-2">
+          {text}
+        </p>
       </div>
     );
   }

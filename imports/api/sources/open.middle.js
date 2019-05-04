@@ -25,6 +25,7 @@ export const openMiddle = keys => {
     const gradeCode = 'Math/' + grade.code;
     const desc = Descriptions.findOne({ code });
     const gradeDesc = Descriptions.findOne({ code: gradeCode });
+    if (!gradeDesc) return nullParse;
     const g = gradeDesc.title.replace(/ /g, '-');
     const d = desc.title.replace(/ & /g, ' ').replace(/ /g, '-');
     const baseUrl = 'http://www.openmiddle.com/category/';

@@ -1,10 +1,6 @@
 const { baseUrl } = Cypress.config()
 
 describe("Signup / Login", () => {
-  before(() => {
-    cy.resetDatabase();
-  });
-
   it("should signup a new user", () => {
     // visit signup page
     cy.visit("/signup");

@@ -22,10 +22,6 @@ class QuerySelect extends React.Component {
     return (
       <div className="section bg-light p-1 border">
 
-        <h2 className="m-2">
-          {queryString}
-        </h2>
-
         <StdDescription code={queryString} />
 
         <div className="d-flex align-items-center flex-wrap">

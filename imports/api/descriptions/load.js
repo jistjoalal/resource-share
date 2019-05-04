@@ -6,7 +6,7 @@ const ELA_DESC = require('../ccssi/ela-desc.json');
 /**
  * Insert
  */
-const loadIfEmpty = _ => {
+export default loadIfEmpty = _ => {
   const notEmpty = Descriptions.find({}).fetch().length;
   if (notEmpty) return;
   load(MATH_DESC)
@@ -19,6 +19,4 @@ const load = descs => {
     if (!exists) Descriptions.insert(desc);
   })
 }
-
-loadIfEmpty();
 

@@ -14,9 +14,10 @@ export default withDescription = withTracker(({ code }) => {
   const useTitle = title && /[a-z]/.test(title) && title.length > 1;
   const descText = useTitle ? title : desc;
   // swap text for subject when empty (on subject page)
-  const subject = code && code.replace('/', '');
+  const subject = code && code.replace(/\/$/, '');
   const text = descText || subject;
   return {
+    subject,
     text,
   }
 })

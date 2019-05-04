@@ -11,7 +11,7 @@ const ELA_URL = 'http://www.corestandards.org/ELA-Literacy';
 const ELA_OUT = 'ela-desc.json';
 
 // how many requests to make at a time to common core
-const REQUEST_SPEED = 50;
+const REQUEST_SPEED = 25;
 
 /**
  * Scrape
@@ -120,7 +120,7 @@ const parseText = (target, html) => {
 // replace weird text and whitespace
 // will probably need to add more cases once i notice more
 const cleanText = text => {
-  return text && text.join``.trim().replace('¹', '');
+  return text && text.join``.trim().replace(/[¹Â]/g, '');
 }
 
 /**
@@ -137,10 +137,12 @@ const saveDescs = filename => descs => {
   )
 }
 
-// scrapeAndSave('Math', MATH_STDS, MATH_OUT, MATH_URL);
+scrapeAndSave('Math', MATH_STDS, MATH_OUT, MATH_URL);
 // scrapeAndSave('Math', MATH_1_STDS, MATH_OUT, MATH_URL);
-// scrapeAndSave('ELA', ELA_STDS, ELA_OUT, ELA_URL);
+scrapeAndSave('ELA', ELA_STDS, ELA_OUT, ELA_URL);
 // scrapeAndSave('ELA', ELA_1_STDS, ELA_OUT, ELA_URL);
 
-// scrapeStd(MATH_URL, 'Math')('/3/NF')
-// .then(console.log)
+// // has ¹ char
+// scrapeStd(MATH_URL, 'Math')('/3/NF').then(console.log)
+// // has Â char
+// scrapeStd(MATH_URL, 'Math')('/4/NF').then(console.log)
