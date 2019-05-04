@@ -20,11 +20,7 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - <s>parse std descriptions/titles</s>
 
-- std code on comments page should link to that std page
-
 - accessibility
-
-- tests w/ cypress
 
 ### Ideas
 - fully automate stds scraping?
@@ -38,5 +34,6 @@ A place to share the best Teaching/Learning resources for common core standards.
   - similar to commoncore site (pick grade, domain -> standard)
   - type like a search box
 - a way of reporting dead links?
+- a way of dynamically rendering subject pages (CCMath, CCELA)?
 
 - ill math new resources @ end of july
