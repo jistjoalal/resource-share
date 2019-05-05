@@ -1,31 +1,19 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// reset database to dump w/ fixtures in it
 Cypress.Commands.add("resetDatabase", () => {
   cy.exec('mongo mongodb://localhost:3001/meteor --eval "db.dropDatabase()"'),
-    cy.exec("mongorestore --port 3001 ./tests/cypress/fixtures/test_db");
+  cy.exec("mongorestore --port 3001 ./tests/cypress/fixtures/test_db");
 });
 
-before(() => cy.resetDatabase());
+// login w/ fixture user
+// NOTE: window object must be loaded (page visited)
+Cypress.Commands.add("login", () => {
+  cy.window()
+  .then(win => win.Meteor)
+  .then(Meteor => Meteor.loginWithPassword('t@t.com', 'password'))
+})
+
+
+before(() => {
+  cy.resetDatabase()
+});
