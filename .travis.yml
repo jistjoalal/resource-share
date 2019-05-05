@@ -3,13 +3,9 @@ node_js:
 - 8.15.1
 cache:
   directories:
-  - ~/.npm
   - ~/.cache
   - ~/.meteor
   - .meteor/local
-  override:
-    - npm ci
-    - npm run cy:verify
 before_install:
 - curl https://install.meteor.com | /bin/sh
 install:
@@ -18,7 +14,6 @@ script:
 - npm run test:prod
 deploy:
   provider: heroku
-  strategy: git
   app: ccshare
   api_key:
     secure: vl9F0dIAaY0rPF6bb2Mci5BTuFOz/IJ2FNrQGsLxyJdlaPY7iVp6E3pwHvc3ouraZ/AEj+yAy6TcjQTdSN8YG17pF6Prm948U+p14xtoaa6cKTP5GaOP4AAJkOf2i8kUU70auNfHqXhf6FPrEUHk3gNaMPWpl5dpgqqXADDSGg4ojZp+o/KEX/+X18JkOH4Mp2BOva7UMphLrNuqspniX11xLh+zqHIVWp51b36OAVvpdqaY94XWCnOsmVfERODgEgkuGN+aVlyfavykC3F/6WiHNrZG0Em0w+0cjtLi2p5+GVRAQ4t5v09FG1Rsb1e9ml5xD/DdCLjo8B5lsTqzvp2lowbsxDVzVNUgek6B8039tFpAADEOcUvHgs1bx9TlNlTKnf2hhxNNsEsUJpxbdXO4ZKrcLpbJ+9+ZViJquV1qtCby1ijSwwlS8yHu4eTALVP01KjP4d1xDTW2O7ByDsk/lQqoOy2rulW0G+fs7lOPCrU6KJEUKPK/lIAv/zPyWIPVjqQ/mCF3pXSJLu4OKpgNqS4X/V6toLX7zoY33k32J59MtRUMXH7Cg8iwIbpMfYPzkrjEcP3s7Hc5R/kNugIMBG/VbTDip8shiVWaxJ0Lv2/Oohl7SML03Xag7xr4uQhCKuZ7egrj0wVzT4zA1xnpe9Wn56gOaU5/iJeGrvc=

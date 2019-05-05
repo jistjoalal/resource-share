@@ -20,6 +20,10 @@ A place to share the best Teaching/Learning resources for common core standards.
   - fix columns for CCRA?
   - find some english resources
 
+- how to speed up CI/deployments?
+  - i cant figure out how to not have prod run cypress post-install script (even tho its devDep)
+  - most of the time seems to be spent by meteor being big and mysterious (starting to see point of jamstack)
+
 - accessibility
 
 - integration tests
