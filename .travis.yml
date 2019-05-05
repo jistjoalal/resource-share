@@ -3,12 +3,12 @@ node_js:
 - 8.15.1
 cache: npm
 directories:
-- "~/.cache"
-- "~/.meteor"
-- ".meteor/local"
+- ~/.npm
+- ~/.cache
+- ~/.meteor
+- .meteor/local
 before_install:
 - curl https://install.meteor.com | /bin/sh
-- npm install -g cypress
 install:
 - npm ci
 script:
