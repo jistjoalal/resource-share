@@ -1,12 +1,15 @@
 language: node_js
 node_js:
 - 8.15.1
-cache: npm
-directories:
-- ~/.npm
-- ~/.cache
-- ~/.meteor
-- .meteor/local
+cache:
+  directories:
+  - ~/.npm
+  - ~/.cache
+  - ~/.meteor
+  - .meteor/local
+  override:
+    - npm ci
+    - npm run cy:verify
 before_install:
 - curl https://install.meteor.com | /bin/sh
 install:
