@@ -6,7 +6,7 @@
     "start:e2e": "set METEOR_LOCAL_DIR=.meteor/test && meteor",
     "start:e2e:prod": "METEOR_LOCAL_DIR=.meteor/test meteor --production",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
+    "cypress:run": "cypress run --record --key fzi1j9",
     "test": "start-server-and-test start:e2e http://localhost:3000 cypress:open",
     "test:prod": "start-server-and-test start:e2e:prod http://localhost:3000 cypress:run"
   },

@@ -12,15 +12,21 @@ A place to share the best Teaching/Learning resources for common core standards.
 
 - <s>All grade levels for Math</s>
 - <s>All grade levels for English</s>
-  - fix columns for CCRA?
-  - find some english resources
 
 ### todos
 - <s>file upload/download</s>
 
 - <s>parse std descriptions/titles</s>
+  - fix columns for CCRA?
+  - find some english resources
 
 - accessibility
+
+- integration tests
+  - remove resource
+  - favorite resource
+  - add comment
+  - remove comment
 
 ### Ideas
 - fully automate stds scraping?
@@ -35,5 +41,6 @@ A place to share the best Teaching/Learning resources for common core standards.
   - type like a search box
 - a way of reporting dead links?
 - a way of dynamically rendering subject pages (CCMath, CCELA)?
+- jest snapshot tests for each page?
 
 - ill math new resources @ end of july
