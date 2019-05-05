@@ -23,7 +23,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - accessibility
 
 - integration tests
-  - remove resource
   - favorite resource
   - add comment
   - remove comment

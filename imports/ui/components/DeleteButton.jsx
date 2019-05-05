@@ -15,7 +15,7 @@ export default DeleteButton = ({ user, resource }) => {
 
   return (
     <button
-      className="btn text-secondary p-0 mb-1"
+      className="DeleteResource btn text-secondary p-0 mb-1"
       onClick={del}
     >
       <FaTrashAlt />
