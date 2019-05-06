@@ -31,6 +31,9 @@ A place to share the best Teaching/Learning resources for common core standards.
   - add comment
   - remove comment
 
+- travis CI appearently has only 100 free builds
+  - circle CI looks like it has an unlimited free plan and better pricing
+
 ### Ideas
 - fully automate stds scraping?
   - in case stds get update
