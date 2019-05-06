@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  FaComments,
   FaExternalLinkAlt,
   FaFilePdf,
   FaEdit,
@@ -12,6 +11,7 @@ import {
 } from 'react-icons/fa';
 
 import FavoriteButton from '../FavoriteButton';
+import CommentsButton from '../CommentsButton';
 import DeleteButton from '../DeleteButton';
 
 const TYPE_ICONS = {
@@ -67,14 +67,9 @@ export default class Resource extends React.Component {
         <div className="col-2 d-flex align-items-center p-0">
 
           <FavoriteButton user={user} resource={resource} />
-          
-          <Link
-            className="Button text-info"
-            to={`/comments/${resource._id}`}
-          >
-            <FaComments />
-          </Link>
-          
+
+          <CommentsButton resource={resource} />
+         
           <DeleteButton user={user} resource={resource} />
           
         </div>

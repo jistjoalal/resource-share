@@ -27,7 +27,6 @@ A place to share the best Teaching/Learning resources for common core standards.
 - accessibility
 
 - integration tests
-  - add comment
   - remove comment
 
 - travis CI appearently has only 100 free builds
