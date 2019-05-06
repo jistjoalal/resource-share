@@ -14,6 +14,7 @@ export default FavoriteButton = ({ resource, user }) => {
   return (
     <a
       className={"Button text-" + color}
+      data-cy="favorite"
       onClick={favd ? unFav : favorite}
     >
       <FaHeart />

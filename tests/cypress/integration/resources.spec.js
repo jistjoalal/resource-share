@@ -16,7 +16,7 @@ describe("Add/Remove Resources", () => {
     cy.get('input[name="title"]').type(resourceTitle);
   })
 
-  it("should submit/delete new Link resource", () => {
+  it("should submit/fav/delete new Link resource", () => {
     // link should be active by default
     cy.get("button")
       .contains("Link")
@@ -27,6 +27,18 @@ describe("Add/Remove Resources", () => {
     cy.url().should("contain", "/comments/");
     // should alert user that post was created
     cy.get("body").contains("Post Created!");
+
+    // should favorite post
+    cy.get('[data-cy=favorite]').click()
+    cy.get('[data-cy=favorite]').should('have.class', 'text-danger')
+    // should show up on favorites page
+    cy.contains('My Favorites').click()
+    cy.url().should("contain", '/favorites/')
+
+    // go back to comments page
+    cy.go('back')
+    cy.url().should("contain", '/comments/')
+
     // should delete new resource
     cy.get('.DeleteResource').click()
     cy.get('body').contains('Resource Not Found')
@@ -73,10 +85,11 @@ const requestUntil403 = (url, tries=0) => {
     url,
     failOnStatusCode: false,
   }).then(resp => {
-    if (tries > 5)
+    if (tries > 10)
       throw new Error('s3 deletion timed out')
     if (resp.status === 403)
       return resp
+    cy.wait(1000)
     requestUntil403(url, tries + 1)
   })
 }
