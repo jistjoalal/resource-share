@@ -1,20 +1,25 @@
-describe.only('Comments', () => {
-
-  const testComment = 'A test comment!';
+describe.only("Comments", () => {
+  const testComment = "A test comment!";
 
   beforeEach(() => {
-    cy.visit('/cc/Math/1')
-    cy.login()
-  })
+    cy.visit("/cc/Math/1");
+    cy.login();
+  });
 
-  it('should insert comment', () => {
+  it("should insert comment", () => {
     // visit a 1st grade fixture resource comments page
-    cy.get('[data-cy=comments]').click()
-    cy.url().should('contain', '/comments/')
+    cy.get("[data-cy=comments]").click();
+    cy.url().should("contain", "/comments/");
     // leave a comment
-    cy.get('textarea').type(testComment)
-    cy.get('form').submit()
+    cy.get("textarea").type(testComment);
+    cy.get("form").submit();
     // comment should be posted
-    cy.get('p').contains(testComment)
-  })
-})
+    cy.get("p").contains(testComment);
+
+    // should delete comment
+    cy.get("[data-cy=deleteComment]").click();
+    cy.get("[data-cy=commentList] > div > div")
+      .children()
+      .should("have.length", 0);
+  });
+});

@@ -6,9 +6,11 @@ import moment from 'moment';
 export default class CommentList extends React.Component {
   render() {
     return (
-      <FlipMove maintainContainerHeight={true}>
-        {this.renderComments()}
-      </FlipMove>
+      <div data-cy="commentList">
+        <FlipMove maintainContainerHeight={true}>
+          {this.renderComments()}
+        </FlipMove>
+      </div>
     );
   }
   renderComments() {
@@ -30,6 +32,7 @@ export default class CommentList extends React.Component {
 
                 <button
                   className="btn"
+                  data-cy="deleteComment"
                   onClick={() => this.delete(comment._id)}
                 >
                   <FaTrashAlt />
