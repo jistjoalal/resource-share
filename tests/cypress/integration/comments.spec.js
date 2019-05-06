@@ -1,4 +1,4 @@
-describe.only("Comments", () => {
+describe("Comments", () => {
   const testComment = "A test comment!";
 
   beforeEach(() => {
@@ -6,7 +6,7 @@ describe.only("Comments", () => {
     cy.login();
   });
 
-  it("should insert comment", () => {
+  it("should insert/remove comment", () => {
     // visit a 1st grade fixture resource comments page
     cy.get("[data-cy=comments]").click();
     cy.url().should("contain", "/comments/");

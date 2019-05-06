@@ -34,6 +34,7 @@ describe("Add/Remove Resources", () => {
     // should show up on favorites page
     cy.contains('My Favorites').click()
     cy.url().should("contain", '/favorites/')
+    cy.contains(resourceTitle)
 
     // go back to comments page
     cy.go('back')
@@ -64,6 +65,15 @@ describe("Add/Remove Resources", () => {
     cy.url().should("contain", "/comments/");
     // should alert user that post was created
     cy.get("body").contains("Post Created!");
+
+    // should show up on submissions page
+    cy.contains('My Submissions').click()
+    cy.url().should("contain", '/submissions/')
+    cy.contains(resourceTitle)
+
+    // go back to comments page
+    cy.go('back')
+    cy.url().should("contain", '/comments/')
 
     // grab s3 url from page
     cy.get('body').contains(resourceTitle)
