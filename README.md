@@ -4,7 +4,7 @@
 
 A place to share the best Teaching/Learning resources for common core standards.
 
-[![Screenshot](https://jist-screenshotter.herokuapp.com/desktop/https://ccshare.herokuapp.com/cc/Math/HSA)](https://ccshare.herokuapp.com/cc/)
+[![Screenshot](https://jist-screenshotter.herokuapp.com/desktop/https://ccshare.herokuapp.com/cc/Math/HSA)](https://ccshare.herokuapp.com/)
 
 ## Dev Notes
 
