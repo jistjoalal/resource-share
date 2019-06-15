@@ -2,9 +2,9 @@
 
 ![ci](https://travis-ci.com/jistjoalal/resource-share.svg?token=twXeNQnipqLZqxvas2bx&branch=master)
 
-[CCShare](https://ccshare.herokuapp.com/cc/)
-
 A place to share the best Teaching/Learning resources for common core standards.
+
+[![Screenshot](https://jist-screenshotter.herokuapp.com/desktop/https://ccshare.herokuapp.com/cc/Math/HSA)](https://ccshare.herokuapp.com/cc/)
 
 ## Dev Notes
 
@@ -14,13 +14,16 @@ A place to share the best Teaching/Learning resources for common core standards.
 - <s>All grade levels for English</s>
 
 ### todos
+
 - <s>file upload/download</s>
 
 - <s>parse std descriptions/titles</s>
+
   - fix columns for CCRA?
   - find some english resources
 
 - how to speed up CI/deployments?
+
   - i cant figure out how to not have prod run cypress post-install script (even tho its devDep)
   - most of the time seems to be spent by meteor being big and mysterious (starting to see point of jamstack)
 
@@ -28,6 +31,7 @@ A place to share the best Teaching/Learning resources for common core standards.
   - circle CI looks like it has an unlimited free plan and better pricing
 
 ### Ideas
+
 - fully automate stds scraping?
   - in case stds get update
   - load xml from cc site
