@@ -4,7 +4,7 @@
 
 A place to share the best Teaching/Learning resources for common core standards.
 
-[![Screenshot](https://jist-screenshotter.herokuapp.com/desktop/https://ccshare.herokuapp.com/cc/Math/HSA)](https://ccshare.herokuapp.com/)
+[![Screenshot](https://jist-screenshotter.herokuapp.com/v1/desktop/https://ccshare.herokuapp.com/cc/Math/HSA)](https://ccshare.herokuapp.com/)
 
 ## Dev Notes
 
@@ -21,6 +21,8 @@ A place to share the best Teaching/Learning resources for common core standards.
 
   - fix columns for CCRA?
   - find some english resources
+
+- still weird chars in Math/4.NF
 
 - how to speed up CI/deployments?
 
