@@ -1,4 +1,4 @@
-const { baseUrl } = Cypress.config()
+const { baseUrl } = Cypress.config();
 
 describe("Home page", () => {
   beforeEach(() => {
@@ -7,7 +7,7 @@ describe("Home page", () => {
   it("should render title link", () => {
     assertLink("Resource Share", "/");
   });
-  ["Math", "ELA"].forEach(subject => {
+  ["Math" /*, "ELA" */].forEach(subject => {
     it(`should render ${subject} link`, () => {
       assertLink(subject, "/cc/" + subject);
     });
@@ -18,5 +18,5 @@ const assertLink = (text, to) => {
   cy.get("body")
     .contains(text)
     .click();
-  cy.url().should("eq", baseUrl + to); 
+  cy.url().should("eq", baseUrl + to);
 };
