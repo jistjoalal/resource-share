@@ -1,22 +1,20 @@
-import { withTracker } from "meteor/react-meteor-data";
+import { withTracker } from 'meteor/react-meteor-data';
 
-import { currentUser, resources } from "./data";
+import { currentUser, resources } from './data';
 
-import ResourceList from "../components/ResourceList";
+import ResourceList from '../components/ResourceList';
 
 const withResources = withTracker(_ => {
   // resources (matching query + page)
-  const queryString = Session.get("query") || "";
+  const queryString = Session.get('query') || '';
   const query = {
-    code: {
-      $regex: queryString
-    }
+    code: queryString,
   };
 
   return {
-    title: "Resources",
+    title: 'Resources',
     ...currentUser(),
-    ...resources(query)
+    ...resources(query),
   };
 });
 

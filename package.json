@@ -11,22 +11,22 @@
     "test:prod": "start-server-and-test start:e2e:prod http://localhost:3000 cypress:run"
   },
   "dependencies": {
-    "@babel/runtime": "^7.6.2",
-    "aws-sdk": "^2.540.0",
-    "axios": "^0.18.1",
+    "@babel/runtime": "^7.4.3",
+    "aws-sdk": "^2.437.0",
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
     "bootstrap": "^4.3.1",
     "cheerio": "^1.0.0-rc.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.4.0",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.24.0",
     "popper.js": "^1.15.0",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-flip-move": "^3.0.3",
-    "react-helmet": "^5.2.1",
-    "react-icons": "^3.7.0",
-    "react-modal": "^3.10.1",
+    "react-helmet": "^5.2.0",
+    "react-icons": "^3.5.0",
+    "react-modal": "^3.8.1",
     "react-router-dom": "^4.3.1",
     "simpl-schema": "^1.5.5"
   },
@@ -40,8 +40,8 @@
     "node": "8.15.1"
   },
   "devDependencies": {
-    "cypress": "^3.4.1",
-    "cypress-file-upload": "^3.3.4",
-    "start-server-and-test": "^1.10.3"
+    "cypress": "^3.2.0",
+    "cypress-file-upload": "^3.1.1",
+    "start-server-and-test": "^1.9.0"
   }
 }
