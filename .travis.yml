@@ -1,17 +1,21 @@
 language: node_js
 node_js:
-- 8.15.1
+  - 8.15.1
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
 cache:
   directories:
-  - ~/.cache
-  - ~/.meteor
-  - .meteor/local
+    - ~/.cache
+    - ~/.meteor
+    - .meteor/local
 before_install:
-- curl https://install.meteor.com | /bin/sh
+  - curl https://install.meteor.com | /bin/sh
 install:
-- npm ci
+  - npm ci
 script:
-- npm run test:prod
+  - npm run test:prod
 deploy:
   provider: heroku
   app: ccshare
