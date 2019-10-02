@@ -8,7 +8,7 @@ describe("Comments", () => {
 
   it("should insert/remove comment", () => {
     // visit a 1st grade fixture resource comments page
-    cy.get("[data-cy=comments]").click();
+    cy.get("[data-cy=comments]:first").click();
     cy.url().should("contain", "/comments/");
     // leave a comment
     cy.get("textarea").type(testComment);
