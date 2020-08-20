@@ -14,7 +14,7 @@
     "@babel/runtime": "^7.6.3",
     "aws-sdk": "^2.556.0",
     "axios": "^0.18.1",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "bootstrap": "^4.3.1",
     "cheerio": "^1.0.0-rc.3",
     "jquery": "^3.4.0",
